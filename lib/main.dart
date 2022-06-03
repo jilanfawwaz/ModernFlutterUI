@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
+import 'package:modern_flutter_ui/ui/getstartedyoga.dart';
 import 'package:modern_flutter_ui/ui/halamanutama1.dart';
 import 'package:modern_flutter_ui/ui/splashscreen1.dart';
 
@@ -14,8 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => SplashScreen1(),
+        '/': (context) => GetStartedYoga(),
         '/halamanutama1': (context) => HalamanUtama1(),
+        '/getstartedcypto': (context) => GetStartedCrypto(),
+        '/getstartedyoga': (context) => GetStartedYoga(),
       },
       //home: SplashScreen1(),
     );
