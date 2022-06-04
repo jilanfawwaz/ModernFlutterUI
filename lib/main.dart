@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
 import 'package:modern_flutter_ui/ui/getstartedyoga.dart';
 import 'package:modern_flutter_ui/ui/halamanutama1.dart';
+import 'package:modern_flutter_ui/ui/signincrypto.dart';
+import 'package:modern_flutter_ui/ui/signinwallet.dart';
 import 'package:modern_flutter_ui/ui/splashscreen1.dart';
 
 void main() {
@@ -16,10 +18,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => GetStartedYoga(),
+        '/': (context) => SignInCrypto(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
         '/getstartedyoga': (context) => GetStartedYoga(),
+        '/signincrypto': (context) => SignInCrypto(),
+        '/signinwallet': (context) => SignInWallet(),
       },
       //home: SplashScreen1(),
     );

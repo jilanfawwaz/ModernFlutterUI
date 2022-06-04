@@ -9,13 +9,14 @@ class GetStartedYoga extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.all(40),
+          padding: EdgeInsets.all(47),
           children: [
             Text(
               "Health First",
               style: cPoppinsWhiteSemibold24.copyWith(
                 color: Colors.black,
               ),
+              //textAlign: TextAlign.end,
             ),
             const SizedBox(
               height: 16,

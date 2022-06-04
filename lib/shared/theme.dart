@@ -3,7 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 Color cGreyText = Color(0xff828284);
 Color cGreyTerms = Color(0xff757575);
+Color cGreyForm = Color(0xff262A34);
+Color cGreyTextForm = Color(0xff6F7075);
 Color cGreenButton = Color(0xffAFEA0D);
+Color cBlackBackground = Color(0xff181A20);
+Color cOrangeButton = Color(0xffFCAC15);
 
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
@@ -41,4 +45,21 @@ TextStyle cPoppinsWhiteRegular16 = GoogleFonts.poppins(
   fontSize: 16,
   color: Color(0xffFFFFFF),
   fontWeight: regular,
+);
+
+TextStyle cPoppinsGreyRegular14 = GoogleFonts.poppins(
+  fontSize: 14,
+  color: Color(0xff6A6B70),
+  fontWeight: regular,
+);
+
+TextStyle cOpenSansWhiteRegular14 = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 14,
+);
+
+TextStyle cOpenSansGreySemibold18 = GoogleFonts.openSans(
+  color: Color(0xff6B4909),
+  fontSize: 18,
+  fontWeight: semiBold,
 );
