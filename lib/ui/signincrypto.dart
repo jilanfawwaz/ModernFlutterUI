@@ -110,7 +110,10 @@ class SignInCrypto extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 55,
-              margin: EdgeInsets.only(top: 131),
+              margin: EdgeInsets.only(
+                top: 131,
+                bottom: 30,
+              ),
               child: TextButton(
                 style: TextButton.styleFrom(
                   backgroundColor: cOrangeButton,
@@ -125,7 +128,31 @@ class SignInCrypto extends StatelessWidget {
                   style: cOpenSansGreySemibold18,
                 ),
               ),
-            )
+            ),
+            Center(
+              child: TextButton(
+                onPressed: () {},
+                //child: Text("Don’t have account? Sign Up"),
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "Don’t have account?",
+                        style:
+                            cPoppinsGreyRegular14.copyWith(color: Colors.white),
+                      ),
+                      TextSpan(
+                        text: " Sign Up",
+                        style: cPoppinsGreyRegular14.copyWith(
+                            color: Colors.white,
+                            fontWeight: semiBold,
+                            decoration: TextDecoration.underline),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
