@@ -1,8 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/shared/theme.dart';
 
-class SignInCrypto extends StatelessWidget {
+class SignInCrypto extends StatefulWidget {
   const SignInCrypto({Key? key}) : super(key: key);
+
+  @override
+  State<SignInCrypto> createState() => _SignInCryptoState();
+}
+
+class _SignInCryptoState extends State<SignInCrypto> {
+  FocusNode _textFieldFocus = FocusNode();
+  Color _color = cGreyForm;
+
+  FocusNode _textFieldFocus2 = FocusNode();
+  Color _color2 = cGreyForm;
+
+  @override
+  void initState() {
+    _textFieldFocus.addListener(() {
+      if (_textFieldFocus.hasFocus) {
+        setState(() {
+          _color = Colors.grey.shade200;
+        });
+      } else {
+        setState(() {
+          _color = cGreyForm;
+        });
+      }
+    });
+
+    _textFieldFocus2.addListener(() {
+      if (_textFieldFocus2.hasFocus) {
+        setState(() {
+          _color2 = Colors.grey.shade200;
+        });
+      } else {
+        setState(() {
+          _color2 = cGreyForm;
+        });
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +76,20 @@ class SignInCrypto extends StatelessWidget {
               height: 70,
             ),
             TextFormField(
-              cursorColor: Colors.white,
-              style: cOpenSansWhiteRegular14,
+              cursorColor: cGreyTextForm,
+              style: cOpenSansWhiteRegular14.copyWith(color: cGreyTextForm),
+              focusNode: _textFieldFocus,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(20),
+                //labelText: "Email",
+                contentPadding: EdgeInsets.all(18),
+                isDense:
+                    true, //mematikan padding defauld dari text di dalam textformfield
                 hintText: "Input Your Email",
                 //hintTextDirection: TextDirection.rtl,
                 hintStyle:
                     cOpenSansWhiteRegular14.copyWith(color: cGreyTextForm),
                 filled: true,
-                fillColor: cGreyForm,
+                fillColor: _color,
 
                 //hoverColor: Colors.black,
                 //focusColor: Colors.green,
@@ -56,8 +100,17 @@ class SignInCrypto extends StatelessWidget {
 
                     borderSide: BorderSide.none),
 
-                /*focusedBorder: OutlineInputBorder(
+                //focusColor: Colors.green, //ga fungsi
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(17),
                   borderSide: BorderSide(
+                    color: cGreyTextForm,
+                    width: 3,
+                  ),
+                ),
+
+                /*focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(x
                     color: Colors.white,
                     width: 5,
                     //style: BorderStyle.solid,
@@ -69,17 +122,67 @@ class SignInCrypto extends StatelessWidget {
               height: 20,
             ),
             TextFormField(
-              cursorColor: Colors.white,
-              style: cOpenSansWhiteRegular14,
+              cursorColor: cGreyTextForm,
+              style: cOpenSansWhiteRegular14.copyWith(color: cGreyTextForm),
+              focusNode: _textFieldFocus2,
               obscureText: true,
               decoration: InputDecoration(
+                /*prefixIcon: Image.asset(
+                  "assets/images/3-logoeye.png",
+                  width: 1,
+                  height: 1,
+                ),*/
+
+                /*suffixIcon: Container(
+                  width: 5,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/3-logoeye.png"),
+                    ),
+                  ),
+                ),*/
+
+                /*suffix: Column(
+                  //crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        print("show Password");
+                      },
+                      child: Container(
+                        //margin: EdgeInsets.only(top: 0),
+                        width: 18,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/3-logoeye.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),*/
+
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    Icons.remove_red_eye_sharp,
+                    color: cGreyTextForm,
+                  ),
+                  onPressed: () {
+                    print('Search');
+                  },
+                ),
+
                 hintText: "Password",
-                contentPadding: EdgeInsets.all(20),
+                contentPadding: EdgeInsets.all(18),
+                isDense: true,
                 //hintTextDirection: TextDirection.rtl,
                 hintStyle:
                     cOpenSansWhiteRegular14.copyWith(color: cGreyTextForm),
                 filled: true,
-                fillColor: cGreyForm,
+                fillColor: _color2,
 
                 //hoverColor: Colors.black,
                 //focusColor: Colors.green,
@@ -90,6 +193,14 @@ class SignInCrypto extends StatelessWidget {
 
                     borderSide: BorderSide.none),
 
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(17),
+                  borderSide: BorderSide(
+                    color: cGreyTextForm,
+                    width: 3,
+                  ),
+                ),
+
                 /*focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.white,
@@ -99,13 +210,18 @@ class SignInCrypto extends StatelessWidget {
                 ),*/
               ),
             ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                "Forgot My Password",
-                style: cPoppinsGreyRegular14,
-                textAlign: TextAlign.center,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Forgot My Password",
+                    style: cPoppinsGreyRegular14,
+                    //textAlign: TextAlign.right,
+                  ),
+                ),
+              ],
             ),
             Container(
               width: double.infinity,
