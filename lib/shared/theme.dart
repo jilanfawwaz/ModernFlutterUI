@@ -4,10 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 Color cGreyText = Color(0xff828284);
 Color cGreyTerms = Color(0xff757575);
 Color cGreyForm = Color(0xff262A34);
+Color cGreyForm2 = Color(0xffF3F3F3);
 Color cGreyTextForm = Color(0xff6F7075);
 Color cGreenButton = Color(0xffAFEA0D);
 Color cBlackBackground = Color(0xff181A20);
 Color cOrangeButton = Color(0xffFCAC15);
+Color cBlackForm = Color(0xff17171A);
+Color cBlueButton = Color(0xff5468FF);
 
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
