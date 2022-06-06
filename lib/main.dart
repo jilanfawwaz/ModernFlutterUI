@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => RatingMakanan(),
+        '/': (context) => RatingGojek(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
         '/getstartedyoga': (context) => GetStartedYoga(),
