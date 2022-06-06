@@ -39,6 +39,12 @@ TextStyle cPoppinsWhiteSemibold24 = GoogleFonts.poppins(
   fontWeight: semiBold,
 );
 
+TextStyle cPoppinsWhiteMedium18 = GoogleFonts.poppins(
+  fontSize: 18,
+  color: Color(0xffFFFFFF),
+  fontWeight: medium,
+);
+
 TextStyle cPoppinsWhiteLight16 = GoogleFonts.poppins(
   fontSize: 16,
   color: Color(0xffFFFFFF),

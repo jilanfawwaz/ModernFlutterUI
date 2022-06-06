@@ -4,6 +4,8 @@ import 'package:modern_flutter_ui/ui/emptystatebisnis.dart';
 import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
 import 'package:modern_flutter_ui/ui/getstartedyoga.dart';
 import 'package:modern_flutter_ui/ui/halamanutama1.dart';
+import 'package:modern_flutter_ui/ui/ratinggojek.dart';
+import 'package:modern_flutter_ui/ui/ratingmakanan.dart';
 import 'package:modern_flutter_ui/ui/signincrypto.dart';
 import 'package:modern_flutter_ui/ui/signinwallet.dart';
 import 'package:modern_flutter_ui/ui/splashscreen1.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => EmptyBisnis(),
+        '/': (context) => RatingMakanan(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
         '/getstartedyoga': (context) => GetStartedYoga(),
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
         '/signinwallet': (context) => SignInWallet(),
         '/emptybelanja': (context) => EmptyBelanja(),
         '/emptybisnis': (context) => EmptyBisnis(),
+        '/ratingmakanan': (context) => RatingMakanan(),
+        '/ratinggojek': (context) => RatingGojek(),
       },
       //home: SplashScreen1(),
     );
