@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_flutter_ui/ui/cobastate.dart';
 import 'package:modern_flutter_ui/ui/emptystatebelanja.dart';
 import 'package:modern_flutter_ui/ui/emptystatebisnis.dart';
 import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
@@ -21,8 +22,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      /*theme: ThemeData(
+        colorScheme: ColorScheme.light(primary: Colors.green.shade900),
+      ),*/
+
+      //theme: ThemeData(primarySwatch: Colors.green),
+
+      /*theme: Theme.of(context).copyWith(
+        appBarTheme: Theme.of(context).appBarTheme.copyWith(
+              color: Colors.red,
+            ),
+      ),*/
+
+      theme: Theme.of(context).copyWith(
+        appBarTheme: AppBarTheme(
+          color: Colors.purple,
+        ),
+      ),
+
       routes: {
-        '/': (context) => RatingGojek(),
+        '/': (context) => CobaState(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
         '/getstartedyoga': (context) => GetStartedYoga(),
@@ -32,8 +52,8 @@ class MyApp extends StatelessWidget {
         '/emptybisnis': (context) => EmptyBisnis(),
         '/ratingmakanan': (context) => RatingMakanan(),
         '/ratinggojek': (context) => RatingGojek(),
+        '/cobastate': (context) => CobaState(),
       },
-      //home: SplashScreen1(),
     );
   }
 }
