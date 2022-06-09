@@ -30,7 +30,7 @@ class _CobaStateState extends State<CobaState> {
               Text(
                 numberButton.toString(),
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 30 + double.parse(numberButton.toString()),
                 ),
               ),
               Row(

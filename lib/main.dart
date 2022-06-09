@@ -5,6 +5,8 @@ import 'package:modern_flutter_ui/ui/emptystatebisnis.dart';
 import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
 import 'package:modern_flutter_ui/ui/getstartedyoga.dart';
 import 'package:modern_flutter_ui/ui/halamanutama1.dart';
+import 'package:modern_flutter_ui/ui/pricingpurple.dart';
+import 'package:modern_flutter_ui/ui/cobamap.dart';
 import 'package:modern_flutter_ui/ui/ratinggojek.dart';
 import 'package:modern_flutter_ui/ui/ratingmakanan.dart';
 import 'package:modern_flutter_ui/ui/signincrypto.dart';
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
       ),
 
       routes: {
-        '/': (context) => CobaState(),
+        '/': (context) => CobaMap(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
         '/getstartedyoga': (context) => GetStartedYoga(),
@@ -53,6 +55,8 @@ class MyApp extends StatelessWidget {
         '/ratingmakanan': (context) => RatingMakanan(),
         '/ratinggojek': (context) => RatingGojek(),
         '/cobastate': (context) => CobaState(),
+        '/cobamap': (context) => CobaMap(),
+        '/pricingpurple': (context) => PricingPurple(),
       },
     );
   }
