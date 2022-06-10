@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       ),
 
       routes: {
-        '/': (context) => PricingWhite(),
+        '/': (context) => PricingPurple(),
         '/splashscreen': (context) => SplashScreen1(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),

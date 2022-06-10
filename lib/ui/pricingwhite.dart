@@ -9,7 +9,8 @@ class PricingWhite extends StatefulWidget {
 }
 
 class _PricingWhiteState extends State<PricingWhite> {
-  int selectIndex = -1;
+  //int selectIndex = -1;
+  List<int> selectedIndex = [];
   @override
   Widget build(BuildContext context) {
     Widget menuCard(
@@ -20,7 +21,12 @@ class _PricingWhiteState extends State<PricingWhite> {
       return GestureDetector(
         onTap: () {
           setState(() {
-            selectIndex = index;
+            //selectIndex = index;
+            if (selectedIndex.contains(index)) {
+              selectedIndex.remove(index);
+            } else {
+              selectedIndex.add(index);
+            }
           });
         },
         child: Container(
@@ -32,9 +38,10 @@ class _PricingWhiteState extends State<PricingWhite> {
           ),
           decoration: BoxDecoration(
             border: Border.all(
-              width: selectIndex == index ? 2 : 1,
-              color:
-                  selectIndex != index ? Color(0xffD9DEEA) : Color(0xff6050E7),
+              width: selectedIndex.contains(index) ? 2 : 1,
+              color: selectedIndex.contains(index)
+                  ? Color(0xff6050E7)
+                  : Color(0xffD9DEEA),
             ),
             borderRadius: BorderRadius.circular(39),
           ),
@@ -65,7 +72,7 @@ class _PricingWhiteState extends State<PricingWhite> {
                 ],
               ),
               Spacer(),
-              selectIndex == index
+              selectedIndex.contains(index)
                   ? Image.asset(
                       'assets/images/6-logoCheck.png',
                       width: 26,
@@ -137,7 +144,7 @@ class _PricingWhiteState extends State<PricingWhite> {
               subTitle: "can up to 10k",
             ),
             Spacer(),
-            selectIndex == -1
+            selectedIndex.isEmpty
                 ? SizedBox()
                 : Container(
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 21),
