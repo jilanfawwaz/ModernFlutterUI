@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/ui/cobastate.dart';
+import 'package:modern_flutter_ui/ui/cobatraversymedia.dart';
 import 'package:modern_flutter_ui/ui/emptystatebelanja.dart';
 import 'package:modern_flutter_ui/ui/emptystatebisnis.dart';
 import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
       ),
 
       routes: {
-        '/': (context) => PricingPurple(),
+        '/': (context) => CobaTraversy(),
         '/splashscreen': (context) => SplashScreen1(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),

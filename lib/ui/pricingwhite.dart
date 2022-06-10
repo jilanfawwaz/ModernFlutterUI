@@ -10,7 +10,8 @@ class PricingWhite extends StatefulWidget {
 
 class _PricingWhiteState extends State<PricingWhite> {
   //int selectIndex = -1;
-  List<int> selectedIndex = [];
+  //List<int> selectedIndex = [];
+  var selectedIndex = <int>[];
   @override
   Widget build(BuildContext context) {
     Widget menuCard(
