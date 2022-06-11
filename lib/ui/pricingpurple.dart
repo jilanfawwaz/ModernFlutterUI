@@ -196,7 +196,7 @@ class PricingPurple extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Stack(
+                  /*Stack(
                     children: [
                       Container(
                         width: double.infinity,
@@ -269,6 +269,69 @@ class PricingPurple extends StatelessWidget {
                         color: Colors.transparent,
                       ),
                     ],
+                  ),*/
+                  Container(
+                    width: double.infinity,
+                    height: 60,
+                    //padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.only(bottom: 30),
+
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(53),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xffE57C73).withOpacity(0.5),
+                          blurRadius: 20,
+                          offset: Offset(0, 22),
+                          spreadRadius: -10,
+                        )
+                      ],
+                    ),
+                    // decoration: BoxDecoration(
+                    //   color: Color(0xffFFC532),
+                    //   borderRadius: BorderRadius.circular(53),
+                    // ),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        backgroundColor: Color(0xffE57C73),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(53),
+                        ),
+                      ),
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Subscribe Now",
+                              style: cPoppinsWhiteSemibold24.copyWith(
+                                  fontSize: 16),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              width: 41,
+                              height: 41,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xffFAACA5),
+                              ),
+                              child:
+                                  Image.asset("assets/images/6-logoArrow.png"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Contact Support",
+                      style: cPoppinsWhiteRegular16.copyWith(
+                          decoration: TextDecoration.underline),
+                    ),
                   ),
                 ],
               ),

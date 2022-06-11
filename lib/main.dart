@@ -9,6 +9,8 @@ import 'package:modern_flutter_ui/ui/halamanutama1.dart';
 import 'package:modern_flutter_ui/ui/pricingpurple.dart';
 import 'package:modern_flutter_ui/ui/cobamap.dart';
 import 'package:modern_flutter_ui/ui/pricingwhite.dart';
+import 'package:modern_flutter_ui/ui/randomfood.dart';
+import 'package:modern_flutter_ui/ui/randomholiday.dart';
 import 'package:modern_flutter_ui/ui/ratinggojek.dart';
 import 'package:modern_flutter_ui/ui/ratingmakanan.dart';
 import 'package:modern_flutter_ui/ui/signincrypto.dart';
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
       ),
 
       routes: {
-        '/': (context) => PricingPurple(),
+        '/': (context) => RandomHoliday(),
         '/splashscreen': (context) => SplashScreen1(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -61,6 +63,8 @@ class MyApp extends StatelessWidget {
         '/cobamap': (context) => CobaMap(),
         '/pricingwhite': (context) => PricingWhite(),
         '/pricingpurple': (context) => PricingPurple(),
+        '/randomfood': (context) => RandomFood(),
+        '/randomholiday': (context) => RandomHoliday(),
       },
     );
   }
