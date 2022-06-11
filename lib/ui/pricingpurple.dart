@@ -196,48 +196,79 @@ class PricingPurple extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Material(
-                    child: InkWell(
-                      splashColor: Colors.green,
-                      onTap: () {
-                        print("haloo");
-                      },
-                      child: Ink(
+                  Stack(
+                    children: [
+                      Container(
                         width: double.infinity,
                         height: 55,
-                        padding: EdgeInsets.all(7),
+                        //padding: EdgeInsets.all(7),
                         //color: Color(0xffE57C73),
                         decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xffE57C73).withOpacity(0.5),
+                              blurRadius: 20,
+                              offset: Offset(0, 22),
+                              spreadRadius: -10,
+                            )
+                          ],
                           color: Color(0xffE57C73),
                           borderRadius: BorderRadius.circular(31),
                         ),
-                        child: Stack(
-                          children: [
-                            Center(
-                              child: Text(
-                                "Subscribe Now",
-                                style: cPoppinsWhiteSemibold24.copyWith(
-                                    fontSize: 16),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Container(
-                                width: 41,
-                                height: 41,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(0xffFAACA5),
-                                ),
-                                child: Image.asset(
-                                    "assets/images/6-logoArrow.png"),
-                              ),
-                            ),
-                          ],
-                        ),
                       ),
-                    ),
-                    color: Colors.transparent,
+                      Material(
+                        child: InkWell(
+                          splashColor: Colors.green,
+                          borderRadius: BorderRadius.circular(31),
+                          onTap: () {
+                            print("haloo");
+                          },
+                          child: Ink(
+                            width: double.infinity,
+                            height: 55,
+                            padding: EdgeInsets.all(7),
+                            //color: Color(0xffE57C73),
+                            decoration: BoxDecoration(
+                              // boxShadow: [
+                              //   BoxShadow(
+                              //     color: Color(0xffE57C73).withOpacity(0.5),
+                              //     blurRadius: 20,
+                              //     offset: Offset(0, 20),
+                              //     //spreadRadius: -4,
+                              //   )
+                              // ],
+                              color: Color(0xffE57C73),
+                              borderRadius: BorderRadius.circular(31),
+                            ),
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: Text(
+                                    "Subscribe Now",
+                                    style: cPoppinsWhiteSemibold24.copyWith(
+                                        fontSize: 16),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Container(
+                                    width: 41,
+                                    height: 41,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0xffFAACA5),
+                                    ),
+                                    child: Image.asset(
+                                        "assets/images/6-logoArrow.png"),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        color: Colors.transparent,
+                      ),
+                    ],
                   ),
                 ],
               ),

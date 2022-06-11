@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       ),
 
       routes: {
-        '/': (context) => CobaTraversy(),
+        '/': (context) => PricingPurple(),
         '/splashscreen': (context) => SplashScreen1(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
