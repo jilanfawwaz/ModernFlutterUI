@@ -83,6 +83,7 @@ class RandomHoliday extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xffFAFBFF),
       body: ListView(
+        padding: EdgeInsets.zero,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

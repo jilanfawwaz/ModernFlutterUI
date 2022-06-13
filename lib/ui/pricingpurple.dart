@@ -294,6 +294,8 @@ class PricingPurple extends StatelessWidget {
                     child: TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
+                        // shadowColor:Color(0xffE57C73),
+                        // elevation: 20,
                         backgroundColor: Color(0xffE57C73),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(53),
