@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:modern_flutter_ui/ui/cobashayna.dart';
+import 'package:modern_flutter_ui/ui/cobamediaquery.dart';
 import 'package:modern_flutter_ui/ui/cobadateappbar.dart';
 import 'package:modern_flutter_ui/ui/cobastate.dart';
 import 'package:modern_flutter_ui/ui/cobatraversymedia.dart';
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
       ),
 
       routes: {
-        '/': (context) => CobaDateAppBar(),
+        '/': (context) => CobaShayna(),
         '/splashscreen': (context) => SplashScreen1(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -67,6 +69,7 @@ class MyApp extends StatelessWidget {
         '/randomfood': (context) => RandomFood(),
         '/randomholiday': (context) => RandomHoliday(),
         '/cobadateappbar': (context) => CobaDateAppBar(),
+        '/cobashayna': (context) => CobaShayna(),
       },
     );
   }

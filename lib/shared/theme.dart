@@ -12,6 +12,9 @@ Color cOrangeButton = Color(0xffFCAC15);
 Color cBlackForm = Color(0xff17171A);
 Color cBlueButton = Color(0xff5468FF);
 Color cPinkButton = Color(0xffF94593);
+Color clHijau = Color(0xff81CB67);
+Color clOranye = Color(0xffF9B650);
+Color clTosca = Color(0xffC0F4E7);
 
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
