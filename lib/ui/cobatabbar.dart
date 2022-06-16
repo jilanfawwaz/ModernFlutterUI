@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CobaTabBar extends StatelessWidget {
   //List<Widget> _myTab = [
-  List<Tab> _myTab = [
+  final List<Tab> _myTab = [
     Tab(
       text: "Tab 1",
       icon: Icon(Icons.access_time),
@@ -86,7 +87,11 @@ class CobaTabBar extends StatelessWidget {
             Column(
               children: [
                 Center(
-                  child: Text("data Tab 1"),
+                  child: Text(
+                    "data Tab 1",
+                    style:
+                        GoogleFonts.poppins(fontSize: 16, color: Colors.green),
+                  ),
                 ),
               ],
             ),

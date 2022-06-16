@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
+import 'package:modern_flutter_ui/ui/cobagridview.dart';
 import 'package:modern_flutter_ui/ui/cobashayna.dart';
 import 'package:modern_flutter_ui/ui/cobamediaquery.dart';
 import 'package:modern_flutter_ui/ui/cobadateappbar.dart';
@@ -33,10 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      /*theme: ThemeData(
-        colorScheme: ColorScheme.light(primary: Colors.green.shade900),
-      ),*/
-
+      //yang ini gak berfungsi
       //theme: ThemeData(primarySwatch: Colors.green),
 
       /*theme: Theme.of(context).copyWith(
@@ -45,14 +45,26 @@ class MyApp extends StatelessWidget {
             ),
       ),*/
 
-      theme: Theme.of(context).copyWith(
+      /*theme: ThemeData(
+        colorScheme: ColorScheme.light(primary: Colors.green.shade900),
+      ),*/
+
+      /*theme: Theme.of(context).copyWith(
+      appBarTheme: AppBarTheme(
+        color: Colors.purple,
+      ),
+      ),*/
+
+      theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(),
         appBarTheme: AppBarTheme(
           color: Colors.purple,
         ),
       ),
+      //initialRoute: '/cobashayna',
 
       routes: {
-        '/': (context) => CobaTabBar(),
+        '/': (context) => CobaDiDiDe(),
         '/splashscreen': (context) => SplashScreen1(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -70,8 +82,9 @@ class MyApp extends StatelessWidget {
         '/randomfood': (context) => RandomFood(),
         '/randomholiday': (context) => RandomHoliday(),
         '/cobadateappbar': (context) => CobaDateAppBar(),
-        '/cobashayna': (context) => CobaShayna(),
+        CobaShayna().nameRoute: (context) => CobaShayna(),
         '/cobatabbar': (context) => CobaTabBar(),
+        '/cobagridview': (context) => CobaGridView(),
       },
     );
   }
