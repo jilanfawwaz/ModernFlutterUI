@@ -5,7 +5,7 @@ import 'package:modern_flutter_ui/ui/cobagridview.dart';
 import 'package:modern_flutter_ui/ui/cobashayna.dart';
 import 'package:modern_flutter_ui/ui/cobamediaquery.dart';
 import 'package:modern_flutter_ui/ui/cobadateappbar.dart';
-import 'package:modern_flutter_ui/ui/cobastate.dart';
+import 'package:modern_flutter_ui/ui/cobastateswitch.dart';
 import 'package:modern_flutter_ui/ui/cobatabbar.dart';
 import 'package:modern_flutter_ui/ui/cobatraversymedia.dart';
 import 'package:modern_flutter_ui/ui/emptystatebelanja.dart';
@@ -36,8 +36,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      //yang ini gak berfungsi
-      //theme: ThemeData(primarySwatch: Colors.green),
+      //berfungsi kalau make materialColor (Colors.ambers), color biasa gakbisa ( Color(0xffF3f3f3) )
+      /*theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),*/
 
       /*theme: Theme.of(context).copyWith(
         appBarTheme: Theme.of(context).appBarTheme.copyWith(
@@ -64,7 +66,7 @@ class MyApp extends StatelessWidget {
       //initialRoute: '/cobashayna',
 
       routes: {
-        '/': (context) => CobaDiDiDe(),
+        '/': (context) => CobaState(),
         '/splashscreen': (context) => SplashScreen1(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),

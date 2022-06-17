@@ -1,36 +1,45 @@
+//import 'dart:js';
+
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
-class CobaDiDiDe extends StatelessWidget {
+class CobaDiDiDe extends StatefulWidget {
   const CobaDiDiDe({Key? key}) : super(key: key);
 
   @override
+  State<CobaDiDiDe> createState() => _CobaDiDiDeState();
+}
+
+class _CobaDiDiDeState extends State<CobaDiDiDe> {
+  final List<Widget> _myList = List.generate(5, (index) {
+    final String _name = faker.person.name();
+    final String _address = faker.address.streetName();
+
+    return Column(
+      children: [
+        ListTile(
+          leading: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.people),
+            ],
+          ),
+          onTap: () {
+            print("Name: ${_name}, Adress: ${_address}");
+            //Navigator.pop(context);
+          },
+          title: Text(_name),
+          subtitle: Text(_address),
+          horizontalTitleGap: 1,
+        ),
+        Divider(),
+      ],
+    );
+  });
+  @override
   Widget build(BuildContext context) {
     var faker = Faker();
-    final List<Widget> _myList = List.generate(20, (index) {
-      final String _name = faker.company.name();
-      final String _address = faker.address.streetName();
-      return Column(
-        children: [
-          ListTile(
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.people),
-              ],
-            ),
-            onTap: () {
-              print("Name: ${_name}, Adress: ${_address}");
-              Navigator.pop(context);
-            },
-            title: Text(_name),
-            subtitle: Text(_address),
-            horizontalTitleGap: 1,
-          ),
-          //Divider(),
-        ],
-      );
-    });
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Dialog Dismissible Drawer"),
@@ -115,9 +124,99 @@ class CobaDiDiDe extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        children: [],
-      ),
+      body: _myList.length != 0
+          ? ListView.separated(
+              padding: EdgeInsets.zero,
+              itemCount: _myList.length,
+              separatorBuilder: (BuildContext context, int index) {
+                //return Divider();
+                return SizedBox();
+              },
+              itemBuilder: (BuildContext context, int index) {
+                //NOTE: Builder()
+                return Builder(builder: (context) {
+                  return Dismissible(
+                    //key: Key(index.toString()),
+                    key: UniqueKey(),
+                    //key: ValueKey(_name),
+                    onDismissed: (directionssss) {
+                      //kalau dismiss tidak dikonfirmasi (confirmDissmiss), maka onDismissed tidak akan dijalankan
+                      setState(() {
+                        _myList.remove(_myList[index]);
+                      });
+                      if (directionssss == DismissDirection.endToStart) {
+                        print("End To Starts");
+                      } else {
+                        print("Start To End");
+                      }
+                    },
+                    confirmDismiss: (directionsss) {
+                      return showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Delete Person"),
+                              content:
+                                  Text("Are You Sure to delete the person???"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    print("Confirm Delete");
+                                    //return true; //akan didelete
+                                    Navigator.pop(context, true);
+                                  },
+                                  child: Text("YES"),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    print("Cancel Delete");
+                                    //return false;
+                                    Navigator.pop(context, false);
+                                  },
+                                  child: Text("NO"),
+                                ),
+                              ],
+                            );
+                          });
+                    },
+
+                    background: Container(
+                      //kanan ke kiri
+                      color: Colors.green[300],
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                    secondaryBackground: Container(
+                      //kiri ke kanan
+                      color: Colors.red[300],
+                      padding: EdgeInsets.only(right: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                    //direction: DismissDirection.endToStart,
+                    child: _myList[index],
+                  );
+                });
+              },
+            )
+          : Center(
+              child: Text("You Have No List"),
+            ),
     );
   }
 }
