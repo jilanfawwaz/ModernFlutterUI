@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
@@ -25,6 +26,19 @@ import 'package:modern_flutter_ui/ui/signinwallet.dart';
 import 'package:modern_flutter_ui/ui/splashscreen1.dart';
 
 void main() {
+  //NOTE: Device Orientation
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    //[DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft],
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft
+    ],
+  );
+  //ENDNOTE: Device Orientation
+
   runApp(MyApp());
 }
 
@@ -66,7 +80,7 @@ class MyApp extends StatelessWidget {
       //initialRoute: '/cobashayna',
 
       routes: {
-        '/': (context) => CobaState(),
+        '/': (context) => CobaMediaQuery(),
         '/splashscreen': (context) => SplashScreen1(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
