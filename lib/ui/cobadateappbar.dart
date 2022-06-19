@@ -67,14 +67,16 @@ class CobaDateAppBar extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children:[
+          children: [
             Text(
+              //NOTE: DateTime
               DateTime(2021, 10, 24, 15, 15, 45, 55).toString(),
             ),
             Text(
               DateTime.now().toString(),
             ),
             Text(
+              //NOTE: DateFormat
               DateFormat.E().format(
                 DateTime.now(),
               ),
