@@ -13,6 +13,7 @@ class CobaMediaQuery extends StatelessWidget {
     final _appBar = AppBar(
       title: Text("Responsive layout"),
     );
+    //NOTE: MediaQuery Height
     final _bodyHeight = _height -
         _appBar.preferredSize.height - //ukuran appbar
         MediaQuery.of(context)
@@ -34,6 +35,7 @@ class CobaMediaQuery extends StatelessWidget {
               width: _width * 0.3,
               height: _bodyHeight * 0.8,
               //NOTE: Layoutbuilder
+              //NOTE: Constraint
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return Row(

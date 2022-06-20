@@ -70,7 +70,7 @@ class CobaDateAppBar extends StatelessWidget {
           children: [
             Text(
               //NOTE: DateTime
-              DateTime(2021, 10, 24, 15, 15, 45, 55).toString(),
+              DateTime(2021, 10, 24, 15, 15, 45, 55).toString(), //tahun bulan tanggal jam menit detik
             ),
             Text(
               DateTime.now().toString(),
