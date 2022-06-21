@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
-import 'package:modern_flutter_ui/widget/providerwidget.dart';
+import 'package:modern_flutter_ui/widget/providerwidgetcard.dart';
 import 'package:provider/provider.dart';
 
 import '../models/providermodel.dart';

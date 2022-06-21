@@ -8,6 +8,7 @@ import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
+import 'package:modern_flutter_ui/ui/cobaproviderfavorite.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderhome.dart';
 import 'package:modern_flutter_ui/ui/cobashayna.dart';
 import 'package:modern_flutter_ui/ui/cobamediaquery.dart';
@@ -111,9 +112,10 @@ class MyApp extends StatelessWidget {
           '/cobatabbar': (context) => CobaTabBar(),
           '/cobagridview': (context) => CobaGridView(),
           '/cobadatepickercupertino': (context) => CobaDatePickerCupertino(),
-          //data2 provider: models = providermodel; ui = cobaproviderdetail,cobaproviderhome; widget = providerwidget, providerwidgetgrid; providers = providerallproduct
+          //data2 provider: models = providermodel; ui = cobaproviderdetail,cobaproviderhome, cobaproviderfavorite; widget = providerwidget, providerwidgetgrid; providers = providerallproduct
           CobaProvider.nameRoute: (context) => CobaProvider(),
           CobaProviderDetail.nameRoute: (context) => CobaProviderDetail(),
+          CobaProviderFavorite.nameRoute: (context) => CobaProviderFavorite(),
         },
       ),
     );

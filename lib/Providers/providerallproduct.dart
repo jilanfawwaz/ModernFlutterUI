@@ -25,9 +25,22 @@ class AllProduct with ChangeNotifier {
     //ekstrak list (- ... boleh dihapus, tapi allProduct dikeluarkan dari kurung siku)
   }
 
+  List<Product> get favoriteProduct {
+    return _allProduct.where((element) => element.isSelected == true).toList();
+  }
+
   Product getProductById(productId) {
     return _allProduct.firstWhere((element) {
       return element.id == productId;
     });
+  }
+
+  void addFavorite(productId) {
+    int indexProduct = _allProduct.indexOf(_allProduct.firstWhere((element) {
+      return element.id == productId;
+    }));
+
+    _allProduct[indexProduct].isSelected =
+        !_allProduct[indexProduct].isSelected;
   }
 }
