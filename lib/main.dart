@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modern_flutter_ui/models/providermodel.dart';
+import 'package:modern_flutter_ui/ui/cobaProviderGridviewGridtile.dart';
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
+import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:modern_flutter_ui/ui/cobashayna.dart';
 import 'package:modern_flutter_ui/ui/cobamediaquery.dart';
 import 'package:modern_flutter_ui/ui/cobadateappbar.dart';
@@ -81,7 +84,7 @@ class MyApp extends StatelessWidget {
       //initialRoute: '/cobashayna',
 
       routes: {
-        '/': (context) => CobaDatePickerCupertino(),
+        '/': (context) => CobaProvider(),
         '/splashscreen': (context) => SplashScreen1(),
         '/halamanutama1': (context) => HalamanUtama1(),
         '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -103,6 +106,8 @@ class MyApp extends StatelessWidget {
         '/cobatabbar': (context) => CobaTabBar(),
         '/cobagridview': (context) => CobaGridView(),
         '/cobadatepickercupertino': (context) => CobaDatePickerCupertino(),
+        CobaProvider.nameRoute: (context) => CobaProvider(),
+        CobaProviderDetail.nameRoute: (context) => CobaProviderDetail(),
       },
     );
   }

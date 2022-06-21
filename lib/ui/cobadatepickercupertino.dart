@@ -32,6 +32,12 @@ class _CobaDatePickerCupertinoState extends State<CobaDatePickerCupertino> {
     DateTime(2022, 7, 20),
 
     DateTime(2022, 7, 16),
+
+    DateTime(2022, 7, 17),
+    DateTime(2022, 7, 15),
+    DateTime(2022, 7, 14),
+    DateTime(2022, 7, 19),
+    DateTime(2022, 7, 23),
   ];
   //DateTime _dateNow = _dateAvailable[_dateAvailable.length - 1];
 
@@ -154,8 +160,8 @@ class _CobaDatePickerCupertinoState extends State<CobaDatePickerCupertino> {
                                             return SizedBox(
                                               //color: Colors.white,
                                               height: _bodyHeight * 0.3,
-                                              //Note: CupertinoDatePicker()
 
+                                              //Note: CupertinoDatePicker()
                                               child: CupertinoDatePicker(
                                                   backgroundColor:
                                                       Colors.white60,
@@ -213,13 +219,10 @@ class _CobaDatePickerCupertinoState extends State<CobaDatePickerCupertino> {
                                     //NOTE: showDatePicker()
                                     showDatePicker(
                                       context: context,
-
                                       initialDate:
                                           initialDayCustom(_dateAvailable),
-
                                       firstDate: DateTime(1990),
                                       lastDate: DateTime(2025),
-
                                       helpText: initialDayCustom(
                                                   _dateAvailable) ==
                                               DateTime(
@@ -242,15 +245,24 @@ class _CobaDatePickerCupertinoState extends State<CobaDatePickerCupertino> {
                                           DatePickerEntryMode.calendar,
                                       initialDatePickerMode: DatePickerMode
                                           .day, //year berlaku kalau datepickerentrymode adalah calendar, bukan inputOnly, kalau input masih bisa tapi harus pindah mode dulu
+
                                       selectableDayPredicate: (day) {
-                                        // print(day);
-                                        // print(_dateAvailable);
                                         if (_dateAvailable.contains(day)) {
                                           return true;
                                         }
 
                                         return false;
                                       },
+
+                                      /*selectableDayPredicate: (day) {
+                                        if (day.isAfter(DateTime.now()
+                                                .subtract(Duration(days: 5))) &&
+                                            day.isBefore(DateTime.now()
+                                                .add(Duration(days: 5)))) {
+                                          return true;
+                                        }
+                                        return false;
+                                      },*/
                                     ).then((value) {
                                       //compare to mendeteksi apakah hari sebelum atau sesudah, tapi return 1 atau -1
                                       /*print(

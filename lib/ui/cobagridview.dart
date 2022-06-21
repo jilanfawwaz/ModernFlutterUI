@@ -14,6 +14,7 @@ class CobaGridView extends StatelessWidget {
         //height: 100,
         color: Color.fromARGB(
           255,
+          //NOTE:RANDOM().nextInt() (-angka 256 itu maksudnya akan merender angka random dari 0 sampai 256)
           Random().nextInt(256),
           Random().nextInt(256),
           Random().nextInt(256),
@@ -30,19 +31,19 @@ class CobaGridView extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 200,
-              color: Colors.white,
+              color: Colors.blue,
             ),
             GridView.count(
               //kalau GridView aja gamake .count, masukkan semua (kecuali children) ke gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: crossAxisCount, ....),
-              
+
               //shrinkwrap berfungsi agar panjang grid hanya sesuai sama panjang list, tidak mengambil panjang sepanjang parentnya
               shrinkWrap: true,
               childAspectRatio: 4 / 3,
 
               //scrollDirection: Axis.horizontal,
-              //physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               //physics: ClampingScrollPhysics(),
-              physics: BouncingScrollPhysics(),
+              //physics: BouncingScrollPhysics(),
 
               padding: EdgeInsets.all(20),
               crossAxisSpacing: 10,
@@ -50,6 +51,32 @@ class CobaGridView extends StatelessWidget {
               crossAxisCount: 3,
               children: _myGrid,
             ),
+
+            //NOTE:GridView tanpa .count
+            /*GridView(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+              ),
+              padding: EdgeInsets.all(20),
+              children: _myGrid,
+            ),*/
+            //END:GridView tanpa .count
+
+            //NOTE: GridView make .builder
+            /*GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+              ),
+              padding: EdgeInsets.all(20),
+              itemCount: _myGrid.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _myGrid[index];
+              },
+            ),*/
           ],
         ),
       ),
