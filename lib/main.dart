@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/models/providermodel.dart';
-import 'package:modern_flutter_ui/ui/cobaProviderGridviewGridtile.dart';
+
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
+import 'package:modern_flutter_ui/ui/cobaproviderhome.dart';
 import 'package:modern_flutter_ui/ui/cobashayna.dart';
 import 'package:modern_flutter_ui/ui/cobamediaquery.dart';
 import 'package:modern_flutter_ui/ui/cobadateappbar.dart';
@@ -28,6 +30,7 @@ import 'package:modern_flutter_ui/ui/ratingmakanan.dart';
 import 'package:modern_flutter_ui/ui/signincrypto.dart';
 import 'package:modern_flutter_ui/ui/signinwallet.dart';
 import 'package:modern_flutter_ui/ui/splashscreen1.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   //NOTE: Device Orientation
@@ -51,64 +54,68 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return ChangeNotifierProvider(
+      create: (context) => AllProduct(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
 
-      //berfungsi kalau make materialColor (Colors.ambers), color biasa gakbisa ( Color(0xffF3f3f3) )
-      /*theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),*/
+        //berfungsi kalau make materialColor (Colors.ambers), color biasa gakbisa ( Color(0xffF3f3f3) )
+        /*theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),*/
 
-      /*theme: Theme.of(context).copyWith(
-        appBarTheme: Theme.of(context).appBarTheme.copyWith(
-              color: Colors.red,
-            ),
-      ),*/
+        /*theme: Theme.of(context).copyWith(
+          appBarTheme: Theme.of(context).appBarTheme.copyWith(
+                color: Colors.red,
+              ),
+        ),*/
 
-      /*theme: ThemeData(
-        colorScheme: ColorScheme.light(primary: Colors.green.shade900),
-      ),*/
+        /*theme: ThemeData(
+          colorScheme: ColorScheme.light(primary: Colors.green.shade900),
+        ),*/
 
-      /*theme: Theme.of(context).copyWith(
-      appBarTheme: AppBarTheme(
-        color: Colors.purple,
-      ),
-      ),*/
-
-      theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(),
+        /*theme: Theme.of(context).copyWith(
         appBarTheme: AppBarTheme(
           color: Colors.purple,
         ),
-      ),
-      //initialRoute: '/cobashayna',
+        ),*/
 
-      routes: {
-        '/': (context) => CobaProvider(),
-        '/splashscreen': (context) => SplashScreen1(),
-        '/halamanutama1': (context) => HalamanUtama1(),
-        '/getstartedcypto': (context) => GetStartedCrypto(),
-        '/getstartedyoga': (context) => GetStartedYoga(),
-        '/signincrypto': (context) => SignInCrypto(),
-        '/signinwallet': (context) => SignInWallet(),
-        '/emptybelanja': (context) => EmptyBelanja(),
-        '/emptybisnis': (context) => EmptyBisnis(),
-        '/ratingmakanan': (context) => RatingMakanan(),
-        '/ratinggojek': (context) => RatingGojek(),
-        '/cobastate': (context) => CobaState(),
-        '/cobamap': (context) => CobaMap(),
-        '/pricingwhite': (context) => PricingWhite(),
-        '/pricingpurple': (context) => PricingPurple(),
-        '/randomfood': (context) => RandomFood(),
-        '/randomholiday': (context) => RandomHoliday(),
-        '/cobadateappbar': (context) => CobaDateAppBar(),
-        CobaShayna().nameRoute: (context) => CobaShayna(),
-        '/cobatabbar': (context) => CobaTabBar(),
-        '/cobagridview': (context) => CobaGridView(),
-        '/cobadatepickercupertino': (context) => CobaDatePickerCupertino(),
-        CobaProvider.nameRoute: (context) => CobaProvider(),
-        CobaProviderDetail.nameRoute: (context) => CobaProviderDetail(),
-      },
+        theme: ThemeData(
+          textTheme: GoogleFonts.poppinsTextTheme(),
+          appBarTheme: AppBarTheme(
+            color: Colors.purple,
+          ),
+        ),
+        //initialRoute: '/cobashayna',
+
+        routes: {
+          '/': (context) => CobaProvider(),
+          '/splashscreen': (context) => SplashScreen1(),
+          '/halamanutama1': (context) => HalamanUtama1(),
+          '/getstartedcypto': (context) => GetStartedCrypto(),
+          '/getstartedyoga': (context) => GetStartedYoga(),
+          '/signincrypto': (context) => SignInCrypto(),
+          '/signinwallet': (context) => SignInWallet(),
+          '/emptybelanja': (context) => EmptyBelanja(),
+          '/emptybisnis': (context) => EmptyBisnis(),
+          '/ratingmakanan': (context) => RatingMakanan(),
+          '/ratinggojek': (context) => RatingGojek(),
+          '/cobastate': (context) => CobaState(),
+          '/cobamap': (context) => CobaMap(),
+          '/pricingwhite': (context) => PricingWhite(),
+          '/pricingpurple': (context) => PricingPurple(),
+          '/randomfood': (context) => RandomFood(),
+          '/randomholiday': (context) => RandomHoliday(),
+          '/cobadateappbar': (context) => CobaDateAppBar(),
+          CobaShayna().nameRoute: (context) => CobaShayna(),
+          '/cobatabbar': (context) => CobaTabBar(),
+          '/cobagridview': (context) => CobaGridView(),
+          '/cobadatepickercupertino': (context) => CobaDatePickerCupertino(),
+          //data2 provider: models = providermodel; ui = cobaproviderdetail,cobaproviderhome; widget = providerwidget, providerwidgetgrid; providers = providerallproduct
+          CobaProvider.nameRoute: (context) => CobaProvider(),
+          CobaProviderDetail.nameRoute: (context) => CobaProviderDetail(),
+        },
+      ),
     );
   }
 }
