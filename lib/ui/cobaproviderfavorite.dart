@@ -17,23 +17,29 @@ class CobaProviderFavorite extends StatelessWidget {
         title: Text("Coba Favorite"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: GridView.builder(
-              padding: EdgeInsets.all(5),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 5,
-                crossAxisSpacing: 5,
-                //childAspectRatio: 1 / 1, //secara default 1 / 1
-              ),
-              itemCount: _listProduct.length,
-              itemBuilder: (context, index) {
-                return ChangeNotifierProvider.value(
-                    value: _listProduct[index], child: ProviderWidget());
-              },
-            ),
-          )
+          _listProduct.length == 0
+              ? Center(
+                  child: Text("Anda Tidak memiliki produk favorite"),
+                )
+              : Expanded(
+                  child: GridView.builder(
+                    padding: EdgeInsets.all(5),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+                      //childAspectRatio: 1 / 1, //secara default 1 / 1
+                    ),
+                    itemCount: _listProduct.length,
+                    itemBuilder: (context, index) {
+                      return ChangeNotifierProvider.value(
+                          value: _listProduct[index], child: ProviderWidget());
+                    },
+                  ),
+                ),
         ],
       ),
     );

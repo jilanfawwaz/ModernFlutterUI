@@ -12,7 +12,8 @@ class ProviderWidget extends StatefulWidget {
 class _ProviderWidgetState extends State<ProviderWidget> {
   @override
   Widget build(BuildContext context) {
-    final listProduct = Provider.of<Product>(context);
+    final listProduct = Provider.of<Product>(context, listen: false);
+    //print("Widger Rebuild");
     return GestureDetector(
       onTap: () {
         //print(listProduct.judul);
@@ -35,22 +36,25 @@ class _ProviderWidgetState extends State<ProviderWidget> {
               //NOTE:GridTileBar
               GridTileBar(
             backgroundColor: Colors.blue.withOpacity(0.8),
-            leading: IconButton(
-              onPressed: () {
-                listProduct.setFavorite();
-                //manggil provider cukup satu kali aja dalam satu context
-                //Provider.of<Product>(context).isSelected;
-              },
-              icon: !listProduct.isSelected
-                  ? Icon(
-                      Icons.favorite_border_outlined,
-                      color: Colors.white,
-                    )
-                  : Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                    ),
-            ),
+            leading: Consumer<Product>(builder: (context, listProduct, child) {
+              //print("product favorite");
+              return IconButton(
+                onPressed: () {
+                  listProduct.setFavorite();
+                  //manggil provider cukup satu kali aja dalam satu context
+                  //Provider.of<Product>(context).isSelected;
+                },
+                icon: !listProduct.isSelected
+                    ? Icon(
+                        Icons.favorite_border_outlined,
+                        color: Colors.white,
+                      )
+                    : Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                      ),
+              );
+            }),
             title: Text(
               listProduct.judul,
               style: TextStyle(color: Colors.white, fontSize: 12),
