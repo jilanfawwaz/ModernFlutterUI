@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import 'package:modern_flutter_ui/models/providermodel.dart';
+import 'package:modern_flutter_ui/Providers/providermodel.dart';
 
 class AllProduct with ChangeNotifier {
   final List<Product> _allProduct = List.generate(
@@ -35,12 +35,16 @@ class AllProduct with ChangeNotifier {
     });
   }
 
-  void addFavorite(productId) {
+
+  // yang ini ditaroh di provider model aja
+  /*void addFavorite(productId) {
     int indexProduct = _allProduct.indexOf(_allProduct.firstWhere((element) {
       return element.id == productId;
     }));
 
     _allProduct[indexProduct].isSelected =
         !_allProduct[indexProduct].isSelected;
-  }
+
+    notifyListeners();
+  }*/
 }

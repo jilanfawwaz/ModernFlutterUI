@@ -29,7 +29,8 @@ class CobaProviderFavorite extends StatelessWidget {
               ),
               itemCount: _listProduct.length,
               itemBuilder: (context, index) {
-                return ProviderWidget(listProduct: _listProduct[index]);
+                return ChangeNotifierProvider.value(
+                    value: _listProduct[index], child: ProviderWidget());
               },
             ),
           )

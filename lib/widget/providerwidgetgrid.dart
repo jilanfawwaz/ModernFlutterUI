@@ -3,12 +3,11 @@ import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/widget/providerwidgetcard.dart';
 import 'package:provider/provider.dart';
 
-import '../models/providermodel.dart';
+import '../Providers/providermodel.dart';
 
 class ProductGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    
     final _listProduct = Provider.of<AllProduct>(context).allProduct;
 
     return GridView.builder(
@@ -21,7 +20,13 @@ class ProductGrid extends StatelessWidget {
       ),
       itemCount: _listProduct.length,
       itemBuilder: (context, index) {
-        return ProviderWidget(listProduct: _listProduct[index]);
+        return ChangeNotifierProvider.value(
+          value: _listProduct[index],
+
+          //kalau return adalah value bukan class, jangan membuat context baru, usahakan pake context value yang udah ada aja
+          //create: (context) => _listProduct[index],
+          child: ProviderWidget(),
+        );
       },
     );
   }

@@ -1,10 +1,12 @@
-class Product {
+import 'package:flutter/material.dart';
+
+class Product with ChangeNotifier {
   final String id;
   final String judul;
   final String deskripsi;
   final String imageURL;
   final int harga;
-  bool isSelected;
+  bool isSelected; //isFavorite
   bool isCart;
 
   Product({
@@ -16,4 +18,9 @@ class Product {
     this.isSelected = false,
     this.isCart = false,
   });
+
+  void setFavorite() {
+    isSelected = !isSelected;
+    notifyListeners();
+  }
 }
