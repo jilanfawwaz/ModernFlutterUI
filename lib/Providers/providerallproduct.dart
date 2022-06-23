@@ -15,8 +15,8 @@ class AllProduct with ChangeNotifier {
         judul: name,
         deskripsi: "Anda memilih produk dengan nama $name",
 
-        imageURL: 'https://image.tmdb.org/t/p/w92',
-        //imageURL: "https://picsum.photos/id/${index + 29}/200/300",
+        //imageURL: 'https://image.tmdb.org/t/p/w92',
+        imageURL: "https://picsum.photos/id/${index + 29}/200/300",
 
         /*imageURL: Image.network(
           'https://image.tmdb.org/t/p/w92',

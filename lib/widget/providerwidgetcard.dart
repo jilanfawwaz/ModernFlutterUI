@@ -1,19 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
+import 'package:modern_flutter_ui/Providers/providercart.dart';
 import 'package:modern_flutter_ui/Providers/providermodel.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:provider/provider.dart';
 
-class ProviderWidget extends StatefulWidget {
-  @override
-  State<ProviderWidget> createState() => _ProviderWidgetState();
-}
-
-class _ProviderWidgetState extends State<ProviderWidget> {
+class ProviderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final listProduct = Provider.of<Product>(context, listen: false);
+    final cart = Provider.of<Cart>(context, listen: false);
+
     //print("Widger Rebuild");
     print("BUILD IMAGE");
     return GestureDetector(
@@ -31,8 +29,7 @@ class _ProviderWidgetState extends State<ProviderWidget> {
         //NOTE:GridTile
         child: GridTile(
           //NOTE:FadeInImage (nunggu gambar network selesai ke load, maka akan ditampilkan gambar default dulu), tapi link dari gambar network harus selalu aktif biar ga eror
-
-          child: FadeInImage(
+          /*child: FadeInImage(
             image: NetworkImage(listProduct.imageURL),
             placeholder: AssetImage("assets/images/4-gambarBelanja.png"),
             fit: BoxFit.cover,
@@ -40,16 +37,37 @@ class _ProviderWidgetState extends State<ProviderWidget> {
               print(error); //do something
               return Text("EROR MASBRO");
             },
-          ),
+          ),*/
           //END:FadeInImage
 
+          //NOTE:ErrorBuilder
+          /*child: Image.network(
+            'https://example.does.not.exist/image.jpg',
+            errorBuilder: (BuildContext context, Object exception,
+                StackTrace? stackTrace) {
+              // Appropriate logging or analytics, e.g.
+              // myAnalytics.recordError(
+              //   'An error occurred loading "https://example.does.not.exist/image.jpg"',
+              //   exception,
+              //   stackTrace,
+              // );
+              print(exception);
+              return Center(
+                child: const Text('test'),
+              );
+            },
+          ),*/
+          //END:ErrorBuilder
+
           //NOTE:ChacedNetworkImage //BERFUNGSI!!! untuk menaruh gambar di chache, ketika internet mati gambar masih bisa ditampilkan, lebih baik widget ini ditaroh ketika fetching data
-          /*child: CachedNetworkImage(
+          child: CachedNetworkImage(
             imageUrl: listProduct.imageURL,
-            placeholder: (context, url) => CircularProgressIndicator(),
+            placeholder: (context, url) => Center(
+                child: Container(
+                    height: 20, width: 20, child: CircularProgressIndicator())),
             errorWidget: (context, url, error) => Icon(Icons.error),
             fit: BoxFit.cover,
-          ),*/
+          ),
           //END:CachedNetworkImage
 
           /*child: Image.network(
@@ -91,8 +109,24 @@ class _ProviderWidgetState extends State<ProviderWidget> {
               style: TextStyle(color: Colors.white, fontSize: 12),
               textAlign: TextAlign.center,
             ),
+            //icon cart ini gaperlu dikasih consumer, karena gaada tampilan yang harus dirender ulang di bagian ini
             trailing: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                //NOTE:ScaffoldMessenger SnackBar
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    duration: Duration(microseconds: 500),
+                    backgroundColor: Colors.blue.withOpacity(0.8),
+                    content: Text(
+                      "Barang Telah Ditambahkan",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                );
+                cart.addCart(
+                    listProduct.id, listProduct.judul, listProduct.harga);
+              },
               icon: Icon(
                 Icons.shopping_cart,
                 color: Colors.white,

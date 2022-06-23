@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
+import 'package:modern_flutter_ui/Providers/providercart.dart';
 import 'package:modern_flutter_ui/Providers/providermodel.dart';
 
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
+import 'package:modern_flutter_ui/ui/cobaprovidercart.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderfavorite.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderhome.dart';
@@ -56,8 +58,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => AllProduct(),
+    //NOTE:MultiProvider
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AllProduct()),
+        ChangeNotifierProvider(create: (context) => Cart()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
 
@@ -117,6 +123,7 @@ class MyApp extends StatelessWidget {
           CobaProvider.nameRoute: (context) => CobaProvider(),
           CobaProviderDetail.nameRoute: (context) => CobaProviderDetail(),
           CobaProviderFavorite.nameRoute: (context) => CobaProviderFavorite(),
+          CobaProviderCart.nameRoute: (context) => CobaProviderCart(),
         },
       ),
     );

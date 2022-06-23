@@ -9,13 +9,16 @@ class Badge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      //alignment: Alignment.center,
       children: [
         child,
+        //NOTE:Positioned
         Positioned(
           //posisi di atas mulai dari kanan atas, kasih padding 5 dari atas, kasih padding 5 dari kanan
-          top: 5,
-          right: 5,
+          top: 4,
+          right: 4,
           child: Container(
+            padding: EdgeInsets.all(2),
             constraints: BoxConstraints(
               //buat kasih minimal atau maksimal dari lebar/tinggi
               minHeight: 16,
@@ -33,8 +36,8 @@ class Badge extends StatelessWidget {
               child: Text(
                 value,
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 11,
+                  color: Colors.black,
+                  fontSize: 10,
                 ),
               ),
             ),
