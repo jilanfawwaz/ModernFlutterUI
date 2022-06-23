@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modern_flutter_ui/widget/providerbadge.dart';
 import 'package:provider/provider.dart';
 
 import '../Providers/providerallproduct.dart';
@@ -15,6 +16,23 @@ class CobaProviderFavorite extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Coba Favorite"),
+        actions: [
+          Row(
+            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.favorite),
+              ),
+              Badge(
+                child: IconButton(
+                    onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+                value: "0",
+              ),
+            ],
+          ),
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

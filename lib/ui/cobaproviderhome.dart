@@ -16,6 +16,7 @@ class CobaProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //print("BUILD IMAGE");
     return Scaffold(
       appBar: AppBar(
         title: Text("Coba Provider"),

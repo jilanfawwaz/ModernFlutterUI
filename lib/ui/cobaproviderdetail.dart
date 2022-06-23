@@ -24,23 +24,30 @@ class CobaProviderDetail extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              height: 200,
-              width: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    _productData.imageURL,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                height: 200,
+                width: 200,
+                /*decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      _productData.imageURL,
+                    ),
                   ),
+                ),*/
+
+                //child: _productData.imageURL,
+
+                child: Image.network(
+                  _productData.imageURL,
+                  fit: BoxFit.cover,
                 ),
               ),
-              // child: Image.network(
-              //   _productData.imageURL,
-              //   fit: BoxFit.cover,
-              // ),
             ),
+            
             SizedBox(
               height: 50,
             ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/Providers/providermodel.dart';
@@ -14,6 +15,7 @@ class _ProviderWidgetState extends State<ProviderWidget> {
   Widget build(BuildContext context) {
     final listProduct = Provider.of<Product>(context, listen: false);
     //print("Widger Rebuild");
+    print("BUILD IMAGE");
     return GestureDetector(
       onTap: () {
         //print(listProduct.judul);
@@ -28,10 +30,39 @@ class _ProviderWidgetState extends State<ProviderWidget> {
         borderRadius: BorderRadius.circular(30),
         //NOTE:GridTile
         child: GridTile(
-          child: Image.network(
-            listProduct.imageURL,
+          //NOTE:FadeInImage (nunggu gambar network selesai ke load, maka akan ditampilkan gambar default dulu), tapi link dari gambar network harus selalu aktif biar ga eror
+
+          child: FadeInImage(
+            image: NetworkImage(listProduct.imageURL),
+            placeholder: AssetImage("assets/images/4-gambarBelanja.png"),
             fit: BoxFit.cover,
+            imageErrorBuilder: (context, error, stackTrace) {
+              print(error); //do something
+              return Text("EROR MASBRO");
+            },
           ),
+          //END:FadeInImage
+
+          //NOTE:ChacedNetworkImage //BERFUNGSI!!! untuk menaruh gambar di chache, ketika internet mati gambar masih bisa ditampilkan, lebih baik widget ini ditaroh ketika fetching data
+          /*child: CachedNetworkImage(
+            imageUrl: listProduct.imageURL,
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+            fit: BoxFit.cover,
+          ),*/
+          //END:CachedNetworkImage
+
+          /*child: Image.network(
+            listProduct.imageURL,
+            errorBuilder: (context, error, stackTrace) {
+              print(error); //do something
+              return Text("EROR MASBRO");
+            },
+            fit: BoxFit.cover,
+          ),*/
+
+          //child: listProduct.imageURL, //berisi widget CachedNetworkImage
+
           footer:
               //NOTE:GridTileBar
               GridTileBar(

@@ -31,6 +31,7 @@ import 'package:modern_flutter_ui/ui/ratingmakanan.dart';
 import 'package:modern_flutter_ui/ui/signincrypto.dart';
 import 'package:modern_flutter_ui/ui/signinwallet.dart';
 import 'package:modern_flutter_ui/ui/splashscreen1.dart';
+//import 'package:modern_flutter_ui/widget/badge.dart';
 import 'package:provider/provider.dart';
 
 void main() {

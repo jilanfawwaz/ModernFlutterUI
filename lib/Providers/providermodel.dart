@@ -4,6 +4,7 @@ class Product with ChangeNotifier {
   final String id;
   final String judul;
   final String deskripsi;
+  //final Widget imageURL;
   final String imageURL;
   final int harga;
   bool isSelected; //isFavorite
