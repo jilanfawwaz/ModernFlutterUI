@@ -25,60 +25,62 @@ class CobaGridView extends StatelessWidget {
       appBar: AppBar(
         title: Text("Coba Grid View"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 200,
-              color: Colors.blue,
-            ),
-            GridView.count(
-              //kalau GridView aja gamake .count, masukkan semua (kecuali children) ke gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: crossAxisCount, ....),
-
-              //shrinkwrap berfungsi agar panjang grid hanya sesuai sama panjang list, tidak mengambil panjang sepanjang parentnya
-              shrinkWrap: true,
-              childAspectRatio: 4 / 3,
-
-              //scrollDirection: Axis.horizontal,
-              physics: NeverScrollableScrollPhysics(),
-              //physics: ClampingScrollPhysics(),
-              //physics: BouncingScrollPhysics(),
-
-              padding: EdgeInsets.all(20),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              crossAxisCount: 3,
-              children: _myGrid,
-            ),
-
-            //NOTE:GridView tanpa .count
-            /*GridView(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
+      body: ListView(
+        children: [
+          Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 200,
+                color: Colors.blue,
               ),
-              padding: EdgeInsets.all(20),
-              children: _myGrid,
-            ),*/
-            //END:GridView tanpa .count
+              GridView.count(
+                //kalau GridView aja gamake .count, masukkan semua (kecuali children) ke gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: crossAxisCount, ....),
 
-            //NOTE: GridView make .builder
-            /*GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: 10,
+                //shrinkwrap berfungsi agar panjang grid hanya sesuai sama panjang list, tidak mengambil panjang sepanjang parentnya
+                shrinkWrap: true,
+                childAspectRatio: 4 / 3,
+
+                //scrollDirection: Axis.horizontal,
+                physics: NeverScrollableScrollPhysics(),
+                //physics: ClampingScrollPhysics(),
+                //physics: BouncingScrollPhysics(),
+
+                padding: EdgeInsets.all(20),
                 crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 3,
+                children: _myGrid,
               ),
-              padding: EdgeInsets.all(20),
-              itemCount: _myGrid.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _myGrid[index];
-              },
-            ),*/
-          ],
-        ),
+
+              //NOTE:GridView tanpa .count
+              /*GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
+                padding: EdgeInsets.all(20),
+                children: _myGrid,
+              ),*/
+              //END:GridView tanpa .count
+
+              //NOTE: GridView make .builder
+              /*GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
+                padding: EdgeInsets.all(20),
+                itemCount: _myGrid.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _myGrid[index];
+                },
+              ),*/
+            ],
+          ),
+        ],
       ),
 
       //NOTE: yang ini container tetap stay diatas, grid view bisa discroll

@@ -78,7 +78,7 @@ class _SignInCryptoState extends State<SignInCrypto> {
             TextFormField(
               cursorColor: cGreyTextForm,
               style: cOpenSansWhiteRegular14.copyWith(color: cGreyTextForm),
-              focusNode: _textFieldFocus,
+              focusNode: _textFieldFocus, //untuk melisten kalau textform dipencet atau ngga
               decoration: InputDecoration(
                 //labelText: "Email",
                 contentPadding: EdgeInsets.all(18),

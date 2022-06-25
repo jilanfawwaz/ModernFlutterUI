@@ -117,12 +117,12 @@ class RatingGojek extends StatelessWidget {
                     //contentPadding: EdgeInsets.only(top: 65, bottom: 65),
                     //isCollapsed: true,
                     //isDense: true,
-                    labelText: "Your Message",
+                    labelText: "Your Label Message",
                     floatingLabelAlignment: FloatingLabelAlignment.center,
                     //floatingLabelStyle: const TextStyle(fontSize: 16),
                     //label: Center(child: Text("Your Message")),
 
-                    alignLabelWithHint: true,
+                    alignLabelWithHint: true, //kalau gadipasang defaultnya true, untuk menyamakan posisi label dengan posisi hint, akan terlihat kalau form multi line
 
                     labelStyle: cPoppinsGreyRegular14.copyWith(
                         color: Color(0xff808EAB)),

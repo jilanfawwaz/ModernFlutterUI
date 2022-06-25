@@ -6,6 +6,8 @@ class Cart with ChangeNotifier {
 
   //NOTE:Getter
   //getter itu mereturn sesuatu, bukan diinisialisasi
+  //static int nilaiAwal = 8;
+
   Map<String, CartItem> get getCart {
     return _cart;
   }

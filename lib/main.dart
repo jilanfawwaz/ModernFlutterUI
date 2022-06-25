@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/Providers/providercart.dart';
 import 'package:modern_flutter_ui/Providers/providermodel.dart';
+import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
@@ -23,6 +24,8 @@ import 'package:modern_flutter_ui/ui/emptystatebisnis.dart';
 import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
 import 'package:modern_flutter_ui/ui/getstartedyoga.dart';
 import 'package:modern_flutter_ui/ui/halamanutama1.dart';
+import 'package:modern_flutter_ui/ui/httphomeprovider.dart';
+import 'package:modern_flutter_ui/ui/httphomestateful.dart';
 import 'package:modern_flutter_ui/ui/pricingpurple.dart';
 import 'package:modern_flutter_ui/ui/cobamap.dart';
 import 'package:modern_flutter_ui/ui/pricingwhite.dart';
@@ -63,6 +66,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AllProduct()),
         ChangeNotifierProvider(create: (context) => Cart()),
+        ChangeNotifierProvider(create: (context) => HttpModelProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -97,7 +101,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => CobaProvider(),
+          '/': (context) => HttpProvider(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -124,6 +128,8 @@ class MyApp extends StatelessWidget {
           CobaProviderDetail.nameRoute: (context) => CobaProviderDetail(),
           CobaProviderFavorite.nameRoute: (context) => CobaProviderFavorite(),
           CobaProviderCart.nameRoute: (context) => CobaProviderCart(),
+          '/cobahttpstateful': (context) => HttpStateful(),
+          '/cobahttpprovider': (context) => HttpProvider(),
         },
       ),
     );
