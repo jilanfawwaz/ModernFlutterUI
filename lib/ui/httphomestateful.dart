@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:modern_flutter_ui/models/httpgetmodelstateful.dart';
 import 'package:modern_flutter_ui/models/httpmodelstateful.dart';
 
 class HttpStateful extends StatefulWidget {
@@ -14,6 +17,8 @@ class _HttpStatefulState extends State<HttpStateful> {
   TextEditingController jobController = TextEditingController();
 
   HttpModelStateful dataApi = HttpModelStateful();
+
+  HttpGetStateful dataApiGet = HttpGetStateful();
 
   @override
   Widget build(BuildContext context) {
@@ -160,39 +165,102 @@ class _HttpStatefulState extends State<HttpStateful> {
                   SizedBox(
                     height: 80,
                   ),
-                  Center(
-                    child: Column(
-                      children: [
-                        Text("ID : "),
-                        Text(dataApi.id == null
-                            ? "data id kosong"
-                            : "${dataApi.id}"),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text("Nama : "),
-                        Text(dataApi.name == null
-                            ? "data Nama Kosong"
-                            : "${dataApi.name}"),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text("Pekerjaan : "),
-                        Text(dataApi.job == null
-                            ? "data Pekerjaan kosong"
-                            : "${dataApi.job}"),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text("Dibuat pada : "),
-                        Text(dataApi.createdAt == null
-                            ? "data kosong"
-                            : "${dataApi.createdAt}"),
-                        SizedBox(
-                          height: 15,
-                        ),
-                      ],
+                  Column(
+                    children: [
+                      Text("ID : "),
+                      Text(dataApi.id == null
+                          ? "data id kosong"
+                          : "${dataApi.id}"),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text("Nama : "),
+                      Text(dataApi.name == null
+                          ? "data Nama Kosong"
+                          : "${dataApi.name}"),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text("Pekerjaan : "),
+                      Text(dataApi.job == null
+                          ? "data Pekerjaan kosong"
+                          : "${dataApi.job}"),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text("Dibuat pada : "),
+                      Text(dataApi.createdAt == null
+                          ? "data kosong"
+                          : "${dataApi.createdAt}"),
+                      SizedBox(
+                        height: 15,
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    thickness: 10,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    color: Colors.blue,
+                    child: Text(
+                      "HTTP GET STATEFUL",
+                      style: TextStyle(color: Colors.white),
                     ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Column(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(dataApiGet.imageURL ==
+                                null
+                            ? "https://i.pinimg.com/736x/65/25/a0/6525a08f1df98a2e3a545fe2ace4be47.jpg"
+                            : "${dataApiGet.imageURL}"),
+                        radius: 50,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text("ID : "),
+                      Text(dataApiGet.id == null
+                          ? "Data id kosong"
+                          : "${dataApiGet.id}"),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text("Full Name : "),
+                      Text(dataApiGet.name == null
+                          ? "Data Nama kosong"
+                          : "${dataApiGet.name}"),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text("Email : "),
+                      Text(dataApiGet.email == null
+                          ? "Data Email kosong"
+                          : "${dataApiGet.email}"),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      OutlinedButton(
+                        onPressed: () {
+                          HttpGetStateful.connectApi(
+                                  (1 + Random().nextInt(10)).toString())
+                              .then((value) {
+                            setState(() {
+                              dataApiGet = value;
+                            });
+                            print(dataApiGet.imageURL);
+                          });
+                        },
+                        child: Text("Get data Random"),
+                      ),
+                    ],
                   ),
                 ],
               ),

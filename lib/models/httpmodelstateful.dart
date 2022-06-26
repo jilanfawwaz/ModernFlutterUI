@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class HttpModelStateful {
-  final String? name;
+  String? name;
   String? job;
   String? id;
   String? createdAt;

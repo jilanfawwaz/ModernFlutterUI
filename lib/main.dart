@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/Providers/providercart.dart';
-import 'package:modern_flutter_ui/Providers/providermodel.dart';
+import 'package:modern_flutter_ui/models/httpgetmodelprovider.dart';
+//import 'package:modern_flutter_ui/Providers/providermodel.dart';
 import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AllProduct()),
         ChangeNotifierProvider(create: (context) => Cart()),
         ChangeNotifierProvider(create: (context) => HttpModelProvider()),
+        ChangeNotifierProvider(create: (context) => HttpGetProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

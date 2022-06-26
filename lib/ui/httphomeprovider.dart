@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:modern_flutter_ui/models/httpgetmodelprovider.dart';
 import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 import 'package:modern_flutter_ui/models/httpmodelstateful.dart';
 import 'package:provider/provider.dart';
@@ -189,6 +192,87 @@ class HttpProvider extends StatelessWidget {
                             ),
                           ],
                         ),
+                      );
+                    },
+                  ),
+                  Consumer<HttpGetProvider>(
+                    builder: (context, dataApiGet, child) {
+                      return Column(
+                        children: [
+                          Divider(
+                            thickness: 10,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            color: Colors.blue,
+                            child: Text(
+                              "HTTP GET STATEFUL",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: NetworkImage(dataApiGet
+                                            .dataRespon["avatar"] ==
+                                        null
+                                    ? "https://i.pinimg.com/736x/65/25/a0/6525a08f1df98a2e3a545fe2ace4be47.jpg"
+                                    : dataApiGet.dataRespon["avatar"]),
+                                radius: 50,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text("ID : "),
+                              Text(dataApiGet.dataRespon["id"] == null
+                                  ? "Data id kosong"
+                                  : "${dataApiGet.dataRespon["id"]}"),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text("Name : "),
+                              Text(dataApiGet.dataRespon["first_name"] == null
+                                  ? "Data Nama kosong"
+                                  : "${dataApiGet.dataRespon["first_name"]} ${dataApiGet.dataRespon["last_name"]}"),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text("Email : "),
+                              Text(dataApiGet.dataRespon["email"] == null
+                                  ? "Data Email kosong"
+                                  : "${dataApiGet.dataRespon["email"]}"),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              OutlinedButton(
+                                onPressed: () {
+                                  dataApiGet.connectApi(
+                                      (1 + Random().nextInt(10)).toString(),
+                                      context);
+                                },
+                                child: Text("Get data Random"),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              OutlinedButton(
+                                onPressed: () {
+                                  dataApiGet.deleteApi(context);
+                                },
+                                child: Text("Delete Data"),
+                              ),
+                              SizedBox(
+                                height: 80,
+                              )
+                            ],
+                          ),
+                        ],
                       );
                     },
                   ),

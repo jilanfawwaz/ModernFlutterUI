@@ -61,7 +61,7 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
                     "HALOO",
                     //style: TextStyle(color: Colors.black),
                   ),
-                  foregroundColor: Colors.black, //untuk warna child pada text
+                  foregroundColor: Colors.black, //untuk warna text pada child
                   //radius: 10, //di drawer tidak berfungsi, default 20.
                   //foregroundImage: AssetImage("assets/images/7-gambarMojito.png"),
                 ),
