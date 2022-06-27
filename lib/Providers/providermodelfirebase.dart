@@ -31,13 +31,14 @@ class ProviderFirebase with ChangeNotifier {
 
     var hasilResponse = await http.get(url);
 
-    if (hasilResponse.body != null) {
+    if (json.decode(hasilResponse.body) != null) {
+      // if (hasilResponse.body != null) {
       var dataResponse =
           json.decode(hasilResponse.body) as Map<String, dynamic>;
 
-      print(hasilResponse.body);
+      // print(hasilResponse.body);
 
-      print(hasilResponse.statusCode);
+      // print(hasilResponse.statusCode);
 
       // print("KEY ====");
       // print(dataResponse.length);
