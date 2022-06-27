@@ -32,7 +32,8 @@ class CobaProvider extends StatelessWidget {
             children: [
               IconButton(
                 //NOTE:VisualDensity
-                //minimal -4, maksimal 4
+                //minimal -4, maksimal 4, berfungsi untuk merapatkan baris supaya lebih mepet
+
                 visualDensity: VisualDensity(
                   horizontal: -4.0,
                   //vertical: -4.0,

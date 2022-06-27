@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/Providers/providercart.dart';
+import 'package:modern_flutter_ui/Providers/providermodelfirebase.dart';
 import 'package:modern_flutter_ui/models/httpgetmodelprovider.dart';
 //import 'package:modern_flutter_ui/Providers/providermodel.dart';
 import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
@@ -22,6 +23,7 @@ import 'package:modern_flutter_ui/ui/cobatabbar.dart';
 import 'package:modern_flutter_ui/ui/cobatraversymedia.dart';
 import 'package:modern_flutter_ui/ui/emptystatebelanja.dart';
 import 'package:modern_flutter_ui/ui/emptystatebisnis.dart';
+import 'package:modern_flutter_ui/ui/firebaseapihome.dart';
 import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
 import 'package:modern_flutter_ui/ui/getstartedyoga.dart';
 import 'package:modern_flutter_ui/ui/halamanutama1.dart';
@@ -69,6 +71,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => Cart()),
         ChangeNotifierProvider(create: (context) => HttpModelProvider()),
         ChangeNotifierProvider(create: (context) => HttpGetProvider()),
+        ChangeNotifierProvider(create: (context) => ProviderFirebase()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -103,7 +106,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => HttpProvider(),
+          '/': (context) => FirebaseHome(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -132,6 +135,7 @@ class MyApp extends StatelessWidget {
           CobaProviderCart.nameRoute: (context) => CobaProviderCart(),
           '/cobahttpstateful': (context) => HttpStateful(),
           '/cobahttpprovider': (context) => HttpProvider(),
+          '/firebaseapihome': (context) => FirebaseHome(),
         },
       ),
     );
