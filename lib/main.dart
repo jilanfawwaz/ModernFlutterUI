@@ -24,6 +24,7 @@ import 'package:modern_flutter_ui/ui/cobatraversymedia.dart';
 import 'package:modern_flutter_ui/ui/emptystatebelanja.dart';
 import 'package:modern_flutter_ui/ui/emptystatebisnis.dart';
 import 'package:modern_flutter_ui/ui/firebaseapihome.dart';
+import 'package:modern_flutter_ui/ui/firebasehomedetail.dart';
 import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
 import 'package:modern_flutter_ui/ui/getstartedyoga.dart';
 import 'package:modern_flutter_ui/ui/halamanutama1.dart';
@@ -136,6 +137,7 @@ class MyApp extends StatelessWidget {
           '/cobahttpstateful': (context) => HttpStateful(),
           '/cobahttpprovider': (context) => HttpProvider(),
           '/firebaseapihome': (context) => FirebaseHome(),
+          FirebaseDetail.nameRoute: (context) => FirebaseDetail(),
         },
       ),
     );

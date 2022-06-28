@@ -25,6 +25,33 @@ class ProviderFirebase with ChangeNotifier {
     //print(_data);
   }
 
+  Map<String, dynamic> getProductById(String id) {
+    return _data.firstWhere((element) => element["id"] == id);
+  }
+
+  Future<void> patchApi(
+      {String? id, String? name, String? imageURL, String? job}) async {
+    Uri url = Uri.parse(
+        "https://http-req-a092b-default-rtdb.firebaseio.com/users/$id/.json");
+    //tanda slash '/' setelah id boleh dihapus
+
+    await http
+        .patch(
+      url,
+      body: json.encode(
+        {"name": name, "imageURL": imageURL, "job": job},
+      ),
+    )
+        .then((_) {
+      _data.firstWhere((element) => element["id"] == id)["name"] = name;
+      _data.firstWhere((element) => element["id"] == id)["job"] = job;
+      _data.firstWhere((element) => element["id"] == id)["imageURL"] = imageURL;
+      // _data.clear();
+      // ProviderFirebase().getApi();
+    });
+    notifyListeners();
+  }
+
   void getApi() async {
     Uri url = Uri.parse(
         "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");

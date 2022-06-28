@@ -67,7 +67,7 @@ class AllProduct with ChangeNotifier {
   List<Product> get allProduct {
     //method getter
     return [..._allProduct];
-    //ekstrak list (- ... boleh dihapus, tapi allProduct dikeluarkan dari kurung siku)
+    //ekstrak list (- ... boleh dihapus, tapi allProduct dikeluarkan dari kurung siku/kurung siku juga dihapus)
   }
 
   List<Product> get favoriteProduct {
