@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/Providers/providermodelfirebase.dart';
 import 'package:provider/provider.dart';
@@ -34,10 +35,25 @@ class FirebaseDetail extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(
+                /*CircleAvatar(
                   backgroundImage: NetworkImage(
                       dataApi.getProductById(productId)["imageURL"]),
                   radius: 70,
+                ),*/
+
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: dataApi.getProductById(productId)["imageURL"],
+                      placeholder: (context, url) =>
+                          Image.asset("assets/images/noImage.jpeg"),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 30,

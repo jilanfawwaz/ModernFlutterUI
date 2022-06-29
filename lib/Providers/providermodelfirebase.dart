@@ -70,7 +70,33 @@ class ProviderFirebase with ChangeNotifier {
       // print("KEY ====");
       // print(dataResponse.length);
 
-      for (var i = 0; i < dataResponse.length; i++) {
+      dataResponse.forEach(
+        (key, value) {
+          _data.add(
+            {
+              "id": key.toString(),
+              "name": value["name"],
+              "job": value["job"],
+              "createdAt": value["createdAt"],
+              "imageURL": value["imageURL"],
+            },
+          );
+        },
+      );
+
+      /*for (var item in dataResponse.entries.toList()) {
+        // print(item.key);
+        // print(item.value);
+        _data.add({
+          "id": item.key.toString(),
+          "name": item.value["name"],
+          "job": item.value["job"],
+          "createdAt": item.value["createdAt"],
+          "imageURL": item.value["imageURL"],
+        });
+      }*/
+
+      /*for (var i = 0; i < dataResponse.length; i++) {
         _data.add({
           "id": dataResponse.keys.toList()[i].toString(),
           "name": dataResponse.values.toList()[i]["name"],
@@ -78,7 +104,7 @@ class ProviderFirebase with ChangeNotifier {
           "createdAt": dataResponse.values.toList()[i]["createdAt"],
           "imageURL": dataResponse.values.toList()[i]["imageURL"],
         });
-      }
+      }*/
     }
 
     notifyListeners();

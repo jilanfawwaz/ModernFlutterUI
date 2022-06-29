@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/Providers/providermodelfirebase.dart';
 import 'package:modern_flutter_ui/shared/theme.dart';
@@ -17,9 +18,10 @@ class _FirebaseHomeState extends State<FirebaseHome> {
   TextEditingController jobController = TextEditingController();
 
   TextEditingController imageController = TextEditingController();
+  bool isFetch = false;
 
   @override
-  void initState() {
+  /*void initState() {
     // Future.delayed(Duration.zero, () {
     //   Provider.of<ProviderFirebase>(context).getApi();
     // });
@@ -28,12 +30,59 @@ class _FirebaseHomeState extends State<FirebaseHome> {
     //print(context.read<ProviderFirebase>().getJumlah);
 
     super.initState();
+  }*/
+
+  //NOTE: didChangeDependencies() sama seperti initState, tapi setiap perubahan build akan dijalankan terus
+  @override
+  void didChangeDependencies() {
+    //print("hasil $isFetch");
+    if (!isFetch) {
+      Provider.of<ProviderFirebase>(context).getApi();
+      super.didChangeDependencies();
+      isFetch = !isFetch;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     var dataApi = Provider.of<ProviderFirebase>(context, listen: false);
     //ProviderFirebase data = ProviderFirebase();
+
+    //yang ini sebenarnya functionnya bisa dihapus, inisialisasi samadengan nya juga
+    //void connectApi(){
+    final Function() connectApi = () {
+      dataApi
+          .connectApi(
+            name: nameController.text,
+            job: jobController.text,
+            imageURL: imageController.text,
+            createdAt: DateTime.now(),
+          )
+          .then(
+            (value) => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  "Data Telah Ditambahkan",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          )
+          .catchError((err) => print("ERROR BRO")
+        // showDialog(
+        //     context: context,
+        //     builder: (context) {
+        //       return AlertDialog(title: Text("Link Eror", ),);
+        //     });
+      );
+
+      nameController.clear();
+      jobController.clear();
+      imageController.clear();
+
+      Navigator.pop(context);
+      //print(dataApi.getJumlah);
+    };
 
     Widget tambahAkun() {
       //print("Masuk");
@@ -117,33 +166,9 @@ class _FirebaseHomeState extends State<FirebaseHome> {
                 autocorrect: false,
                 enableSuggestions: false,
                 controller: imageController,
-                //untuk tombol DONE di keyboard, ketika tombol done ditekan maka langsung akan memanggil fungsi, mirip2 ontap:
+                //untuk tombol DONE di keyboard, ketika tombol done ditekan maka akan langsung memanggil fungsi, mirip2 ontap:
                 textInputAction: TextInputAction.done,
-                onEditingComplete: () {
-                  dataApi
-                      .connectApi(
-                        name: nameController.text,
-                        job: jobController.text,
-                        imageURL: imageController.text,
-                        createdAt: DateTime.now(),
-                      )
-                      .then(
-                        (value) => ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              "Data Telah Ditambahkan",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                      );
-
-                  nameController.clear();
-                  jobController.clear();
-                  imageController.clear();
-
-                  Navigator.pop(context);
-                },
+                onEditingComplete: connectApi,
                 decoration: InputDecoration(
                   //contentPadding: EdgeInsets.all(20),
                   fillColor: Colors.grey.shade100,
@@ -170,32 +195,7 @@ class _FirebaseHomeState extends State<FirebaseHome> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                onPressed: () {
-                  dataApi
-                      .connectApi(
-                        name: nameController.text,
-                        job: jobController.text,
-                        imageURL: imageController.text,
-                        createdAt: DateTime.now(),
-                      )
-                      .then(
-                        (value) => ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              "Data Telah Ditambahkan",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                      );
-
-                  nameController.clear();
-                  jobController.clear();
-                  imageController.clear();
-
-                  Navigator.pop(context);
-                  //print(dataApi.getJumlah);
-                },
+                onPressed: connectApi,
                 child: const Text("Haloo"),
               ),
             ),
@@ -435,10 +435,27 @@ class _FirebaseHomeState extends State<FirebaseHome> {
                                 arguments: dataApi.data[index]["id"],
                               );
                             },
-                            leading: CircleAvatar(
-                                backgroundColor: Colors.white,
-                                backgroundImage: NetworkImage(
-                                    dataApi.data[index]["imageURL"])),
+                            /*leading: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              backgroundImage: NetworkImage(
+                                dataApi.data[index]["imageURL"],
+                              ),
+                            ),*/
+                            leading: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl: dataApi.data[index]["imageURL"],
+                                  placeholder: (context, url) =>
+                                      Image.asset("assets/images/noImage.jpeg"),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
+                              ),
+                            ),
                             title: Text(
                               dataApi.data[index]["name"],
                             ),
