@@ -5,6 +5,8 @@ import 'package:modern_flutter_ui/shared/theme.dart';
 import 'package:modern_flutter_ui/ui/firebasehomedetail.dart';
 import 'package:provider/provider.dart';
 
+import '../widget/profileimage.dart';
+
 class FirebaseHome extends StatefulWidget {
   FirebaseHome({Key? key}) : super(key: key);
 
@@ -44,45 +46,107 @@ class _FirebaseHomeState extends State<FirebaseHome> {
   }
 
   @override
+  /*void didUpdateWidget(covariant FirebaseHome oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+  }*/
+
+  @override
+  void dispose() {
+    print("masuk");
+    // TODO: implement dispose
+    isFetch = false;
+    super.dispose();
+  }
+
+  @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var dataApi = Provider.of<ProviderFirebase>(context, listen: false);
     //ProviderFirebase data = ProviderFirebase();
 
     //yang ini sebenarnya functionnya bisa dihapus, inisialisasi samadengan nya juga
-    //void connectApi(){
-    final Function() connectApi = () {
+    //final Function() connectApi = () {
+    connectApi() {
       dataApi
           .connectApi(
-            name: nameController.text,
-            job: jobController.text,
-            imageURL: imageController.text,
-            createdAt: DateTime.now(),
-          )
+        name: nameController.text,
+        job: jobController.text,
+        imageURL: imageController.text,
+        createdAt: DateTime.now(),
+      )
+
+          //kalo catch eror ditaroh diatas, then nanti akan tetap dijalankan. solusi catchEror taroh dibawah then supaya kalo eror then gadipanggil, dan di model connectApi future nya dihapus
+          /*.catchError(
+            (err) => //print("ERROR BRO")
+                showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text(
+                    "Error Code : $err",
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "OK",
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          )*/
           .then(
-            (value) => ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  "Data Telah Ditambahkan",
-                  textAlign: TextAlign.center,
-                ),
+        (value) {
+          nameController.clear();
+          jobController.clear();
+          imageController.clear();
+
+          Navigator.pop(context);
+          return ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                "Data Telah Ditambahkan",
+                textAlign: TextAlign.center,
               ),
             ),
-          )
-          .catchError((err) => print("ERROR BRO")
-        // showDialog(
-        //     context: context,
-        //     builder: (context) {
-        //       return AlertDialog(title: Text("Link Eror", ),);
-        //     });
+          );
+        },
+      ).catchError(
+        (err) => //print("ERROR BRO")
+            showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text(
+                "Error Code : $err",
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "OK",
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       );
 
-      nameController.clear();
-      jobController.clear();
-      imageController.clear();
-
-      Navigator.pop(context);
       //print(dataApi.getJumlah);
-    };
+    }
 
     Widget tambahAkun() {
       //print("Masuk");
@@ -446,13 +510,8 @@ class _FirebaseHomeState extends State<FirebaseHome> {
                               child: Container(
                                 width: 50,
                                 height: 50,
-                                child: CachedNetworkImage(
-                                  fit: BoxFit.cover,
-                                  imageUrl: dataApi.data[index]["imageURL"],
-                                  placeholder: (context, url) =>
-                                      Image.asset("assets/images/noImage.jpeg"),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: ProfileImage(
+                                  imageURL: dataApi.data[index]["imageURL"],
                                 ),
                               ),
                             ),

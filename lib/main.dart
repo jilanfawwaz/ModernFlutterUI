@@ -11,6 +11,7 @@ import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
+import 'package:modern_flutter_ui/ui/cobahalamankosong.dart';
 import 'package:modern_flutter_ui/ui/cobaprovidercart.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderfavorite.dart';
@@ -107,7 +108,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => FirebaseHome(),
+          '/': (context) => CobaState(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -118,7 +119,7 @@ class MyApp extends StatelessWidget {
           '/emptybisnis': (context) => EmptyBisnis(),
           '/ratingmakanan': (context) => RatingMakanan(),
           '/ratinggojek': (context) => RatingGojek(),
-          '/cobastate': (context) => CobaState(),
+          CobaState.nameRoute: (context) => CobaState(),
           '/cobamap': (context) => CobaMap(),
           '/pricingwhite': (context) => PricingWhite(),
           '/pricingpurple': (context) => PricingPurple(),
@@ -138,6 +139,7 @@ class MyApp extends StatelessWidget {
           '/cobahttpprovider': (context) => HttpProvider(),
           '/firebaseapihome': (context) => FirebaseHome(),
           FirebaseDetail.nameRoute: (context) => FirebaseDetail(),
+          CobaHalamanKosong.nameRoute: (context) => CobaHalamanKosong(),
         },
       ),
     );

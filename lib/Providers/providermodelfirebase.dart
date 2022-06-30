@@ -52,7 +52,7 @@ class ProviderFirebase with ChangeNotifier {
     notifyListeners();
   }
 
-  void getApi() async {
+  Future<void> getApi() async {
     Uri url = Uri.parse(
         "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");
 
@@ -127,41 +127,51 @@ class ProviderFirebase with ChangeNotifier {
     //_data = dataResponse;
   }
 
-  Future<void> connectApi(
+  connectApi(
       {String? name,
       String? job,
       String? imageURL,
       DateTime? createdAt}) async {
-    Uri url = Uri.parse(
-        "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");
+    try {
+      Uri url =
+          Uri.parse("https://http-req-a092b-default-rtdb.firebaseio.com/users");
 
-    await http
-        .post(
-      url,
-      body: json.encode(
-        {
-          "name": name,
-          "job": job,
-          "imageURL": imageURL,
-          "createdAt": createdAt.toString(),
-        },
-      ),
-    )
-        .then(
-      (value) {
-        //print(json.decode(value.body));
-        //mau make return boleh mau ngga juga gapapa
-        _data.add(
+      await http
+          .post(
+        url,
+        body: json.encode(
           {
-            "id": json.decode(value.body)["name"],
             "name": name,
             "job": job,
             "imageURL": imageURL,
             "createdAt": createdAt.toString(),
           },
-        );
-      },
-    );
+        ),
+      )
+          .then(
+        (value) {
+          //print(json.decode(value.body));
+          //mau make return boleh mau ngga juga gapapa
+
+          //kalau hasil dari http post respon statusnya bukan 200, maka akan throw eror
+          if (value.statusCode >= 200 && value.statusCode < 300) {
+            _data.add(
+              {
+                "id": json.decode(value.body)["name"],
+                "name": name,
+                "job": job,
+                "imageURL": imageURL,
+                "createdAt": createdAt.toString(),
+              },
+            );
+          } else {
+            throw value.statusCode.toString();
+          }
+        },
+      );
+    } catch (e) {
+      rethrow;
+    }
 
     //print("masuks");
     //print(_data[_data.length - 1]["name"]);
