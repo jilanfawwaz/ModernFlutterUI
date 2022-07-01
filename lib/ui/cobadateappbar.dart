@@ -50,6 +50,7 @@ class CobaDateAppBar extends StatelessWidget {
             iconSize: 60,
           ),
         ],
+        //NOTE:PreferredSize
         bottom: PreferredSize(
           child: Container(
             width: 60,
