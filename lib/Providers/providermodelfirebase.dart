@@ -46,41 +46,67 @@ class ProviderFirebase with ChangeNotifier {
       _data.firstWhere((element) => element["id"] == id)["name"] = name;
       _data.firstWhere((element) => element["id"] == id)["job"] = job;
       _data.firstWhere((element) => element["id"] == id)["imageURL"] = imageURL;
+      //TIPS:mengosongkan map
       // _data.clear();
       // ProviderFirebase().getApi();
     });
     notifyListeners();
   }
 
-  Future<Map<String, dynamic>> getApiFutureBuilder() async {
-    Uri url = Uri.parse(
-        "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");
+  Future<List<Map<String, dynamic>>> getApiFutureBuilder() async {
+    try {
+      Uri url = Uri.parse("https://reqres.in/api/users/23");
 
-    var hasilResponse = await http.get(url);
+      var hasilResponse = await http.get(url);
 
-    if (json.decode(hasilResponse.body) != null) {
-      var dataResponse =
-          json.decode(hasilResponse.body) as Map<String, dynamic>;
+      if (hasilResponse.statusCode >= 200 && hasilResponse.statusCode < 300) {
+        if (json.decode(hasilResponse.body) != null) {
+          var dataResponse =
+              json.decode(hasilResponse.body) as Map<String, dynamic>;
 
-      dataResponse.forEach(
-        (key, value) {
-          _data.add(
-            {
-              "id": key.toString(),
-              "name": value["name"],
-              "job": value["job"],
-              "createdAt": value["createdAt"],
-              "imageURL": value["imageURL"],
+          //List<Map<String, dynamic>> dataFutureBuilder = [];
+
+          dataResponse.forEach(
+            (key, value) {
+              _data.add(
+                {
+                  "id": key.toString(),
+                  "name": value["name"],
+                  "job": value["job"],
+                  "createdAt": value["createdAt"],
+                  "imageURL": value["imageURL"],
+                },
+              );
             },
           );
-        },
-      );
 
-      //kalo FutureBuilder gaperlu make notifyListener lagi
-      //notifyListeners();
-      return dataResponse;
+          //NOTE:MAP .map()
+          List<Map<String, dynamic>> dataFutureBuilder =
+              dataResponse.entries.map<Map<String, dynamic>>((e) {
+            return {
+              "id": e.key,
+              "name": e.value["name"],
+              "job": e.value["job"],
+              "createdAt": e.value["createdAt"],
+              "imageURL": e.value["imageURL"],
+            };
+          }).toList();
+
+          //kalo FutureBuilder gaperlu make notifyListener lagi
+          //notifyListeners();
+          return dataFutureBuilder;
+        }
+        return [];
+      } else {
+        //throw (hasilResponse.statusCode);
+        //throw Exception("Eror kodess ${hasilResponse.statusCode}");
+        throw (hasilResponse.statusCode);
+      }
+    } catch (err) {
+      //print(err);
+      //rethrow;
+      throw (err);
     }
-    return {};
   }
 
   Future<void> getApi() async {
