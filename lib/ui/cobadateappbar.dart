@@ -59,6 +59,7 @@ class CobaDateAppBar extends StatelessWidget {
           ),
           preferredSize: Size.fromHeight(200),
         ),
+
         flexibleSpace: Container(
           color: Colors.brown,
           width: 1, //width ga berpengaruh ke apapun
@@ -71,7 +72,8 @@ class CobaDateAppBar extends StatelessWidget {
           children: [
             Text(
               //NOTE: DateTime
-              DateTime(2021, 10, 24, 15, 15, 45, 55).toString(), //tahun bulan tanggal jam menit detik
+              DateTime(2021, 10, 24, 15, 15, 45, 55)
+                  .toString(), //tahun bulan tanggal jam menit detik
             ),
             Text(
               DateTime.now().toString(),

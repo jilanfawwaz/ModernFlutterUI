@@ -24,6 +24,7 @@ import 'package:modern_flutter_ui/ui/cobatabbar.dart';
 import 'package:modern_flutter_ui/ui/cobatraversymedia.dart';
 import 'package:modern_flutter_ui/ui/emptystatebelanja.dart';
 import 'package:modern_flutter_ui/ui/emptystatebisnis.dart';
+import 'package:modern_flutter_ui/ui/firebaseapifuturebuilder.dart';
 import 'package:modern_flutter_ui/ui/firebaseapihome.dart';
 import 'package:modern_flutter_ui/ui/firebasehomedetail.dart';
 import 'package:modern_flutter_ui/ui/getstartedcrypto.dart';
@@ -108,7 +109,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => CobaState(),
+          '/': (context) => FirebaseFutureBuilder(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -140,6 +141,7 @@ class MyApp extends StatelessWidget {
           '/firebaseapihome': (context) => FirebaseHome(),
           FirebaseDetail.nameRoute: (context) => FirebaseDetail(),
           CobaHalamanKosong.nameRoute: (context) => CobaHalamanKosong(),
+          FirebaseFutureBuilder.nameRoute: (context) => FirebaseFutureBuilder(),
         },
       ),
     );

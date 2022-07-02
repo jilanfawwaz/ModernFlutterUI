@@ -26,7 +26,7 @@ class CobaTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //versi pertama defaultTabController langsung membungkus tabBar, wajib make prefered size
+    //versi pertama defaultTabController langsung membungkus tabBar, wajib make preferred size
     /*return Scaffold(
       appBar: AppBar(
         title: Text("Coba App Bar"),
@@ -51,7 +51,7 @@ class CobaTabBar extends StatelessWidget {
       ),
     );*/
 
-    //versi 2 DefaultTabController membungkus scaffold, gaperlu make preferedsize karena sudah default
+    //versi 2 DefaultTabController membungkus scaffold, gaperlu make preferredsize karena sudah default
     return DefaultTabController(
       length: _myTab.length,
       child: Scaffold(

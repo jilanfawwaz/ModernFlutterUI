@@ -52,6 +52,37 @@ class ProviderFirebase with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<Map<String, dynamic>> getApiFutureBuilder() async {
+    Uri url = Uri.parse(
+        "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");
+
+    var hasilResponse = await http.get(url);
+
+    if (json.decode(hasilResponse.body) != null) {
+      var dataResponse =
+          json.decode(hasilResponse.body) as Map<String, dynamic>;
+
+      dataResponse.forEach(
+        (key, value) {
+          _data.add(
+            {
+              "id": key.toString(),
+              "name": value["name"],
+              "job": value["job"],
+              "createdAt": value["createdAt"],
+              "imageURL": value["imageURL"],
+            },
+          );
+        },
+      );
+
+      //kalo FutureBuilder gaperlu make notifyListener lagi
+      //notifyListeners();
+      return dataResponse;
+    }
+    return {};
+  }
+
   Future<void> getApi() async {
     Uri url = Uri.parse(
         "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");

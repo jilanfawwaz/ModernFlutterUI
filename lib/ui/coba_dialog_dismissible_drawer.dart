@@ -135,8 +135,10 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
               itemBuilder: (BuildContext context, int index) {
                 //NOTE: Builder()
                 return Builder(builder: (context) {
+                  //NOTE:Dismissible (- item list tile bisa didrag ke kiri dan kanan untuk menghapus atau fungsi lainnya)
                   return Dismissible(
                     //key: Key(index.toString()),
+                    //NOTE:Key
                     key: UniqueKey(),
                     //key: ValueKey(_name),
                     onDismissed: (directionssss) {

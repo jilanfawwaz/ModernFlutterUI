@@ -23,7 +23,9 @@ class _FirebaseHomeState extends State<FirebaseHome> {
   bool isFetch = false;
 
   @override
+
   /*void initState() {
+    //supaya bisa make context, make Future.delayed
     // Future.delayed(Duration.zero, () {
     //   Provider.of<ProviderFirebase>(context).getApi();
     // });
@@ -482,6 +484,7 @@ class _FirebaseHomeState extends State<FirebaseHome> {
                 ),
               ),
             ),*/
+           
                   Consumer<ProviderFirebase>(
                     builder: (context, dataApi, child) {
                       return ListView.separated(

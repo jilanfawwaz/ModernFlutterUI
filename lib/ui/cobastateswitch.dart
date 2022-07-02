@@ -18,6 +18,23 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
 
   AppLifecycleState? _stateNow;
 
+  // Kalo ditaroh disini, context gabisa kebaca
+  // if ((ModalRoute.of(context)?.settings.arguments) != null) {
+  //     numberButton = ModalRoute.of(context)?.settings.arguments as int;
+  //   }
+
+  //NOTE:Widget LifeCycle
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    WidgetsBinding.instance?.addObserver(this);
+
+    //numberButton = (ModalRoute.of(context)?.settings.arguments as int);
+  }
+
+  //baru bisa dipake setelah memasukkan WidgetsBinding.instance?.addObserver(this); di initState
+  //NOTE:AppLifeCycle
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // TODO: implement didChangeAppLifecycleState
@@ -34,20 +51,6 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
     }
 
     //print(state);
-  }
-
-  // Kalo ditaroh disini, context gabisa kebaca
-  // if ((ModalRoute.of(context)?.settings.arguments) != null) {
-  //     numberButton = ModalRoute.of(context)?.settings.arguments as int;
-  //   }
-
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    WidgetsBinding.instance?.addObserver(this);
-
-    //numberButton = (ModalRoute.of(context)?.settings.arguments as int);
   }
 
   @override
@@ -70,7 +73,8 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    // supaya tidak terjadi memory leaks karena sebelumnya telah memanggil addObserver
+    WidgetsBinding.instance?.removeObserver(this);
     print("dispose");
     super.dispose();
   }
