@@ -12,7 +12,7 @@ class CobaDiDiDe extends StatefulWidget {
 
 class _CobaDiDiDeState extends State<CobaDiDiDe> {
   final List<Widget> _myList = List.generate(5, (index) {
-    final String _name = faker.person.name();
+    final String _name = Faker().person.name();
     final String _address = faker.address.streetName();
 
     return Column(
@@ -133,13 +133,14 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
                 return SizedBox();
               },
               itemBuilder: (BuildContext context, int index) {
-                //NOTE: Builder()
-                return Builder(builder: (context) {
+                //NOTE: sebelumnya ada Builder() membungkus dismissible, tapi kayanya ga berguna
+                //return Builder(builder: (context) {
+               
                   //NOTE:Dismissible (- item list tile bisa didrag ke kiri dan kanan untuk menghapus atau fungsi lainnya)
                   return Dismissible(
-                    //key: Key(index.toString()),
                     //NOTE:Key
                     key: UniqueKey(),
+                    //key: Key(index.toString()),
                     //key: ValueKey(_name),
                     onDismissed: (directionssss) {
                       //kalau dismiss tidak dikonfirmasi (confirmDissmiss), maka onDismissed tidak akan dijalankan
@@ -213,7 +214,7 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
                     //direction: DismissDirection.endToStart,
                     child: _myList[index],
                   );
-                });
+                
               },
             )
           : Center(

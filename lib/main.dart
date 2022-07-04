@@ -12,6 +12,8 @@ import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
 import 'package:modern_flutter_ui/ui/cobahalamankosong.dart';
+import 'package:modern_flutter_ui/ui/cobakey.dart';
+import 'package:modern_flutter_ui/ui/cobakeyyoutube.dart';
 import 'package:modern_flutter_ui/ui/cobaprovidercart.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderfavorite.dart';
@@ -47,6 +49,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   //NOTE: Device Orientation
+  //agar device orientation bisa digunakan, harus ditambahkan widgetsFlutterBinding dulu
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
     //[DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft],
@@ -103,13 +106,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: GoogleFonts.poppinsTextTheme(),
           appBarTheme: AppBarTheme(
-            color: Colors.purple,
+            color: Colors.green,
           ),
         ),
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => FirebaseFutureBuilder(),
+          '/': (context) => CobaKeyYoutube(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -142,6 +145,7 @@ class MyApp extends StatelessWidget {
           FirebaseDetail.nameRoute: (context) => FirebaseDetail(),
           CobaHalamanKosong.nameRoute: (context) => CobaHalamanKosong(),
           FirebaseFutureBuilder.nameRoute: (context) => FirebaseFutureBuilder(),
+          '/cobakey': (context) => CobaKey(),
         },
       ),
     );

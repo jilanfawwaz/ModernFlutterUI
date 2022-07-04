@@ -35,7 +35,7 @@ class CobaMediaQuery extends StatelessWidget {
               width: _width * 0.3,
               height: _bodyHeight * 0.8,
               //NOTE: Layoutbuilder
-              //NOTE: Constraint
+              //NOTE: Constraint (-supaya bisa menggunakan constraint untuk mengambil ukuran dari parent (dalam baris ini parentnya adalah container))
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return Row(

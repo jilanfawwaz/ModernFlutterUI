@@ -26,6 +26,7 @@ class _FirebaseHomeState extends State<FirebaseHome> {
 
   /*void initState() {
     //supaya bisa make context, make Future.delayed
+
     // Future.delayed(Duration.zero, () {
     //   Provider.of<ProviderFirebase>(context).getApi();
     // });
@@ -336,6 +337,10 @@ class _FirebaseHomeState extends State<FirebaseHome> {
 
                       insetPadding: EdgeInsets.zero,
 
+                      //NOTE: Builder() get from this https://stackoverflow.com/questions/53913192/flutter-how-to-change-the-width-of-an-alertdialog
+                      //Builder() berguna agar ukuran size dialog dapat dicustom dengan lebih baik
+                      // ketika mau membuat sebuah variabel atau widget diluar widget build, tapi membutuhkan context, kita masih dapat menggunakan widget builder()
+
                       child: Builder(
                         builder: (context) {
                           // Get available height and width of the build area of this widget. Make a choice depending on the size.
@@ -484,7 +489,7 @@ class _FirebaseHomeState extends State<FirebaseHome> {
                 ),
               ),
             ),*/
-           
+
                   Consumer<ProviderFirebase>(
                     builder: (context, dataApi, child) {
                       return ListView.separated(
@@ -591,6 +596,7 @@ class _FirebaseHomeState extends State<FirebaseHome> {
                               FocusScope.of(context).unfocus();
                             },
                             child: Dialog(
+                              //kalo make AlertDialog, gabisa make child jadi harus diganti make content:, dan juga sizenya gabisa diatur jadi fleksibel
                               //elevation dialog untuk mengilangkan shadow
                               elevation: 0,
                               backgroundColor: Colors.transparent,
@@ -608,6 +614,7 @@ class _FirebaseHomeState extends State<FirebaseHome> {
                                   var width = MediaQuery.of(context).size.width;
 
                                   return Container(
+                                    //kalau data ada tampilkan
                                     margin: EdgeInsets.only(bottom: 10),
                                     height: height * 0.6,
                                     width: width * 0.8,
