@@ -18,6 +18,8 @@ class _CobaKeyState extends State<CobaKey> {
     {'name': "jidan", 'pekerjaan': "Bondeng Warior"},
   ];
 
+  
+
   @override
   Widget build(BuildContext context) {
     //TIPS: Random Color
@@ -44,7 +46,7 @@ class _CobaKeyState extends State<CobaKey> {
         },
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            key: ValueKey(index.toString()),
+            key: UniqueKey(),
             leading: CircleAvatar(
               key: ValueKey(index.toString()),
               backgroundColor:
@@ -66,6 +68,17 @@ class _CobaKeyState extends State<CobaKey> {
           );
         },
       ),
+    );
+  }
+}
+
+class ProjectTiles extends StatelessWidget {
+  const ProjectTiles({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
     );
   }
 }

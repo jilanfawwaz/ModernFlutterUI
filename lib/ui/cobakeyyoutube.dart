@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class CobaKeyYoutube extends StatefulWidget {
   const CobaKeyYoutube({Key? key}) : super(key: key);
@@ -10,57 +11,66 @@ class CobaKeyYoutube extends StatefulWidget {
 }
 
 class _CobaKeyYoutubeState extends State<CobaKeyYoutube> {
-  List<Widget> _tiles = [
+  /*List<Widget> _tilesStateless = [
     StatelessProjectTiles(),
     StatelessProjectTiles(),
-  ];
+  ];*/
 
   List<Widget> _tilesStateful = [
-    // StatefulProjectTiles(),
-    // StatefulProjectTiles(),
-    Container(
-      height: 100,
-      width: 100,
-      color: Colors.green,
-    ),
-    Container(
-      height: 100,
-      width: 100,
-      color: Colors.amber,
-    ),
+    StatefulProjectTiles(key: UniqueKey()),
+    StatefulProjectTiles(key: UniqueKey()),
   ];
+
+  //TIPS:Key harus ditaroh di bagian paling awal subtree (dalam kasus ini padding)
+  /*List<Widget> _tilesStateful = [
+    Padding(
+      key: UniqueKey(),
+      padding: const EdgeInsets.all(8.0),
+      child: StatefulProjectTiles(),
+    ),
+    Padding(
+      key: UniqueKey(),
+      padding: const EdgeInsets.all(8.0),
+      child: StatefulProjectTiles(),
+    ),
+  ];*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Coba Key Youtube"),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            //NOTES: Widget swap menggunakan insert
-            _tilesStateful.insert(
-              1,
-              _tilesStateful.removeAt(0),
-            );
-            //ijo kuning, hapus [0] ijo sisa kuning, masukkan kuning sebelum 1,
-            //masukkan di index sebelum ke 1 -> remove tile dari index ke 0
-            //_tilesStateful.removeAt(0);
-          });
-        },
-        child: Icon(Icons.ac_unit_rounded),
-      ),
+
       //NOTE:Wrap (sama kaya row tapi bakal ngeexpand kebawah dan gaoverflow)
-      body: Wrap(
+      body: Row(
         children: _tilesStateful,
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.ac_unit_rounded),
+        onPressed: swapTiles,
+      ),
     );
+  }
+
+  swapTiles() {
+    setState(() {
+      //NOTES: Widget swap menggunakan insert
+      _tilesStateful.insert(
+        0,
+        _tilesStateful.removeAt(1),
+        //yang dimasukkan ke tile adalah yang diremove, bukan yang ada di dalam list saat ini
+      );
+      //ijo kuning, hapus [0] sisa kuning tapi yang keluar ijo, ijo dimasukkan sebelum 1 (setelah kuning), jadi ketuker deh
+
+      //_tilesStateful.removeAt(0);
+    });
   }
 }
 
 class StatelessProjectTiles extends StatelessWidget {
-  StatelessProjectTiles({Key? key}) : super(key: key);
-  final List<Color> _randomColor = [
+  //StatelessProjectTiles({Key? key}) : super(key: key);
+  final List<Color> randomColor = [
     Colors.amber,
     Colors.green,
     Colors.blue,
@@ -72,12 +82,23 @@ class StatelessProjectTiles extends StatelessWidget {
     Colors.purple
   ];
 
+  //Color myColor =Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+
+  //TIPS: kita tidak dapat menginisialisasi variabel randomColor atau variabel lain sebelum randomColor tersebut diinisialisasi, solusi tambahkan late
+  late Color myColor = randomColor[Random().nextInt(randomColor.length)];
+
+  //TIPS: kalau yang diinisialisasi langsung method, gaperlu make late, late cuma buat inisialisasi variabel yang nilainya masih akan diproses
+  //Color myColor = Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 100,
       width: 100,
-      color: _randomColor[Random().nextInt(_randomColor.length)],
+      color: myColor,
+
+      //kalo langsung diinisialisasi ke color, maka warna akan ke random terus
+      //color: randomColor[Random().nextInt(randomColor.length)],
     );
   }
 }
@@ -90,7 +111,7 @@ class StatefulProjectTiles extends StatefulWidget {
 }
 
 class _StatefulProjectTilesState extends State<StatefulProjectTiles> {
-  final List<Color> _randomColor = [
+  final List<Color> randomColor = [
     Colors.amber,
     Colors.green,
     Colors.blue,
@@ -102,12 +123,16 @@ class _StatefulProjectTilesState extends State<StatefulProjectTiles> {
     Colors.purple
   ];
 
+  //Color myColor = _randomColor[Random().nextInt(_randomColor.length)];
+  late Color myColor = randomColor[Random().nextInt(randomColor.length)];
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 100,
       width: 100,
-      color: _randomColor[Random().nextInt(_randomColor.length)],
+      color: myColor,
+      //color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
     );
   }
 }

@@ -14,6 +14,7 @@ import 'package:modern_flutter_ui/ui/cobagridview.dart';
 import 'package:modern_flutter_ui/ui/cobahalamankosong.dart';
 import 'package:modern_flutter_ui/ui/cobakey.dart';
 import 'package:modern_flutter_ui/ui/cobakeyyoutube.dart';
+import 'package:modern_flutter_ui/ui/cobakeyyoutube2.dart';
 import 'package:modern_flutter_ui/ui/cobaprovidercart.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderfavorite.dart';
@@ -112,7 +113,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => CobaKeyYoutube(),
+          '/': (context) => CobaKey(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),

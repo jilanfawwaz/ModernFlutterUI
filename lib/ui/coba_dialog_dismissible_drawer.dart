@@ -135,86 +135,86 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
               itemBuilder: (BuildContext context, int index) {
                 //NOTE: sebelumnya ada Builder() membungkus dismissible, tapi kayanya ga berguna
                 //return Builder(builder: (context) {
-               
-                  //NOTE:Dismissible (- item list tile bisa didrag ke kiri dan kanan untuk menghapus atau fungsi lainnya)
-                  return Dismissible(
-                    //NOTE:Key
-                    key: UniqueKey(),
-                    //key: Key(index.toString()),
-                    //key: ValueKey(_name),
-                    onDismissed: (directionssss) {
-                      //kalau dismiss tidak dikonfirmasi (confirmDissmiss), maka onDismissed tidak akan dijalankan
-                      setState(() {
-                        _myList.remove(_myList[index]);
-                      });
-                      if (directionssss == DismissDirection.endToStart) {
-                        print("End To Starts");
-                      } else {
-                        print("Start To End");
-                      }
-                    },
-                    confirmDismiss: (directionsss) {
-                      return showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Text("Delete Person"),
-                              content:
-                                  Text("Are You Sure to delete the person???"),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    print("Confirm Delete");
-                                    //return true; //akan didelete
-                                    Navigator.pop(context, true);
-                                  },
-                                  child: Text("YES"),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    print("Cancel Delete");
-                                    //return false;
-                                    Navigator.pop(context, false);
-                                  },
-                                  child: Text("NO"),
-                                ),
-                              ],
-                            );
-                          });
-                    },
 
-                    background: Container(
-                      //kanan ke kiri
-                      color: Colors.green[300],
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
+                //NOTE:Dismissible (- item list tile bisa didrag ke kiri dan kanan untuk menghapus atau fungsi lainnya)
+                return Dismissible(
+                  //NOTE:Key
+                  key: UniqueKey(),
+                  //key: Key(_myList[index].toString()),
+                  // key: ValueKey(index.toString()),
+                  onDismissed: (directionssss) {
+                    //kalau dismiss tidak dikonfirmasi (confirmDissmiss), maka onDismissed tidak akan dijalankan
+                    //print(_myList);
+                    setState(() {
+                      _myList.remove(_myList[index]);
+                    });
+                    if (directionssss == DismissDirection.endToStart) {
+                      print("End To Starts");
+                    } else {
+                      print("Start To End");
+                    }
+                  },
+                  confirmDismiss: (directionsss) {
+                    return showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Delete Person"),
+                            content:
+                                Text("Are You Sure to delete the person???"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  print("Confirm Delete");
+                                  //return true; //akan didelete
+                                  Navigator.pop(context, true);
+                                },
+                                child: Text("YES"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  print("Cancel Delete");
+                                  //return false;
+                                  Navigator.pop(context, false);
+                                },
+                                child: Text("NO"),
+                              ),
+                            ],
+                          );
+                        });
+                  },
+
+                  background: Container(
+                    //kanan ke kiri
+                    color: Colors.green[300],
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.check,
+                          color: Colors.white,
+                        ),
+                      ],
                     ),
-                    secondaryBackground: Container(
-                      //kiri ke kanan
-                      color: Colors.red[300],
-                      padding: EdgeInsets.only(right: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
+                  ),
+                  secondaryBackground: Container(
+                    //kiri ke kanan
+                    color: Colors.red[300],
+                    padding: EdgeInsets.only(right: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ],
                     ),
-                    //direction: DismissDirection.endToStart,
-                    child: _myList[index],
-                  );
-                
+                  ),
+                  //direction: DismissDirection.endToStart,
+                  child: _myList[index],
+                );
               },
             )
           : Center(
