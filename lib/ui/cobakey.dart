@@ -57,6 +57,7 @@ class _CobaKeyState extends State<CobaKey> {
       appBar: AppBar(
         title: Text("Coba Key"),
       ),
+      //TIPS:KEY kenapa kalau di listview.separated atau list.viewbuilder key eror karena memang gabisa menyimpan urutan child, pastikan gunakan listview biasa aja
       body: ListView.separated(
         //key: UniqueKey(),
         itemCount: _dataList.length,

@@ -47,6 +47,8 @@ class _CobaKeyKuldiiAddDataState extends State<CobaKeyKuldiiAddData> {
               children: [
                 //Text("Test"),
                 TextFormField(
+                  enableSuggestions: false,
+                  autocorrect: false,
                   controller: titleController,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
@@ -74,6 +76,8 @@ class _CobaKeyKuldiiAddDataState extends State<CobaKeyKuldiiAddData> {
                   height: 20,
                 ),
                 TextFormField(
+                  enableSuggestions: false,
+                  autocorrect: false,
                   controller: subtitleController,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
@@ -158,7 +162,14 @@ class _CobaKeyKuldiiAddDataState extends State<CobaKeyKuldiiAddData> {
                     if ((titleController.text != "") &&
                         (subtitleController.text != "") &&
                         (_date != null)) {
-                          //cobaKeyProvider.addData(title, subtitle, Date)
+                      //cobaKeyProvider.addData(title, subtitle, Date)
+                      cobaKeyProvider.addData(
+                        title: titleController.text,
+                        subtitle: subtitleController.text,
+                        date: _date,
+                      );
+                      Navigator.pop(context);
+                      //print(cobaKeyProvider.data);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

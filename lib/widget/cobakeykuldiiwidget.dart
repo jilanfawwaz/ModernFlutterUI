@@ -2,14 +2,18 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:modern_flutter_ui/Providers/cobakeykuldiprovider.dart';
+import 'package:provider/provider.dart';
 
 class CobaKeyKuldiiWidget extends StatefulWidget {
+  final String id;
   final String title;
   final String subtitle;
   final DateTime date;
 
   const CobaKeyKuldiiWidget(
       {Key? key,
+      required this.id,
       required this.title,
       required this.subtitle,
       required this.date})
@@ -33,6 +37,8 @@ class _CobaKeyKuldiiWidgetState extends State<CobaKeyKuldiiWidget> {
   ];
 
   late Color myColor;
+  // Color myColor;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -42,6 +48,8 @@ class _CobaKeyKuldiiWidgetState extends State<CobaKeyKuldiiWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final cobaKeyProvider =
+        Provider.of<CobaKeyKuldiiProvider>(context, listen: false);
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: myColor,
@@ -57,7 +65,9 @@ class _CobaKeyKuldiiWidgetState extends State<CobaKeyKuldiiWidget> {
         ],
       ),
       trailing: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          cobaKeyProvider.removeData(widget.id);
+        },
         icon: Icon(Icons.delete),
       ),
     );

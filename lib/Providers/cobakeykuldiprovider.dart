@@ -8,31 +8,20 @@ class CobaKeyKuldiiProvider with ChangeNotifier {
     return _data;
   }
 
-  addData(String title, String subtitle, DateTime date) {
+  addData({String? title, String? subtitle, DateTime? date}) {
     _data.add(
       CobaKeyKuldiiModel(
-          id: DateTime.now().toString(),
-          title: title,
-          date: DateTime.now(),
-          subtitle: subtitle),
+        id: DateTime.now().toString(),
+        title: title!,
+        date: date!,
+        subtitle: subtitle!,
+      ),
     );
     notifyListeners();
   }
 
-  removeData(CobaKeyKuldiiModel tile) {
-    _data.remove(tile);
+  removeData(String id) {
+    _data.removeWhere((element) => element.id == id);
     notifyListeners();
   }
-
-  connectApi(
-      {String? title,
-      String? subtitle,
-      DateTime? date}){_data.add(
-      CobaKeyKuldiiModel(
-          id: DateTime.now().toString(),
-          title: title!,
-          date: DateTime.now(),
-          subtitle: subtitle!),
-    );
-    notifyListeners();}
 }
