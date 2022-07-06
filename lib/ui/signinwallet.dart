@@ -78,6 +78,7 @@ class SignInWallet extends StatelessWidget {
                   left: 20,
                   bottom: 20,
                 ),
+                //TIPS: isDense supaya gaada padding sama sekali dari button
                 isDense: true,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(71),

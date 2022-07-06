@@ -37,7 +37,6 @@ class _HttpStatefulState extends State<HttpStateful> {
           //FocusScope.of(context).requestFocus(FocusNode());
 
           //yang ini versi baru, unfocus() adalah method baru dari focusscope
-
           FocusScope.of(context).unfocus();
         },
         child: Container(

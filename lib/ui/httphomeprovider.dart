@@ -18,7 +18,7 @@ class HttpProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataApi = Provider.of<HttpModelProvider>(context, listen: false);
-    print("Build");
+
     return Scaffold(
       //supaya ga bottom overflow saat buka keyboard, tapi kekurangannya textform atau button bisa ketutupan keyboard
       //resizeToAvoidBottomInset: false,

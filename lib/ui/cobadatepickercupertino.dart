@@ -19,6 +19,7 @@ class _CobaDatePickerCupertinoState extends State<CobaDatePickerCupertino> {
   //DateTime _dateNow = DateTime.now();
   DateTime _dateNow = DateTime(1990);
   final List<DateTime> _dateAvailable = [
+    //TIPS:DateTime(tahun,bulan,tanggal)
     DateTime(1990, 1, 1), //firstdate
 
     DateTime(2022, 6, 22),
@@ -138,12 +139,13 @@ class _CobaDatePickerCupertinoState extends State<CobaDatePickerCupertino> {
               //NOTE: OutlinedButton()
               OutlinedButton(
                 onPressed: () {
+                  //TIPS: showDatePicker bisa langsung ditampilkan tanpa harus menggunakan showDialog() dan alertDialog()
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return Platform.isAndroid
+                      return Platform.isIOS
                           ? Theme(
-                              //NOTE: ThemeData.dark
+                              //NOTE: ThemeData.dark (- supaya tampilan datepicker jadi dark)
                               data: ThemeData.dark(),
                               child: CupertinoAlertDialog(
                                 title: Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modern_flutter_ui/Providers/cobakeykuldiprovider.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/Providers/providercart.dart';
 import 'package:modern_flutter_ui/Providers/providermodelfirebase.dart';
@@ -13,6 +14,8 @@ import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
 import 'package:modern_flutter_ui/ui/cobahalamankosong.dart';
 import 'package:modern_flutter_ui/ui/cobakey.dart';
+import 'package:modern_flutter_ui/ui/cobakeykuldiiadddata.dart';
+import 'package:modern_flutter_ui/ui/cobakeykuldiihome.dart';
 import 'package:modern_flutter_ui/ui/cobakeyyoutube.dart';
 import 'package:modern_flutter_ui/ui/cobakeyyoutube2.dart';
 import 'package:modern_flutter_ui/ui/cobaprovidercart.dart';
@@ -73,12 +76,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //NOTE:MultiProvider
     return MultiProvider(
+      //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
       providers: [
         ChangeNotifierProvider(create: (context) => AllProduct()),
         ChangeNotifierProvider(create: (context) => Cart()),
         ChangeNotifierProvider(create: (context) => HttpModelProvider()),
         ChangeNotifierProvider(create: (context) => HttpGetProvider()),
         ChangeNotifierProvider(create: (context) => ProviderFirebase()),
+        ChangeNotifierProvider(create: (context) => CobaKeyKuldiiProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -113,7 +118,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => CobaKey(),
+          '/': (context) => CobaKeyKuldiiHome(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -147,6 +152,8 @@ class MyApp extends StatelessWidget {
           CobaHalamanKosong.nameRoute: (context) => CobaHalamanKosong(),
           FirebaseFutureBuilder.nameRoute: (context) => FirebaseFutureBuilder(),
           '/cobakey': (context) => CobaKey(),
+          CobaKeyKuldiiHome.nameRoute: (context) => CobaKeyKuldiiHome(),
+          CobaKeyKuldiiAddData.nameRoute: (context) => CobaKeyKuldiiAddData(),
         },
       ),
     );
