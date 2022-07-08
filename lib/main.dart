@@ -118,7 +118,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => CobaKeyKuldiiHome(),
+          '/': (context) => CobaState(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),

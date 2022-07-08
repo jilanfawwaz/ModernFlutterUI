@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/ui/cobahalamankosong.dart';
-import 'package:modern_flutter_ui/ui/cobastateswitchwidgetcounter.dart';
+import 'package:modern_flutter_ui/widget/cobastateswitchwidgetcounter.dart';
 
 class CobaState extends StatefulWidget {
   const CobaState({Key? key}) : super(key: key);
@@ -15,6 +15,7 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
   int numberButton = 0;
   bool _switchStatus = false;
   bool _switchStatus2 = false;
+  bool _checkBoxStatus = false;
 
   AppLifecycleState? _stateNow;
 
@@ -25,15 +26,16 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
 
   //NOTE:Widget LifeCycle
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     WidgetsBinding.instance?.addObserver(this);
 
-    //numberButton = (ModalRoute.of(context)?.settings.arguments as int);
+    //jangan ditaroh disini bakal eror
+    /*if ((ModalRoute.of(context)?.settings.arguments) != null) {
+      numberButton = ModalRoute.of(context)?.settings.arguments as int;
+    }*/
   }
 
-  //baru bisa dipake setelah memasukkan WidgetsBinding.instance?.addObserver(this); di initState
+  //TIPS: didChangeAppLifecycleState baru bisa dipake setelah memasukkan WidgetsBinding.instance?.addObserver(this); di initState
   //NOTE:AppLifeCycle
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -42,6 +44,7 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
     if (state == AppLifecycleState.inactive) {
       print("Aplikasi ngambang");
     } else if (state == AppLifecycleState.paused) {
+      //TIPS:Pause aplikasi saat keluar
       print("Aplikasi keluar");
       setState(() {
         _stateNow = state;
@@ -53,14 +56,14 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
     //print(state);
   }
 
-  @override
-  void didChangeDependencies() {
-    if ((ModalRoute.of(context)?.settings.arguments) != null) {
-      numberButton = ModalRoute.of(context)?.settings.arguments as int;
-    }
+  // @override
+  // void didChangeDependencies() {
+  //   if ((ModalRoute.of(context)?.settings.arguments) != null) {
+  //     numberButton = ModalRoute.of(context)?.settings.arguments as int;
+  //   }
 
-    super.didChangeDependencies();
-  }
+  //   super.didChangeDependencies();
+  // }
 
   //didUpdateWidget() ada di file dart widget counter (cobastateswtichwidgetcounter.dart)
 
@@ -73,7 +76,7 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    // supaya tidak terjadi memory leaks karena sebelumnya telah memanggil addObserver
+    //TIPS:supaya tidak terjadi memory leaks karena sebelumnya telah memanggil addObserver
     WidgetsBinding.instance?.removeObserver(this);
     print("dispose");
     super.dispose();
@@ -103,43 +106,12 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CobaStateWidgetCounter(numberButton: numberButton),
-                Switch.adaptive(
-                  activeColor: Colors
-                      .amber, //untuk switch ios, cuma bisa dicustom untuk activeColor dan inactiveTrackColor
-                  inactiveTrackColor: Colors.red,
-                  value: _switchStatus,
-                  onChanged: (value) {
-                    setState(() {
-                      _switchStatus = !_switchStatus;
-                    });
-                    print(_switchStatus);
-                  },
-                ),
-                //NOTE:Switch
-                Switch.adaptive(
-                  activeColor: Colors
-                      .amber, //untuk switch ios, cuma bisa dicustom untuk activeColor dan inactiveTrackColor
-                  inactiveTrackColor: Colors.red,
-                  value: _switchStatus2, //false or true
-                  onChanged: (value) {
-                    setState(() {
-                      _switchStatus2 = !_switchStatus2;
-                    });
-                    print(_switchStatus2);
-                  },
-                ),
-                Text(
-                  _switchStatus ? "Switch On" : "Switch Off",
-                ),
-                Text(
-                  _switchStatus2 ? "Switch 2 On" : "Switch 2 Off",
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.purple.shade900,
+                        primary: Colors.red.shade200,
                       ),
                       onPressed: () {
                         setState(() {
@@ -168,15 +140,124 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20,
+
+                //NOTE:Switch
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Switch.adaptive(
+                      activeColor: Colors
+                          .amber, //untuk switch ios, cuma bisa dicustom untuk activeColor dan inactiveTrackColor
+                      inactiveTrackColor: Colors.red,
+                      value: _switchStatus,
+                      onChanged: (value) {
+                        setState(() {
+                          _switchStatus = !_switchStatus;
+                        });
+                        print(_switchStatus);
+                      },
+                    ),
+                    Text(
+                      _switchStatus ? "Switch On" : "Switch Off",
+                    ),
+                  ],
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Switch.adaptive(
+                      activeColor: Colors
+                          .amber, //untuk switch ios, cuma bisa dicustom untuk activeColor dan inactiveTrackColor
+                      inactiveTrackColor: Colors.red,
+                      value: _switchStatus2, //false or true
+                      onChanged: (_) {
+                        setState(() {
+                          _switchStatus2 = !_switchStatus2;
+                        });
+                        print(_switchStatus2);
+                      },
+                    ),
+                    Text(
+                      _switchStatus2 ? "Switch 2 On" : "Switch 2 Off",
+                    ),
+                  ],
+                ),
+
+                //NOTE:Transform.scale untuk memperbesar sebuah widget
+                Align(
+                  //NOTE:Alignment(x,y), skala X dan Y adalah dari -1 sampai 1.
+                  alignment: Alignment(-0.7, 0),
+                  child: Transform.scale(
+                    scale: 1.5,
+
+                    //NOTE:Checkbox
+                    child: Container(
+                      //TIPS: container untuk mengatur lebar dan tinggi dari daerah yang bisa dipencet
+                      height:
+                          15, //15 adalah ukuran yang paling pas, kalau checkbox diperbesar make scale container ini juga akan diperbesar
+                      width: 15,
+                      child: Checkbox(
+                        //TIPS: materialTapTargetSize untuk mengatur lebar dan tinggi dari daerah yang bisa dipencet
+                        //materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        shape: CircleBorder(),
+                        side: BorderSide(
+                          color: Colors.amber,
+                          width: 2,
+                          //menghilangkan border
+                          //style: BorderStyle.none,
+                        ),
+                        //hanya bisa untuk web atau windows app
+                        //hoverColor: Colors.green,
+                        activeColor: Colors.amber,
+                        checkColor: Colors.blue,
+                        value: _checkBoxStatus,
+                        //splashRadius: 5,
+                        onChanged: (value) {
+                          //TIPS:ketika checbox dipencet, kembalian value akan berisi inverse/kebalikan dari avalue saat ini
+                          //print(value);
+                          setState(() {
+                            _checkBoxStatus = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(),
+                CheckboxListTile(
+                  title: Text("Halo"),
+                  subtitle: Text("apa nih"),
+
+                  //checkbox di kiri
+                  //controlAffinity: ListTileControlAffinity.leading,
+
+                  //tristate: true,
+                  //dense: true,
+                  //isThreeLine: true,
+                  value: _checkBoxStatus,
+                  onChanged: (value) {
+                    //TIPS:ketika checbox dipencet, kembalian value akan berisi inverse/kebalikan dari avalue saat ini
+                    //print(value);
+                    setState(() {
+                      _checkBoxStatus = value!;
+                    });
+                  },
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(
+                    /*Navigator.pushReplacementNamed(
                       //Navigator.pushNamed(
                       context,
                       CobaHalamanKosong.nameRoute,
+                      arguments: numberButton,
+                    );*/
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      CobaHalamanKosong.nameRoute,
+                      (route) => false,
                       arguments: numberButton,
                     );
                   },
