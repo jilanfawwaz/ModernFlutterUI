@@ -42,7 +42,7 @@ class CobaProvider extends StatelessWidget {
                 onPressed: () {},
                 icon: Icon(Icons.favorite),
               ),
-              //kalo udah pake consumer, boleh ko gausah make provider.of(context) lagi
+              //TIPS: kalo udah pake consumer, boleh ko gausah make provider.of(context) lagi
               Consumer<Cart>(
                 builder: (context, cart, child) {
                   return Badge(

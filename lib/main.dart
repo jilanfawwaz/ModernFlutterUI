@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modern_flutter_ui/Providers/cobakeykuldiprovider.dart';
+import 'package:modern_flutter_ui/Providers/cobascheckboxprovider.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/Providers/providercart.dart';
 import 'package:modern_flutter_ui/Providers/providermodelfirebase.dart';
@@ -22,6 +23,7 @@ import 'package:modern_flutter_ui/ui/cobaprovidercart.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderfavorite.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderhome.dart';
+import 'package:modern_flutter_ui/ui/cobascheckbox.dart';
 import 'package:modern_flutter_ui/ui/cobashayna.dart';
 import 'package:modern_flutter_ui/ui/cobamediaquery.dart';
 import 'package:modern_flutter_ui/ui/cobadateappbar.dart';
@@ -84,6 +86,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => HttpGetProvider()),
         ChangeNotifierProvider(create: (context) => ProviderFirebase()),
         ChangeNotifierProvider(create: (context) => CobaKeyKuldiiProvider()),
+        ChangeNotifierProvider(create: (context) => CobaCheckboxProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -118,7 +121,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => CobaState(),
+          '/': (context) => CobaCheckbox(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -154,6 +157,7 @@ class MyApp extends StatelessWidget {
           '/cobakey': (context) => CobaKey(),
           CobaKeyKuldiiHome.nameRoute: (context) => CobaKeyKuldiiHome(),
           CobaKeyKuldiiAddData.nameRoute: (context) => CobaKeyKuldiiAddData(),
+          '/cobacheckbox': (context) => CobaCheckbox(),
         },
       ),
     );
