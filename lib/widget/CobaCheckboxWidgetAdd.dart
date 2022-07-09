@@ -118,10 +118,24 @@ class _CobaCheckboxWidgetAddState extends State<CobaCheckboxWidgetAdd> {
                       child: IconButton(
                         splashColor: Colors.grey.withOpacity(0.5),
                         onPressed: () {
-                          dataCheckbox.addData(
-                              id: DateTime.now().toString(),
-                              title: titleController.text);
-                          titleController.clear();
+                          if (titleController.text != "") {
+                            dataCheckbox.addData(
+                              id: UniqueKey().toString(),
+                              title: titleController.text,
+                            );
+                            titleController.clear();
+                            _textLength = 0;
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                duration: Duration(milliseconds: 500),
+                                content: Text(
+                                  "Gagal, pastikan data tidak kosong",
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            );
+                          }
                         },
                         padding: EdgeInsets.zero,
 

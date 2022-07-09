@@ -4,6 +4,7 @@ import 'package:modern_flutter_ui/Providers/cobascheckboxprovider.dart';
 import 'package:provider/provider.dart';
 
 import '../widget/CobaCheckboxWidgetAdd.dart';
+import '../widget/CobaCheckboxWidgetCard.dart';
 
 class CobaCheckbox extends StatelessWidget {
   CobaCheckbox({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class CobaCheckbox extends StatelessWidget {
         Provider.of<CobaCheckboxProvider>(context, listen: false);
 
     print(dataCheckbox.data.length);
+    print("masuk checkbox");
     return Scaffold(
       appBar: AppBar(
         title: Text("Coba Checkbox"),
@@ -33,42 +35,41 @@ class CobaCheckbox extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.all(9.0),
-            child: dataCheckbox.data.length == []
+            child: dataCheckbox.data.length == 0
                 ? Center(
                     child: Text("Data Kosong"),
                   )
-                : ListView(
+                : Column(
                     children: [
-                      Card(
-                        child: Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.all(15),
-                          child: Row(
-                            children: [
-                              Checkbox(
-                                value: checkboxStatus,
-                                onChanged: (value) {
-                                  // setState(() {
-                                  //   checkboxStatus = value!;
-                                  // });
-                                },
+                      dataCheckbox.data.length == 1
+                          ? SizedBox()
+                          : Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Row(
+                                children: [
+                                  Checkbox(
+                                    value: dataCheckbox.selectAll,
+                                    onChanged: (value) {
+                                      dataCheckbox.changeCheckboxStatusAll();
+                                    },
+                                  ),
+                                  Text("Select All"),
+                                ],
                               ),
-                              SizedBox(
-                                width: 10,
+                            ),
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            for (final item in dataCheckbox.data)
+                              CobaCheckboxWidgetCard(
+                                title: item.title,
+                                id: item.id,
+                                isSelected: item.isSelected,
                               ),
-                              Text("Halo"),
-                              Spacer(),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.delete,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
+                          ],
                         ),
                       ),
+                      SizedBox(height: 150),
                     ],
                   ),
           ),

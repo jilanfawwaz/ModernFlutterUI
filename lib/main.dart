@@ -23,7 +23,7 @@ import 'package:modern_flutter_ui/ui/cobaprovidercart.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderfavorite.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderhome.dart';
-import 'package:modern_flutter_ui/ui/cobascheckbox.dart';
+import 'package:modern_flutter_ui/ui/cobacheckbox.dart';
 import 'package:modern_flutter_ui/ui/cobashayna.dart';
 import 'package:modern_flutter_ui/ui/cobamediaquery.dart';
 import 'package:modern_flutter_ui/ui/cobadateappbar.dart';

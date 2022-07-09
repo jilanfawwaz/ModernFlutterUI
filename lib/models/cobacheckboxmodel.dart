@@ -1,7 +1,9 @@
-class CobaCheckboxModel {
+import 'package:flutter/material.dart';
+
+class CobaCheckboxModel with ChangeNotifier {
   final String id;
   final String title;
-  final bool isSelected;
+  bool isSelected;
 
   CobaCheckboxModel({
     required this.id,
