@@ -124,7 +124,9 @@ class _CobaCheckboxWidgetAddState extends State<CobaCheckboxWidgetAdd> {
                               title: titleController.text,
                             );
                             titleController.clear();
-                            _textLength = 0;
+                            setState(() {
+                              _textLength = 0;
+                            });
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

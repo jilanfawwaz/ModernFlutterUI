@@ -53,6 +53,7 @@ class CobaProviderFavorite extends StatelessWidget {
                     ),
                     itemCount: _listProduct.length,
                     itemBuilder: (context, index) {
+                      //NOTE:ChangeNotifierProvider.value , kalau nggak menggunakan multiProvider di main.dart, maka harus masukkan manual ke setiap child widget tree yang membutuhkan provider
                       return ChangeNotifierProvider.value(
                           value: _listProduct[index], child: ProviderWidget());
                     },

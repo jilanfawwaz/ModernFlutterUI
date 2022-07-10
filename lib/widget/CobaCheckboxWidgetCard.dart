@@ -30,14 +30,15 @@ class CobaCheckboxWidgetCard extends StatelessWidget {
               onChanged: (value) {
                 dataCheckbox.changeBoxStatus(id, !isSelected);
                 if (value == false) {
-                  dataCheckbox.changeCheckoxStatusAllDeselect();
+                  dataCheckbox.changeCheckboxStatusAllDeselect();
                 }
+                dataCheckbox.checkSelectedAll();
               },
             ),
             SizedBox(
               width: 10,
             ),
-            Text(title),
+            Expanded(child: Text(title)),
             Spacer(),
             IconButton(
               onPressed: () {
