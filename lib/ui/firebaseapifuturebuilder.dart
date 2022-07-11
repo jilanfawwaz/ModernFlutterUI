@@ -35,13 +35,13 @@ class _FirebaseFutureBuilderState extends State<FirebaseFutureBuilder> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              //NOTE:FutureBuilder
+              //NOTE:FutureBuilder penjelasan ada di note
               FutureBuilder(
                 future: Provider.of<ProviderFirebase>(context, listen: false)
                     .getApiFutureBuilder(),
                 //initialData: InitialData,
                 builder: (BuildContext context,
-                    AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                    AsyncSnapshot<List<Map<String, dynamic>>> snapshot) { //beri tipe data untuk snapshot nya
                   //builder: (context, snapshot) {
 
                   //print(snapshot.data);

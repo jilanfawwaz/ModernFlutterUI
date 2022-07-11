@@ -31,6 +31,8 @@ class _FirebaseHomeState extends State<FirebaseHome> {
     //   Provider.of<ProviderFirebase>(context).getApi();
     // });
     //Provider.of<ProviderFirebase>(context).getApi();
+
+    //make context.read gaperlu make future.delayed
     context.read<ProviderFirebase>().getApi();
     //print(context.read<ProviderFirebase>().getJumlah);
 

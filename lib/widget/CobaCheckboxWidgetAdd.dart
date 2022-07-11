@@ -120,7 +120,7 @@ class _CobaCheckboxWidgetAddState extends State<CobaCheckboxWidgetAdd> {
                         onPressed: () {
                           if (titleController.text != "") {
                             dataCheckbox.addData(
-                              id: UniqueKey().toString(),
+                            
                               title: titleController.text,
                             );
                             titleController.clear();

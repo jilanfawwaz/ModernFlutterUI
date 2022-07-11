@@ -83,6 +83,7 @@ class ProviderFirebase with ChangeNotifier {
           //NOTE:MAP .map()
           List<Map<String, dynamic>> dataFutureBuilder =
               dataResponse.entries.map<Map<String, dynamic>>((e) {
+            //entries itu menampilkan key dan value sekaligus dalam satu data
             return {
               "id": e.key,
               "name": e.value["name"],
@@ -109,7 +110,8 @@ class ProviderFirebase with ChangeNotifier {
     }
   }
 
-  Future<void> getApi() async {
+  //Future<void> getApi() async {
+  getApi() async {
     Uri url = Uri.parse(
         "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");
 
@@ -190,8 +192,8 @@ class ProviderFirebase with ChangeNotifier {
       String? imageURL,
       DateTime? createdAt}) async {
     try {
-      Uri url =
-          Uri.parse("https://http-req-a092b-default-rtdb.firebaseio.com/users");
+      Uri url = Uri.parse(
+          "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");
 
       await http
           .post(

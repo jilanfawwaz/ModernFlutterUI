@@ -6,10 +6,22 @@ import 'package:provider/provider.dart';
 import '../widget/cobacheckboxwidgetadd.dart';
 import '../widget/cobacheckboxwidgetcard.dart';
 
-class CobaCheckbox extends StatelessWidget {
+class CobaCheckbox extends StatefulWidget {
   CobaCheckbox({Key? key}) : super(key: key);
 
+  @override
+  State<CobaCheckbox> createState() => _CobaCheckboxState();
+}
+
+class _CobaCheckboxState extends State<CobaCheckbox> {
   var checkboxStatus = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<CobaCheckboxProvider>().getData();
+  }
 
   @override
   Widget build(BuildContext context) {

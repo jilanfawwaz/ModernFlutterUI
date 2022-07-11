@@ -25,26 +25,57 @@ class CobaCheckboxProvider with ChangeNotifier {
     notifyListeners();
   }*/
 
-  addData({String? id, String? title}) async {
-    _data.add(CobaCheckboxModel(id: id!, title: title!, isSelected: false));
-
+  addData({String? title}) async {
     try {
+      //TIPS:Url json harus make .json dibelakangnya
       Uri url = Uri.parse(
-          "https://http-req-a092b-default-rtdb.firebaseio.com/checkbox");
+          "https://http-req-a092b-default-rtdb.firebaseio.com/checkbox.json");
 
-      var _dataResponse = await http.post(
+      await http
+          .post(
         url,
         body: json.encode(
           {
-            "id": id,
             "title": title,
             "isSelected": false,
           },
         ),
+      )
+          .then(
+        (value) {
+          //TIPS:return value dari post, untuk menggunakannya harus di json.decode dulu
+          print(json.decode(value.body)["name"]);
+          _data.add(
+            CobaCheckboxModel(
+                id: json.decode(value.body)["name"],
+                title: title!,
+                isSelected: false),
+          );
+        },
       );
     } catch (e) {
       rethrow;
     }
+    notifyListeners();
+  }
+
+  getData() async {
+    Uri url = Uri.parse(
+        "https://http-req-a092b-default-rtdb.firebaseio.com/checkbox.json");
+
+    var _hasilRespon = await http.get(url);
+
+    var _dataRespon = jsonDecode(_hasilRespon.body) as Map<String, dynamic>;
+
+    _dataRespon.forEach((key, value) {
+      _data.add(
+        CobaCheckboxModel(
+          id: value['id'],
+          title: value['title'],
+          isSelected: value['isSelected'],
+        ),
+      );
+    });
     notifyListeners();
   }
 
@@ -78,8 +109,27 @@ class CobaCheckboxProvider with ChangeNotifier {
   }
 
   //mengubah nilai bool child checkbox
-  changeBoxStatus(String id, bool status) {
+  /*changeBoxStatus(String id, bool status) {
     _data.firstWhere((element) => element.id == id).isSelected = status;
+    notifyListeners();
+    //_data.where((element) => element.id == id);
+  }*/
+
+  changeBoxStatus(String id, bool status) async {
+    Uri url = Uri.parse(
+        "https://http-req-a092b-default-rtdb.firebaseio.com/checkbox/$id/.json");
+
+    await http
+        .patch(
+      url,
+      body: json.encode(
+        {"isSelected": status},
+      ),
+    )
+        .then((value) {
+      _data.firstWhere((element) => element.id == id).isSelected = status;
+    });
+
     notifyListeners();
     //_data.where((element) => element.id == id);
   }
