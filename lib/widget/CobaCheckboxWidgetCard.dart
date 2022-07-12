@@ -6,6 +6,7 @@ class CobaCheckboxWidgetCard extends StatelessWidget {
   final String title;
   final String id;
   bool isSelected;
+  bool isChanged = false;
 
   CobaCheckboxWidgetCard({
     Key? key,
@@ -18,7 +19,7 @@ class CobaCheckboxWidgetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var dataCheckbox =
         Provider.of<CobaCheckboxProvider>(context, listen: false);
-    print("masuk");
+    //print("masuk");
     return Card(
       child: Container(
         width: double.infinity,
@@ -29,6 +30,7 @@ class CobaCheckboxWidgetCard extends StatelessWidget {
               value: isSelected,
               onChanged: (value) {
                 dataCheckbox.changeBoxStatus(id, !isSelected);
+                
                 if (value == false) {
                   dataCheckbox.changeCheckboxStatusAllDeselect();
                 }

@@ -13,7 +13,8 @@ class CobaCheckbox extends StatefulWidget {
   State<CobaCheckbox> createState() => _CobaCheckboxState();
 }
 
-class _CobaCheckboxState extends State<CobaCheckbox> {
+class _CobaCheckboxState extends State<CobaCheckbox>
+    with WidgetsBindingObserver {
   var checkboxStatus = false;
 
   @override
@@ -21,6 +22,17 @@ class _CobaCheckboxState extends State<CobaCheckbox> {
     // TODO: implement initState
     super.initState();
     context.read<CobaCheckboxProvider>().getData();
+    WidgetsBinding.instance?.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // TODO: implement didChangeAppLifecycleState
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.inactive) {
+      print("Masuk inject");
+      context.read<CobaCheckboxProvider>().injectCheckboxToFirebase();
+    }
   }
 
   @override
@@ -29,7 +41,7 @@ class _CobaCheckboxState extends State<CobaCheckbox> {
         Provider.of<CobaCheckboxProvider>(context, listen: false);
 
     //print(dataCheckbox.data.length);
-    print("masuk checkbox");
+    //print("masuk checkbox");
     return Scaffold(
       appBar: AppBar(
         title: Text("Coba Checkbox"),

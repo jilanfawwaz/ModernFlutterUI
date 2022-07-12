@@ -50,20 +50,20 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
         _stateNow = state;
       });
     } else if (state == AppLifecycleState.resumed) {
-      print("Masuk Kembali ke apliaksi");
+      print("Masuk Kembali ke aplikasi");
     }
 
     //print(state);
   }
 
-  // @override
-  // void didChangeDependencies() {
-  //   if ((ModalRoute.of(context)?.settings.arguments) != null) {
-  //     numberButton = ModalRoute.of(context)?.settings.arguments as int;
-  //   }
+  @override
+  void didChangeDependencies() {
+    if ((ModalRoute.of(context)?.settings.arguments) != null) {
+      numberButton = ModalRoute.of(context)?.settings.arguments as int;
+    }
 
-  //   super.didChangeDependencies();
-  // }
+    super.didChangeDependencies();
+  }
 
   //didUpdateWidget() ada di file dart widget counter (cobastateswtichwidgetcounter.dart)
 
