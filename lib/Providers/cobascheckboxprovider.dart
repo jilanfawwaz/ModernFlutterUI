@@ -110,16 +110,14 @@ class CobaCheckboxProvider with ChangeNotifier {
   }*/
 
   changeCheckboxStatusAll() {
+    _changedData.clear();
     _data.forEach((element) {
       element.isSelected = !_selectAll;
 
-      if (!_changedData.contains(_data
-          .firstWhere((elementChanged) => elementChanged.id == element.id))) {
-        _changedData.add(_data
-            .firstWhere((elementChanged) => elementChanged.id == element.id));
-      }
-      print(_changedData);
+      _changedData.add(_data
+          .firstWhere((elementChanged) => elementChanged.id == element.id));
     });
+    print(_changedData);
     _selectAll = !_selectAll;
     notifyListeners();
   }
