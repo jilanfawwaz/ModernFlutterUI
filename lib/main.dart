@@ -6,12 +6,14 @@ import 'package:modern_flutter_ui/Providers/cobascheckboxprovider.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/Providers/providercart.dart';
 import 'package:modern_flutter_ui/Providers/providermodelfirebase.dart';
+import 'package:modern_flutter_ui/models/cobadropdownjilanmodel.dart';
 import 'package:modern_flutter_ui/models/httpgetmodelprovider.dart';
 //import 'package:modern_flutter_ui/Providers/providermodel.dart';
 import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
+import 'package:modern_flutter_ui/ui/cobadropdownJilan.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
 import 'package:modern_flutter_ui/ui/cobahalamankosong.dart';
 import 'package:modern_flutter_ui/ui/cobakey.dart';
@@ -87,6 +89,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ProviderFirebase()),
         ChangeNotifierProvider(create: (context) => CobaKeyKuldiiProvider()),
         ChangeNotifierProvider(create: (context) => CobaCheckboxProvider()),
+        ChangeNotifierProvider(create: (context) => CobaDropdownJilanModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -121,7 +124,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => CobaCheckbox(),
+          '/': (context) => CobaDropdownJilan(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -158,6 +161,7 @@ class MyApp extends StatelessWidget {
           CobaKeyKuldiiHome.nameRoute: (context) => CobaKeyKuldiiHome(),
           CobaKeyKuldiiAddData.nameRoute: (context) => CobaKeyKuldiiAddData(),
           '/cobacheckbox': (context) => CobaCheckbox(),
+          '/cobadropdownjilan': (context) => CobaDropdownJilan(),
         },
       ),
     );

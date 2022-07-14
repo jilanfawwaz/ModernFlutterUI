@@ -85,13 +85,26 @@ class _CobaCheckboxState extends State<CobaCheckbox>
                               ),
                         Expanded(
                           child: ListView(
+                            // shrinkWrap: true,
                             children: [
                               for (final item in dataCheckbox.data)
-                                CobaCheckboxWidgetCard(
-                                  title: item.title,
-                                  id: item.id,
-                                  isSelected: item.isSelected,
-                                ),
+                                if (item.isSelected == false)
+                                  CobaCheckboxWidgetCard(
+                                    title: item.title,
+                                    id: item.id,
+                                    isSelected: item.isSelected,
+                                  ),
+                              SizedBox(
+                                height: 50,
+                              ),
+                              Center(child: Text("checked")),
+                              for (final item in dataCheckbox.data)
+                                if (item.isSelected == true)
+                                  CobaCheckboxWidgetCard(
+                                    title: item.title,
+                                    id: item.id,
+                                    isSelected: item.isSelected,
+                                  ),
                             ],
                           ),
                         ),
