@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/models/cobadropdownjilanmodel.dart';
 import 'package:modern_flutter_ui/widget/cobadropdownjilanadd.dart';
 import 'package:provider/provider.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 class CobaDropdownJilan extends StatefulWidget {
   CobaDropdownJilan({Key? key}) : super(key: key);
@@ -63,6 +64,39 @@ class _CobaDropdownJilanState extends State<CobaDropdownJilan> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                //NOTE:Dropdown using package
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: DropdownSearch<String>(
+                    //button buat reset pilihan
+                    showClearButton: true,
+
+                    mode: Mode.MENU,
+
+                    //kalau item udah dipilih, di dropdown nanti bakal warna biru
+                    showSelectedItems: true,
+
+                    //items: ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
+                    items: _fruitData,
+
+                    dropdownSearchDecoration: InputDecoration(
+                      
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                        
+                      ),
+                      labelText: "Pilih Buah",
+                      hintText: "buah apa yang anda inginkan?",
+                    ),
+                    popupItemDisabled: (String s) => s.startsWith('I'),
+                    onChanged: print,
+                    selectedItem: "apel",
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                //NOTE:Dropdown (kuno)
                 DropdownButton<String>(
                   value: _dropdownValue,
                   //hint: Text('Pilih Buah'),
