@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modern_flutter_ui/Providers/cobaauthenticationprovider.dart';
 import 'package:modern_flutter_ui/Providers/cobakeykuldiprovider.dart';
 import 'package:modern_flutter_ui/Providers/cobascheckboxprovider.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
@@ -12,6 +13,9 @@ import 'package:modern_flutter_ui/models/httpgetmodelprovider.dart';
 import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
+import 'package:modern_flutter_ui/ui/cobaauthenticationhome.dart';
+import 'package:modern_flutter_ui/ui/cobaauthenticationlogin.dart';
+import 'package:modern_flutter_ui/ui/cobaauthenticationsignup.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
 import 'package:modern_flutter_ui/ui/cobadropdownJilan.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
@@ -90,6 +94,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CobaKeyKuldiiProvider()),
         ChangeNotifierProvider(create: (context) => CobaCheckboxProvider()),
         ChangeNotifierProvider(create: (context) => CobaDropdownJilanModel()),
+        ChangeNotifierProvider(
+            create: (context) => CobaAuthenticationProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -124,7 +130,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: '/cobashayna',
 
         routes: {
-          '/': (context) => CobaDropdownJilan(),
+          '/': (context) => CobaAutheticationLogin(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -162,6 +168,9 @@ class MyApp extends StatelessWidget {
           CobaKeyKuldiiAddData.nameRoute: (context) => CobaKeyKuldiiAddData(),
           '/cobacheckbox': (context) => CobaCheckbox(),
           '/cobadropdownjilan': (context) => CobaDropdownJilan(),
+          '/cobaauthenticationlogin': (context) => CobaAutheticationLogin(),
+          '/cobaauthenticationhome': (context) => CobaAuthenticationHome(),
+          '/cobaauthenticationsignup': (context) => CobaAutheticationSignUp(),
         },
       ),
     );

@@ -80,16 +80,26 @@ class _CobaDropdownJilanState extends State<CobaDropdownJilan> {
                     items: _fruitData,
 
                     dropdownSearchDecoration: InputDecoration(
-                      
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
-                        
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: Colors.amber,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       labelText: "Pilih Buah",
                       hintText: "buah apa yang anda inginkan?",
                     ),
-                    popupItemDisabled: (String s) => s.startsWith('I'),
-                    onChanged: print,
+                    popupItemDisabled: (String s) => s.startsWith('k'),
+                    onChanged: (value) {
+                      print(value);
+                    },
                     selectedItem: "apel",
                   ),
                 ),
