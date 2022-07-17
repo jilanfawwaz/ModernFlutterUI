@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/shared/theme.dart';
+import 'package:provider/provider.dart';
+
+import '../Providers/cobaauthenticationloginprovider.dart';
 
 class CobaAutheticationLogin extends StatelessWidget {
   const CobaAutheticationLogin({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController usernameController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
 
+    var dataAuthentication =
+        Provider.of<CobaAuthenticationLoginProvider>(context);
+
     var _appBar = AppBar(
-      title: Text("Authentication Login Page"),
+      title: const Text("Authentication Login Page"),
     );
     return Scaffold(
       appBar: _appBar,
@@ -38,7 +44,10 @@ class CobaAutheticationLogin extends StatelessWidget {
                       children: [
                         Text('Username'),
                         TextFormField(
-                          controller: usernameController,
+                          autocorrect: false,
+                          enableSuggestions: false,
+                          textAlign: TextAlign.center,
+                          controller: emailController,
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
                             fillColor: Colors.white,
@@ -68,6 +77,9 @@ class CobaAutheticationLogin extends StatelessWidget {
                       children: [
                         Text('Password'),
                         TextFormField(
+                          autocorrect: false,
+                          enableSuggestions: false,
+                          textAlign: TextAlign.center,
                           obscureText: true,
                           controller: passwordController,
                           cursorColor: Colors.grey,
@@ -105,8 +117,65 @@ class CobaAutheticationLogin extends StatelessWidget {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, '/cobaauthenticationhome');
+                            if (emailController.text == "" ||
+                                passwordController.text == "") {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  duration: Duration(milliseconds: 700),
+                                  backgroundColor: Colors.blue,
+                                  content: Text(
+                                    "Pastikan data tidak kosong",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
+                            } else if (!RegExp(
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                .hasMatch(emailController.text)) {
+                              //NOTE:EMAIL VALIDATION menggunakan RegExp
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  //duration: Duration(milliseconds: 700),
+                                  backgroundColor: Colors.blue,
+                                  content: Text(
+                                    "Check your email",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
+                            } else if (passwordController.text.length < 8) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  //duration: Duration(milliseconds: 700),
+                                  backgroundColor: Colors.blue,
+                                  content: Text(
+                                    "Password minimal 8 karakter",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              dataAuthentication
+                                  .signIn(
+                                      email: emailController.text,
+                                      password: passwordController.text)
+                                  .then(
+                                    (value) => Navigator.pushNamed(
+                                        context, '/cobaauthenticationhome'),
+                                  )
+                                  .catchError((onError) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    //duration: Duration(milliseconds: 700),
+                                    backgroundColor: Colors.blue,
+                                    content: Text(
+                                      "Error $onError",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                );
+                              });
+                            }
                           },
                           child: Text(
                             'Login',

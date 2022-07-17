@@ -59,6 +59,8 @@ import 'package:modern_flutter_ui/ui/splashscreen1.dart';
 //import 'package:modern_flutter_ui/widget/badge.dart';
 import 'package:provider/provider.dart';
 
+import 'Providers/cobaauthenticationloginprovider.dart';
+
 void main() {
   //NOTE: Device Orientation
   //agar device orientation bisa digunakan, harus ditambahkan widgetsFlutterBinding dulu
@@ -96,7 +98,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CobaDropdownJilanModel()),
         ChangeNotifierProvider(
             create: (context) => CobaAuthenticationProvider()),
+        ChangeNotifierProvider(
+            create: (context) => CobaAuthenticationLoginProvider()),
       ],
+      //builder: (context, child) => MaterialApp(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
 
