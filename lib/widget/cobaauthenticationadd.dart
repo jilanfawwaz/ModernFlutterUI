@@ -1,10 +1,9 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:modern_flutter_ui/Providers/cobaauthenticationloginprovider.dart';
 import 'package:modern_flutter_ui/Providers/cobaauthenticationprovider.dart';
 import 'package:provider/provider.dart';
-
-import '../Providers/cobascheckboxprovider.dart';
 
 class CobaAuthenticationAdd extends StatefulWidget {
   @override
@@ -126,6 +125,11 @@ class _CobaAuthenticationAddState extends State<CobaAuthenticationAdd> {
                             dataAuthentication
                                 .addData(
                               title: titleController.text,
+                              token:
+                                  Provider.of<CobaAuthenticationLoginProvider>(
+                                          context,
+                                          listen: false)
+                                      .token,
                             )
                                 .catchError((onError) {
                               print("error : $onError");

@@ -4,6 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class CobaAuthenticationLoginProvider with ChangeNotifier {
+  //Autehtication Token Handling, User id Handling, dll
+
+  String? _token;
+
+  String? get token {
+    return _token;
+  }
+
   Future signUp({String? email, String? password}) async {
     //link didapat dari firebase API dokumentasi
     Uri url = Uri.parse(
@@ -28,9 +36,12 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
       //   throw (hasilRespon.statusCode);
       // }
 
+      print('idToken : ${dataRespon['idToken']}');
+      print('localId : ${dataRespon['localId']}');
       if (dataRespon['error'] != null) {
         throw dataRespon['error']['message'];
       }
+      _token = dataRespon['idToken'];
       notifyListeners();
     } catch (e) {
       rethrow;
@@ -64,9 +75,13 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
       //   throw (hasilRespon.statusCode);
       // }
 
+      print('idToken : ${dataRespon['idToken']}');
+      print('localId : ${dataRespon['localId']}');
+
       if (dataRespon['error'] != null) {
         throw dataRespon['error']['message'];
       }
+      _token = dataRespon['idToken'];
     } catch (e) {
       rethrow;
     }

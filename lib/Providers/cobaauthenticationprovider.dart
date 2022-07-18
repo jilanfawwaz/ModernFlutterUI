@@ -15,10 +15,10 @@ class CobaAuthenticationProvider with ChangeNotifier {
     return _dataAuthentication;
   }
 
-  Future addData({String? title}) async {
+  Future addData({String? title, String? token}) async {
     var date = DateTime.now().toString();
     // Uri url = Uri.parse(urlMaster + '/list.json');
-    Uri url = Uri.parse('$urlMaster/list.json');
+    Uri url = Uri.parse('$urlMaster/list.json?auth=$token');
 
     try {
       var hasilRespon = await http.post(
