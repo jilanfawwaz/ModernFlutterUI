@@ -13,7 +13,7 @@ class CobaAutheticationLogin extends StatelessWidget {
     TextEditingController passwordController = TextEditingController();
 
     var dataAuthentication =
-        Provider.of<CobaAuthenticationLoginProvider>(context);
+        Provider.of<CobaAuthenticationLoginProvider>(context, listen: false);
 
     var _appBar = AppBar(
       title: const Text("Authentication Login Page"),
@@ -42,7 +42,7 @@ class CobaAutheticationLogin extends StatelessWidget {
                   SizedBox(
                     child: Column(
                       children: [
-                        Text('Username'),
+                        Text('Email'),
                         TextFormField(
                           autocorrect: false,
                           enableSuggestions: false,
@@ -159,10 +159,10 @@ class CobaAutheticationLogin extends StatelessWidget {
                                   .signIn(
                                       email: emailController.text,
                                       password: passwordController.text)
-                                  .then(
-                                    (value) => Navigator.pushNamed(
-                                        context, '/cobaauthenticationhome'),
-                                  )
+                                  // .then(
+                                  //   (value) => Navigator.pushNamed(
+                                  //       context, '/cobaauthenticationhome'),
+                                  // )
                                   .catchError((onError) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -176,6 +176,7 @@ class CobaAutheticationLogin extends StatelessWidget {
                                 );
                               });
                             }
+                            //print(dataAuthentication.isAuth);
                           },
                           child: Text(
                             'Login',

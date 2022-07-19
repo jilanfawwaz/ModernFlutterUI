@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //NOTE:MultiProvider
-    return MultiProvider(
+    /*return MultiProvider(
       //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
       providers: [
         ChangeNotifierProvider(create: (context) => AllProduct()),
@@ -177,6 +177,50 @@ class MyApp extends StatelessWidget {
           '/cobaauthenticationlogin': (context) => CobaAutheticationLogin(),
           '/cobaauthenticationhome': (context) => CobaAuthenticationHome(),
           '/cobaauthenticationsignup': (context) => CobaAutheticationSignUp(),
+        },
+      ),
+    );*/
+
+    return MultiProvider(
+      //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
+      providers: [
+        ChangeNotifierProvider(
+            create: (context) => CobaAuthenticationLoginProvider()),
+
+        //NOTE:ChangeNotifierProvider (inisialisasi provider, sekalian mengupdate nilai/method yang ada di provider tersebut berdasarkan provider yang lain)
+        //update: (context,value,previous){} (- value untuk nama dari provider yang lain, previous untuk nama provider yang digunakan)
+        ChangeNotifierProxyProvider<CobaAuthenticationLoginProvider,
+            CobaAuthenticationProvider>(
+          create: (context) => CobaAuthenticationProvider(),
+          //TIPS:make dua titik supaya bisa jalan
+          update: (context, CobaAuthLogin, CobaAuth) => CobaAuth!
+            ..updateToken(CobaAuthLogin.idToken, CobaAuthLogin.localId),
+        ),
+
+        //ChangeNotifierProvider(create: (context) => CobaAuthenticationProvider()),
+      ],
+      //builder: (context, child) => MaterialApp(
+      child: Consumer<CobaAuthenticationLoginProvider>(
+        builder: (context, dataAuthentication, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              textTheme: GoogleFonts.poppinsTextTheme(),
+              appBarTheme: AppBarTheme(
+                color: Colors.green,
+              ),
+            ),
+            routes: {
+              '/': (context) => dataAuthentication
+                      .isAuth //Tanpa navigator.push di button login juga bisa mengalihkan halaman secara otomatis
+                  ? CobaAuthenticationHome()
+                  : CobaAutheticationLogin(),
+              '/cobaauthenticationlogin': (context) => CobaAutheticationLogin(),
+              '/cobaauthenticationhome': (context) => CobaAuthenticationHome(),
+              '/cobaauthenticationsignup': (context) =>
+                  CobaAutheticationSignUp(),
+            },
+          );
         },
       ),
     );

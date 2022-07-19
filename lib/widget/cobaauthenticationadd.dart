@@ -125,11 +125,7 @@ class _CobaAuthenticationAddState extends State<CobaAuthenticationAdd> {
                             dataAuthentication
                                 .addData(
                               title: titleController.text,
-                              token:
-                                  Provider.of<CobaAuthenticationLoginProvider>(
-                                          context,
-                                          listen: false)
-                                      .token,
+                              //token:Provider.of<CobaAuthenticationLoginProvider>(context,listen: false).token,
                             )
                                 .catchError((onError) {
                               print("error : $onError");

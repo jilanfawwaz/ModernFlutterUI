@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -6,10 +7,26 @@ import 'package:http/http.dart' as http;
 class CobaAuthenticationLoginProvider with ChangeNotifier {
   //Autehtication Token Handling, User id Handling, dll
 
-  String? _token;
+  Timer? _authTimer;
 
-  String? get token {
-    return _token;
+  String? _idToken, _localId;
+  DateTime? _expireDate;
+
+  String? get localId {
+    return _localId;
+  }
+
+  bool get isAuth {
+    return idToken != null;
+  }
+
+  String? get idToken {
+    if (_idToken != null &&
+        _expireDate != null &&
+        _expireDate!.isAfter(DateTime.now())) {
+      return _idToken;
+    }
+    return null;
   }
 
   Future signUp({String? email, String? password}) async {
@@ -36,12 +53,21 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
       //   throw (hasilRespon.statusCode);
       // }
 
-      print('idToken : ${dataRespon['idToken']}');
-      print('localId : ${dataRespon['localId']}');
+      //print('idToken : ${dataRespon['idToken']}');
+      //print('localId : ${dataRespon['localId']}');
       if (dataRespon['error'] != null) {
         throw dataRespon['error']['message'];
       }
-      _token = dataRespon['idToken'];
+      _idToken = dataRespon['idToken'];
+      _expireDate = DateTime.now().add(
+        Duration(
+          seconds: int.parse(
+            dataRespon['expiresIn'],
+          ),
+        ),
+      );
+      _autoLogout();
+
       notifyListeners();
     } catch (e) {
       rethrow;
@@ -75,13 +101,30 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
       //   throw (hasilRespon.statusCode);
       // }
 
-      print('idToken : ${dataRespon['idToken']}');
-      print('localId : ${dataRespon['localId']}');
+      //print('idToken : ${dataRespon['idToken']}');
+      // print('localId : ${dataRespon['localId']}');
 
+      _idToken = dataRespon['idToken'];
+      _localId = dataRespon['localId'];
+      _expireDate = DateTime.now().add(
+        Duration(
+          seconds: int.parse(
+            dataRespon['expiresIn'],
+          ),
+        ),
+      );
+
+      _autoLogout();
+
+      print('expiresIn : ${dataRespon['expiresIn']}');
+      print('_expireDate : $_expireDate');
+      print(
+          'expiresDate.difference DateTime.now() : ${_expireDate?.difference(DateTime.now()).inSeconds}');
       if (dataRespon['error'] != null) {
         throw dataRespon['error']['message'];
       }
-      _token = dataRespon['idToken'];
+
+      notifyListeners();
     } catch (e) {
       rethrow;
     }
@@ -89,5 +132,31 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
     notifyListeners();
 
     //print(hasilRespon.statusCode);
+  }
+
+  logOut() {
+    _idToken = null;
+    _localId = null;
+    _expireDate = null;
+    if (_authTimer != null) {
+      _authTimer?.cancel();
+      _authTimer = null;
+    }
+    notifyListeners();
+  }
+
+  _autoLogout() {
+    if (_authTimer != null) {
+      _authTimer?.cancel();
+      _authTimer = null;
+    }
+
+    //NOTES:DateTime difference
+    //bisa juga expireTime diinisialisasi langsung menggunaka expiresIn dari API
+    final expireTime = _expireDate?.difference(DateTime.now()).inSeconds;
+
+    //NOTES:Timer
+    // _authTimer = Timer(duration, callback)
+    _authTimer = Timer(Duration(seconds: expireTime!), logOut);
   }
 }
