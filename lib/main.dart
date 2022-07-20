@@ -46,6 +46,7 @@ import 'package:modern_flutter_ui/ui/getstartedyoga.dart';
 import 'package:modern_flutter_ui/ui/halamanutama1.dart';
 import 'package:modern_flutter_ui/ui/httphomeprovider.dart';
 import 'package:modern_flutter_ui/ui/httphomestateful.dart';
+import 'package:modern_flutter_ui/ui/kost1splash.dart';
 import 'package:modern_flutter_ui/ui/pricingpurple.dart';
 import 'package:modern_flutter_ui/ui/cobamap.dart';
 import 'package:modern_flutter_ui/ui/pricingwhite.dart';
@@ -85,7 +86,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //NOTE:MultiProvider
-    /*return MultiProvider(
+    return MultiProvider(
       //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
       providers: [
         ChangeNotifierProvider(create: (context) => AllProduct()),
@@ -136,7 +137,7 @@ class MyApp extends StatelessWidget {
         //home: CobaAuthenticationHome(),
 
         routes: {
-          '/': (context) => CobaAutheticationLogin(),
+          '/': (context) => KostSplash(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -179,9 +180,10 @@ class MyApp extends StatelessWidget {
           '/cobaauthenticationsignup': (context) => CobaAutheticationSignUp(),
         },
       ),
-    );*/
+    );
 
-    return MultiProvider(
+    //ini adalah return main.dart untuk file cobaAuthentikasi
+    /*return MultiProvider(
       //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
       providers: [
         ChangeNotifierProvider(
@@ -223,6 +225,6 @@ class MyApp extends StatelessWidget {
           );
         },
       ),
-    );
+    );*/
   }
 }
