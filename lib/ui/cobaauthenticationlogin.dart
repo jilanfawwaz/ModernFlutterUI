@@ -4,13 +4,24 @@ import 'package:provider/provider.dart';
 
 import '../Providers/cobaauthenticationloginprovider.dart';
 
-class CobaAutheticationLogin extends StatelessWidget {
+class CobaAutheticationLogin extends StatefulWidget {
   const CobaAutheticationLogin({Key? key}) : super(key: key);
 
   @override
+  State<CobaAutheticationLogin> createState() => _CobaAutheticationLoginState();
+}
+
+class _CobaAutheticationLoginState extends State<CobaAutheticationLogin> {
+  bool isPasswordShown = false;
+  String emailField = "";
+  String passwordField = "";
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
+    TextEditingController emailController =
+        TextEditingController(text: emailField);
+    TextEditingController passwordController =
+        TextEditingController(text: passwordField);
 
     var dataAuthentication =
         Provider.of<CobaAuthenticationLoginProvider>(context, listen: false);
@@ -50,6 +61,18 @@ class CobaAutheticationLogin extends StatelessWidget {
                           controller: emailController,
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
+                            // hintText: 'Masukkan Email',
+                            // hintStyle: TextStyle(color: Colors.grey),
+                            label: const Center(
+                              child: Text(
+                                "Masukkan Email",
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ),
+                            //labelText: 'Masukkan Email',
+                            //labelStyle: TextStyle(color: Colors.grey),
+
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
                             fillColor: Colors.white,
                             filled: true,
 
@@ -80,12 +103,42 @@ class CobaAutheticationLogin extends StatelessWidget {
                           autocorrect: false,
                           enableSuggestions: false,
                           textAlign: TextAlign.center,
-                          obscureText: true,
                           controller: passwordController,
                           cursorColor: Colors.grey,
                           decoration: InputDecoration(
+                            // hintText: 'Masukkan Password',
+                            // hintStyle: TextStyle(color: Colors.grey),
+                            // labelText: 'Masukkan Password',
+                            // labelStyle: TextStyle(color: Colors.grey),
+                            label: const Center(
+                              child: Text(
+                                "Masukkan Password",
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
                             fillColor: Colors.white,
                             filled: true,
+                            //isCollapsed: true,
+                            contentPadding:
+                                EdgeInsets.only(left: 50, top: 20, bottom: 20),
+
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isPasswordShown = !isPasswordShown;
+                                    emailField = emailController.text;
+                                    passwordField = passwordController.text;
+                                  });
+                                },
+                                icon: Icon(
+                                  isPasswordShown
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: isPasswordShown
+                                      ? Colors.blue
+                                      : Colors.grey,
+                                )),
 
                             //TIPS:menghilangkan underline pada textformfield
                             //border: InputBorder.none,
@@ -102,6 +155,7 @@ class CobaAutheticationLogin extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
+                          obscureText: !isPasswordShown,
                         ),
                       ],
                     ),

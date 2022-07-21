@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CobaAuthenticationLoginProvider with ChangeNotifier {
   //Autehtication Token Handling, User id Handling, dll
@@ -59,6 +60,7 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
         throw dataRespon['error']['message'];
       }
       _idToken = dataRespon['idToken'];
+      _localId = dataRespon['localId'];
       _expireDate = DateTime.now().add(
         Duration(
           seconds: int.parse(
@@ -66,6 +68,16 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
           ),
         ),
       );
+
+      var shared = await SharedPreferences.getInstance();
+
+      var sharedValue = json.encode({
+        'idToken': _idToken.toString(),
+        'localId': _localId.toString(),
+        'expireDate': _expireDate?.toIso8601String(),
+      });
+
+      shared.setString('auth', sharedValue);
       _autoLogout();
 
       notifyListeners();
@@ -114,6 +126,16 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
         ),
       );
 
+      var shared = await SharedPreferences.getInstance();
+
+      var sharedValue = json.encode({
+        'idToken': _idToken.toString(),
+        'localId': _localId.toString(),
+        'expireDate': _expireDate?.toIso8601String(),
+      });
+
+      shared.setString('auth', sharedValue);
+
       _autoLogout();
 
       print('expiresIn : ${dataRespon['expiresIn']}');
@@ -134,7 +156,7 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
     //print(hasilRespon.statusCode);
   }
 
-  logOut() {
+  logOut() async {
     _idToken = null;
     _localId = null;
     _expireDate = null;
@@ -142,6 +164,11 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
       _authTimer?.cancel();
       _authTimer = null;
     }
+
+    var shared = await SharedPreferences.getInstance();
+
+    shared.clear();
+
     notifyListeners();
   }
 
@@ -158,5 +185,40 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
     //NOTES:Timer
     // _authTimer = Timer(duration, callback)
     _authTimer = Timer(Duration(seconds: expireTime!), logOut);
+  }
+
+  Future<bool> autoLogin() async {
+    var shared = await SharedPreferences.getInstance();
+
+    if (!shared.containsKey('auth')) {
+      return false;
+    }
+
+    var sharedValue =
+        json.decode(shared.getString('auth')!) as Map<String, dynamic>;
+
+    if (DateTime.parse(sharedValue['expireDate']).isBefore(DateTime.now())) {
+      return false;
+    }
+
+    _idToken = sharedValue['idToken'];
+    _localId = sharedValue['localId'];
+    _expireDate = DateTime.parse(sharedValue['expireDate']);
+    notifyListeners();
+    return true;
+
+    //var shared = await SharedPreferences.getInstance();
+
+    /*shared.setString('idToken', _idToken!);
+    shared.setString('localId', _localId!);
+    shared.setString('expireDate', _expireDate!.toIso8601String());*/
+
+    /*Map<String, dynamic> sharedValue = {
+      'idToken': _idToken.toString(),
+      'localId': _localId.toString(),
+      'expireDate': _expireDate?.toIso8601String(),
+    };
+
+    shared.setString('auth',json.encode(sharedValue));*/
   }
 }

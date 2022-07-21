@@ -86,7 +86,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //NOTE:MultiProvider
-    return MultiProvider(
+    /*return MultiProvider(
       //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
       providers: [
         ChangeNotifierProvider(create: (context) => AllProduct()),
@@ -180,10 +180,10 @@ class MyApp extends StatelessWidget {
           '/cobaauthenticationsignup': (context) => CobaAutheticationSignUp(),
         },
       ),
-    );
+    ); */
 
     //ini adalah return main.dart untuk file cobaAuthentikasi
-    /*return MultiProvider(
+    return MultiProvider(
       //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
       providers: [
         ChangeNotifierProvider(
@@ -216,15 +216,28 @@ class MyApp extends StatelessWidget {
               '/': (context) => dataAuthentication
                       .isAuth //Tanpa navigator.push di button login juga bisa mengalihkan halaman secara otomatis
                   ? CobaAuthenticationHome()
-                  : CobaAutheticationLogin(),
+                  : FutureBuilder(
+                      future: dataAuthentication.autoLogin(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Scaffold(
+                            body: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
+                        return CobaAutheticationLogin();
+                      },
+                    ),
               '/cobaauthenticationlogin': (context) => CobaAutheticationLogin(),
               '/cobaauthenticationhome': (context) => CobaAuthenticationHome(),
-              '/cobaauthenticationsignup': (context) =>
+              '/cobaauthenticationsignup': (context) => 
                   CobaAutheticationSignUp(),
             },
           );
         },
       ),
-    );*/
+    );
   }
 }
