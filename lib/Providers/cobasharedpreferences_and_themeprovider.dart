@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CobaSharedAndThemeProvider with ChangeNotifier {
   int _number = 0;
 
   int get number => _number;
 
-  addNumber() {
+  addNumber() async {
+    var shared = await SharedPreferences.getInstance();
+
     _number++;
+    print('hei $_number');
+    //shared.clear();
+    shared.setInt('number', _number);
     notifyListeners();
   }
 
-  decreaseNumber() {
+  decreaseNumber() async {
+    var shared = await SharedPreferences.getInstance();
+
     _number--;
+    //print('hei $_number');
+    //shared.clear();
+    shared.setInt('number', _number);
+
     notifyListeners();
+  }
+
+  Future<bool> getNumberSaved() async {
+    var shared = await SharedPreferences.getInstance();
+
+    // if (!shared.containsKey('number')) {
+    //   return false;
+    // }
+
+    //print(shared.getInt('number').toString());
+    _number = shared.getInt('number')!;
+    //notifyListeners();
+    return true;
   }
 }

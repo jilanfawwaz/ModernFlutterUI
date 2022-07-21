@@ -147,7 +147,18 @@ class MyApp extends StatelessWidget {
         //home: CobaAuthenticationHome(),
 
         routes: {
-          '/': (context) => CobaSharedAndTheme(),
+          //'/': (context) => CobaSharedAndTheme(),
+
+          '/': (context) => FutureBuilder(
+                future: Provider.of<CobaSharedAndThemeProvider>(context)
+                    .getNumberSaved(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  print(
+                      'Future builder : ${Provider.of<CobaSharedAndThemeProvider>(context).number}');
+                  return CobaSharedAndTheme();
+                },
+              ),
+
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),

@@ -25,6 +25,7 @@ class _CobaSharedAndThemeState extends State<CobaSharedAndTheme> {
   @override
   void dispose() {
     // TODO: implement dispose
+
     dataNumber.removeListener(dataNumberListener);
     super.dispose();
   }
@@ -44,7 +45,9 @@ class _CobaSharedAndThemeState extends State<CobaSharedAndTheme> {
 
   @override
   Widget build(BuildContext context) {
+    dataNumber.getNumberSaved();
     //var dataNumber = Provider.of<CobaSharedAndThemeProvider>(context);
+    //print('listener ${dataNumber.number}');
     return Scaffold(
       appBar: AppBar(
         title: Text('Coba Shared'),
