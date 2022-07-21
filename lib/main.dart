@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modern_flutter_ui/Providers/cobaauthenticationprovider.dart';
 import 'package:modern_flutter_ui/Providers/cobakeykuldiprovider.dart';
 import 'package:modern_flutter_ui/Providers/cobascheckboxprovider.dart';
+import 'package:modern_flutter_ui/Providers/cobasharedpreferences_and_themeprovider.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/Providers/providercart.dart';
 import 'package:modern_flutter_ui/Providers/providermodelfirebase.dart';
@@ -30,6 +31,7 @@ import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderfavorite.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderhome.dart';
 import 'package:modern_flutter_ui/ui/cobacheckbox.dart';
+import 'package:modern_flutter_ui/ui/cobasharedpreferences_and_theme.dart';
 import 'package:modern_flutter_ui/ui/cobashayna.dart';
 import 'package:modern_flutter_ui/ui/cobamediaquery.dart';
 import 'package:modern_flutter_ui/ui/cobadateappbar.dart';
@@ -86,7 +88,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //NOTE:MultiProvider
-    /*return MultiProvider(
+    return MultiProvider(
       //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
       providers: [
         ChangeNotifierProvider(create: (context) => AllProduct()),
@@ -101,6 +103,8 @@ class MyApp extends StatelessWidget {
             create: (context) => CobaAuthenticationProvider()),
         ChangeNotifierProvider(
             create: (context) => CobaAuthenticationLoginProvider()),
+        ChangeNotifierProvider(
+            create: (context) => CobaSharedAndThemeProvider()),
       ],
       //builder: (context, child) => MaterialApp(
       child: MaterialApp(
@@ -128,6 +132,12 @@ class MyApp extends StatelessWidget {
         ),*/
 
         theme: ThemeData(
+          /* brightness: Brightness.dark,
+          primaryColorDark: Colors.amber,
+          primaryColor: Colors.cyan,
+          primarySwatch: Colors.green,*/
+
+          //colorScheme: ColorScheme.dark(primary: Colors.cyan),
           textTheme: GoogleFonts.poppinsTextTheme(),
           appBarTheme: AppBarTheme(
             color: Colors.green,
@@ -137,7 +147,7 @@ class MyApp extends StatelessWidget {
         //home: CobaAuthenticationHome(),
 
         routes: {
-          '/': (context) => KostSplash(),
+          '/': (context) => CobaSharedAndTheme(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -178,12 +188,13 @@ class MyApp extends StatelessWidget {
           '/cobaauthenticationlogin': (context) => CobaAutheticationLogin(),
           '/cobaauthenticationhome': (context) => CobaAuthenticationHome(),
           '/cobaauthenticationsignup': (context) => CobaAutheticationSignUp(),
+          '/cobasharedpreferencesandtheme': (context) => CobaSharedAndTheme(),
         },
       ),
-    ); */
+    );
 
     //ini adalah return main.dart untuk file cobaAuthentikasi
-    return MultiProvider(
+    /*return MultiProvider(
       //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
       providers: [
         ChangeNotifierProvider(
@@ -238,6 +249,6 @@ class MyApp extends StatelessWidget {
           );
         },
       ),
-    );
+    );*/
   }
 }
