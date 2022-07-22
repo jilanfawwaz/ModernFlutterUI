@@ -40,7 +40,7 @@ class _HttpStatefulState extends State<HttpStateful> {
           FocusScope.of(context).unfocus();
         },
         child: Container(
-          //supaya colum tetap ditengah layar walaupun di dalam listview atau singlechildscrollview
+          //supaya column tetap di tengah layar walaupun di dalam listview atau singlechildscrollview
           alignment: Alignment.center,
           child: ListView(
             //kalau layar didrag, keyboard akan hilang dan form akan unfocus

@@ -14,6 +14,7 @@ import 'package:modern_flutter_ui/models/httpgetmodelprovider.dart';
 import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
+import 'package:modern_flutter_ui/ui/cobaanimation.dart';
 import 'package:modern_flutter_ui/ui/cobaauthenticationhome.dart';
 import 'package:modern_flutter_ui/ui/cobaauthenticationlogin.dart';
 import 'package:modern_flutter_ui/ui/cobaauthenticationsignup.dart';
@@ -147,9 +148,9 @@ class MyApp extends StatelessWidget {
         //home: CobaAuthenticationHome(),
 
         routes: {
-          //'/': (context) => CobaSharedAndTheme(),
+          '/': (context) => CobaAnimation(),
 
-          '/': (context) => FutureBuilder(
+          /*'/': (context) => FutureBuilder(
                 future: Provider.of<CobaSharedAndThemeProvider>(context)
                     .getNumberSaved(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -157,7 +158,7 @@ class MyApp extends StatelessWidget {
                       'Future builder : ${Provider.of<CobaSharedAndThemeProvider>(context).number}');
                   return CobaSharedAndTheme();
                 },
-              ),
+              ),*/
 
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
@@ -200,6 +201,7 @@ class MyApp extends StatelessWidget {
           '/cobaauthenticationhome': (context) => CobaAuthenticationHome(),
           '/cobaauthenticationsignup': (context) => CobaAutheticationSignUp(),
           '/cobasharedpreferencesandtheme': (context) => CobaSharedAndTheme(),
+          '/cobaanimation': (context) => CobaAnimation(),
         },
       ),
     );

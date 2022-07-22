@@ -30,13 +30,20 @@ class CobaSharedAndThemeProvider with ChangeNotifier {
   Future<bool> getNumberSaved() async {
     var shared = await SharedPreferences.getInstance();
 
-    // if (!shared.containsKey('number')) {
-    //   return false;
-    // }
+    if (!shared.containsKey('number')) {
+      return false;
+    }
 
     //print(shared.getInt('number').toString());
     _number = shared.getInt('number')!;
     //notifyListeners();
     return true;
+  }
+
+  resetNumberSaved() async {
+    var shared = await SharedPreferences.getInstance();
+    shared.clear();
+    _number = 0;
+    notifyListeners();
   }
 }

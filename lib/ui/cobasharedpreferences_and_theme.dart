@@ -51,6 +51,13 @@ class _CobaSharedAndThemeState extends State<CobaSharedAndTheme> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Coba Shared'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                dataNumber.resetNumberSaved();
+              },
+              icon: Icon(Icons.replay))
+        ],
       ),
       body: Center(
         child: Column(
