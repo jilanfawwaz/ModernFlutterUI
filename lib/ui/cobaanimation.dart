@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:modern_flutter_ui/ui/cobastateswitch.dart';
 
 class CobaAnimation extends StatefulWidget {
   const CobaAnimation({Key? key}) : super(key: key);
@@ -30,6 +33,12 @@ class _CobaAnimationState extends State<CobaAnimation> {
                   onTap: () {
                     setState(() {
                       animation1 = !animation1;
+                      Timer(
+                        Duration(milliseconds: 900),
+                        () {
+                          Navigator.pushNamed(context, CobaState.nameRoute);
+                        },
+                      );
                     });
                   },
                   child: AnimatedContainer(
@@ -120,7 +129,10 @@ class _CobaAnimationState extends State<CobaAnimation> {
                       color: Colors.amber,
                     ),
                     //secondChild: Center(child: Icon(Icons.replay)),
-                    secondChild: Text('Halo'),
+                    secondChild: SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Center(child: Text('Halo'))),
                     firstCurve: Curves.easeInOutBack,
                     secondCurve: Curves.easeInOutBack,
                     crossFadeState: animation4
@@ -128,6 +140,39 @@ class _CobaAnimationState extends State<CobaAnimation> {
                         : CrossFadeState.showSecond,
                     duration: Duration(milliseconds: 1200),
                   ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                  ),
+                  padding: EdgeInsets.all(20),
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/cobaanimationnavigator',
+                            arguments: '${index + 20}');
+                      },
+                      child: Hero(
+                        tag: '${index + 20}',
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                  "https://picsum.photos/id/${index + 20}/200/300"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

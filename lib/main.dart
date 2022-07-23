@@ -15,6 +15,7 @@ import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobaanimation.dart';
+import 'package:modern_flutter_ui/ui/cobaanimation2.dart';
 import 'package:modern_flutter_ui/ui/cobaauthenticationhome.dart';
 import 'package:modern_flutter_ui/ui/cobaauthenticationlogin.dart';
 import 'package:modern_flutter_ui/ui/cobaauthenticationsignup.dart';
@@ -202,6 +203,7 @@ class MyApp extends StatelessWidget {
           '/cobaauthenticationsignup': (context) => CobaAutheticationSignUp(),
           '/cobasharedpreferencesandtheme': (context) => CobaSharedAndTheme(),
           '/cobaanimation': (context) => CobaAnimation(),
+          '/cobaanimationnavigator': (context) => CobaAnimationNavigator(),
         },
       ),
     );
