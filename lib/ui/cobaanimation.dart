@@ -15,6 +15,7 @@ class _CobaAnimationState extends State<CobaAnimation> {
   bool animation2 = false;
   bool animation3 = false;
   bool animation4 = false;
+  bool animation5 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +30,37 @@ class _CobaAnimationState extends State<CobaAnimation> {
           children: [
             Column(
               children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      animation5 = !animation5;
+                    });
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 150,
+                        color: Colors.green,
+                        child: Center(child: Text('Hello')),
+                      ),
+                      AnimatedPositioned(
+                        duration: Duration(milliseconds: 800),
+                        top: animation5 ? 100 : 60,
+                        curve: Curves.easeInOutBack,
+                        left: 40,
+                        child: Container(
+                          width: 70,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(70),
+                              color: Colors.amber),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
                 GestureDetector(
                   onTap: () {
                     setState(() {

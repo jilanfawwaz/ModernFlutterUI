@@ -13,18 +13,17 @@ class CobaAnimationNavigator extends StatelessWidget {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox.expand(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      "https://picsum.photos/id/${argument}/200/300"),
-                ),
-              ),
+          Hero(
+            tag: argument,
+            child: Image.network(
+              "https://picsum.photos/id/${argument}/200/300",
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: 300,
             ),
           ),
-          Hero(
+
+          /*Hero(
             tag: argument,
             child: Container(
               decoration: BoxDecoration(
@@ -35,7 +34,7 @@ class CobaAnimationNavigator extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );
