@@ -21,11 +21,11 @@ class CobaAnimatedBuilder extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            CobaAnimatedBuilderScale(),
+            //CobaAnimatedBuilderScale(),
             const SizedBox(
               height: 50,
             ),
-            CobaAnimatedBuilderTranslate()
+            //CobaAnimatedBuilderTranslate()
           ],
         ),
       ),

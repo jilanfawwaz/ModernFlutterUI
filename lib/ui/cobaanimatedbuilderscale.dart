@@ -13,7 +13,14 @@ class _CobaAnimatedBuilderScaleState extends State<CobaAnimatedBuilderScale>
   late final AnimationController _controller = AnimationController(
     duration: Duration(milliseconds: 3000),
     vsync: this,
-  )..repeat();
+  )..repeat(reverse: true);
+  //NOTE:Titik Dua (..) ini fungsinya supaya tidak harus menuliskan program dua kali (_controller.repeat()), jadi bisa disingkat dalam satu baris
+  // dan karena variabel diatas adalah variabel late, jadi titik dua juga berfungsi supaya fungsi dipanggil setelah inisialisasi, mirip2 .then lah pokonya
+
+  
+
+  
+
 
   @override
   void dispose() {
@@ -23,6 +30,7 @@ class _CobaAnimatedBuilderScaleState extends State<CobaAnimatedBuilderScale>
 
   @override
   Widget build(BuildContext context) {
+    
     return AnimatedBuilder(
       animation: _controller,
       child: Container(

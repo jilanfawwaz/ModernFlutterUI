@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:modern_flutter_ui/ui/cobaanimatedwidget.dart';
+
 class CobaAnimatedBuilderController extends StatefulWidget {
   @override
   State<CobaAnimatedBuilderController> createState() =>
@@ -25,7 +27,7 @@ class _CobaAnimatedBuilderControllerState
   Widget build(BuildContext context) {
     final _animation =
         Tween(begin: 90 / 180 * math.pi, end: 2 * math.pi).animate(_controller);
-    print(_controller.value);
+    //print(_controller.value);
     return Column(
       children: [
         AnimatedBuilder(
@@ -53,6 +55,10 @@ class _CobaAnimatedBuilderControllerState
             );
           },
         ),
+        SizedBox(height: 20,),
+        CobaAnimatedWidget(animation: _controller,),
+        
+
       ],
     );
   }
