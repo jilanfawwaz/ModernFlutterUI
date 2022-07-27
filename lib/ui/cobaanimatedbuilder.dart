@@ -17,7 +17,7 @@ class CobaAnimatedBuilder extends StatelessWidget {
         //child: CobaAnimatedBuilderController(),
         child: Column(
           children: [
-            CobaAnimatedBuilderController(),
+            //CobaAnimatedBuilderController(),
             const SizedBox(
               height: 50,
             ),

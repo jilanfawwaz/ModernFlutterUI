@@ -32,18 +32,35 @@ class _CobaAnimatedBuilderControllerState
       children: [
         AnimatedBuilder(
           animation: _animation,
-          child: Container(
-            width: 200.0,
-            height: 200.0,
-            decoration: BoxDecoration(
-              color: Colors.green,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50),
+          child: Column(
+            children: [
+              Container(
+                width: 200.0,
+                height: 200.0,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50),
+                  ),
+                ),
+                child: const Center(
+                  child: Text('Whee!'),
+                ),
               ),
-            ),
-            child: const Center(
-              child: Text('Whee!'),
-            ),
+              Container(
+                width: 200.0,
+                height: 200.0,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50),
+                  ),
+                ),
+                child: const Center(
+                  child: Text('Whee 2!'),
+                ),
+              ),
+            ],
           ),
           builder: (BuildContext context, Widget? child) {
             return Transform.rotate(
@@ -55,10 +72,12 @@ class _CobaAnimatedBuilderControllerState
             );
           },
         ),
-        SizedBox(height: 20,),
-        CobaAnimatedWidget(animation: _controller,),
-        
-
+        SizedBox(
+          height: 20,
+        ),
+        CobaAnimatedWidget(
+          animation: _controller,
+        ),
       ],
     );
   }
