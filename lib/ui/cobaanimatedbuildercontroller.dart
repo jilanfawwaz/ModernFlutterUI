@@ -25,7 +25,8 @@ class _CobaAnimatedBuilderControllerState
 
   @override
   Widget build(BuildContext context) {
-    final _animation =
+    //NOTE:Tween() untuk memberi patokan mulai dan selesai pada animasi
+    final  _animation =
         Tween(begin: 90 / 180 * math.pi, end: 2 * math.pi).animate(_controller);
     //print(_controller.value);
     return Column(
