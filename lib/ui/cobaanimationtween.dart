@@ -27,8 +27,15 @@ class _CobaAnimationTweenState extends State<CobaAnimationTween>
         ],
       ));
 
+  late final Animation<double> _fadeAnimation =
+      CurvedAnimation(parent: _controller2, curve: Curves.easeInOutBack);
+
   late final AnimationController _controller =
       AnimationController(duration: Duration(milliseconds: 3000), vsync: this)
+        ..repeat(reverse: true);
+
+  late final AnimationController _controller2 =
+      AnimationController(duration: Duration(milliseconds: 500), vsync: this)
         ..repeat(reverse: true);
 
   @override
@@ -45,13 +52,29 @@ class _CobaAnimationTweenState extends State<CobaAnimationTween>
         title: Text('Coba Animation Tween'),
       ),
       body: Center(
-        child: DecoratedBoxTransition(
-          decoration: _decorationTween.animate(_controller),
-          child: Container(
-            width: 200,
-            height: 200,
-            child: Center(child: Text('Decoration Box Animation')),
-          ),
+        //NOTE:DecoratedBoxTransition untuk membuat animasi buat boxdecoration
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            
+            DecoratedBoxTransition(
+              decoration: _decorationTween.animate(_controller),
+              child: Container(
+                width: 200,
+                height: 200,
+                child: Center(child: Text('Decoration Box Animation')),
+              ),
+            ),
+            FadeTransition(
+              //opacity: (_controller.value as Animation<double>),
+              opacity: _fadeAnimation,
+              child: Container(
+                width: 100,
+                height: 100,
+                color: Colors.amber,
+              ),
+            ),
+          ],
         ),
       ),
     );

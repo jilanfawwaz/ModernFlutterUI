@@ -21,6 +21,7 @@ import 'package:modern_flutter_ui/ui/cobaanimationtween.dart';
 import 'package:modern_flutter_ui/ui/cobaauthenticationhome.dart';
 import 'package:modern_flutter_ui/ui/cobaauthenticationlogin.dart';
 import 'package:modern_flutter_ui/ui/cobaauthenticationsignup.dart';
+import 'package:modern_flutter_ui/ui/cobaclip.dart';
 import 'package:modern_flutter_ui/ui/cobadatepickercupertino.dart';
 import 'package:modern_flutter_ui/ui/cobadropdownJilan.dart';
 import 'package:modern_flutter_ui/ui/cobagridview.dart';
@@ -160,7 +161,7 @@ class MyApp extends StatelessWidget {
                   return CobaSharedAndTheme();
                 },
               ),*/
-          '/': (context) => CobaAnimationTween(),
+          '/': (context) => CobaClip(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -206,6 +207,7 @@ class MyApp extends StatelessWidget {
           '/cobaanimationnavigator': (context) => CobaAnimationNavigator(),
           '/cobaanimatedbuilder': (context) => CobaAnimatedBuilder(),
           '/cobaanimationtween': (context) => CobaAnimationTween(),
+          '/cobaclip': (context) => CobaClip(),
         },
       ),
     );
