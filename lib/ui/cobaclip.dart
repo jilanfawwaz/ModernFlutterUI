@@ -158,6 +158,7 @@ class ClipperPath extends CustomClipper<Path> {
     //potong melengkung
     //quadraticBezierTo(titikLengkungX,titikLengkungY,titikLineToX, titikLineToY)
 
+    //offset adalah titik koordinat x y
     var controlPoint = Offset(50, 150);
     var endPoint = Offset(size.width, size.height);
 

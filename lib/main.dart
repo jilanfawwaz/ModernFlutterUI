@@ -5,6 +5,7 @@ import 'package:modern_flutter_ui/Providers/cobaauthenticationprovider.dart';
 import 'package:modern_flutter_ui/Providers/cobakeykuldiprovider.dart';
 import 'package:modern_flutter_ui/Providers/cobascheckboxprovider.dart';
 import 'package:modern_flutter_ui/Providers/cobasharedpreferences_and_themeprovider.dart';
+import 'package:modern_flutter_ui/Providers/kost2provider.dart';
 import 'package:modern_flutter_ui/Providers/providerallproduct.dart';
 import 'package:modern_flutter_ui/Providers/providercart.dart';
 import 'package:modern_flutter_ui/Providers/providermodelfirebase.dart';
@@ -54,6 +55,7 @@ import 'package:modern_flutter_ui/ui/halamanutama1.dart';
 import 'package:modern_flutter_ui/ui/httphomeprovider.dart';
 import 'package:modern_flutter_ui/ui/httphomestateful.dart';
 import 'package:modern_flutter_ui/ui/kost1splash.dart';
+import 'package:modern_flutter_ui/ui/kost2home.dart';
 import 'package:modern_flutter_ui/ui/pricingpurple.dart';
 import 'package:modern_flutter_ui/ui/cobamap.dart';
 import 'package:modern_flutter_ui/ui/pricingwhite.dart';
@@ -110,6 +112,7 @@ class MyApp extends StatelessWidget {
             create: (context) => CobaAuthenticationLoginProvider()),
         ChangeNotifierProvider(
             create: (context) => CobaSharedAndThemeProvider()),
+        ChangeNotifierProvider(create: (context) => KostProvider()),
       ],
       //builder: (context, child) => MaterialApp(
       child: MaterialApp(
@@ -161,7 +164,7 @@ class MyApp extends StatelessWidget {
                   return CobaSharedAndTheme();
                 },
               ),*/
-          '/': (context) => CobaClip(),
+          '/': (context) => KostHome(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -208,6 +211,7 @@ class MyApp extends StatelessWidget {
           '/cobaanimatedbuilder': (context) => CobaAnimatedBuilder(),
           '/cobaanimationtween': (context) => CobaAnimationTween(),
           '/cobaclip': (context) => CobaClip(),
+          'kost2home': (context) => KostHome(),
         },
       ),
     );
