@@ -32,6 +32,7 @@ import 'package:modern_flutter_ui/ui/cobakeykuldiiadddata.dart';
 import 'package:modern_flutter_ui/ui/cobakeykuldiihome.dart';
 import 'package:modern_flutter_ui/ui/cobakeyyoutube.dart';
 import 'package:modern_flutter_ui/ui/cobakeyyoutube2.dart';
+import 'package:modern_flutter_ui/ui/cobalottie.dart';
 import 'package:modern_flutter_ui/ui/cobaprovidercart.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderdetail.dart';
 import 'package:modern_flutter_ui/ui/cobaproviderfavorite.dart';
@@ -164,7 +165,7 @@ class MyApp extends StatelessWidget {
                   return CobaSharedAndTheme();
                 },
               ),*/
-          '/': (context) => KostHome(),
+          '/': (context) => CobaLottie(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -212,6 +213,7 @@ class MyApp extends StatelessWidget {
           '/cobaanimationtween': (context) => CobaAnimationTween(),
           '/cobaclip': (context) => CobaClip(),
           'kost2home': (context) => KostHome(),
+          'cobalottie': (context) => CobaLottie(),
         },
       ),
     );
