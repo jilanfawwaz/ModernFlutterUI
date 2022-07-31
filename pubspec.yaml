@@ -47,6 +47,7 @@ dependencies:
   dropdown_search: ^3.0.1
   shared_preferences: ^2.0.15
   lottie: ^1.4.0
+  carousel_slider: ^4.1.1
 
 
 dev_dependencies:

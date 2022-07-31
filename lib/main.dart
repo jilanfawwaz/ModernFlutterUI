@@ -14,6 +14,7 @@ import 'package:modern_flutter_ui/models/httpgetmodelprovider.dart';
 //import 'package:modern_flutter_ui/Providers/providermodel.dart';
 import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 import 'package:modern_flutter_ui/ui/backdropfilter.dart';
+import 'package:modern_flutter_ui/ui/carouselslider.dart';
 
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobaanimatedbuilder.dart';
@@ -167,7 +168,7 @@ class MyApp extends StatelessWidget {
                   return CobaSharedAndTheme();
                 },
               ),*/
-          '/': (context) => CobaCustomPaint(),
+          '/': (context) => CobaCarouselSlide(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -218,6 +219,7 @@ class MyApp extends StatelessWidget {
           'cobalottie': (context) => CobaLottie(),
           'cobabackdropfilter': (context) => CobaBackdropFilter(),
           'cobacustompain': (context) => CobaCustomPaint(),
+          'cobacarouselslide': (context) => CobaCarouselSlide(),
         },
       ),
     );

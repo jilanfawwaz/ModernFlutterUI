@@ -187,7 +187,11 @@ class _CobaStateState extends State<CobaState> with WidgetsBindingObserver {
                 //NOTE:Transform.scale untuk memperbesar sebuah widget
                 Align(
                   //NOTE:Alignment(x,y), skala X dan Y adalah dari -1 sampai 1.
+                  //x ke kiri kanan, ya ke atas bawah
+                  //(0,0) ada ditengah/center
+                  //negatif ke kiri, positif ke kanan
                   alignment: Alignment(-0.7, 0),
+                  //alignment: Alignment.topLeft,
                   child: Transform.scale(
                     scale: 1.5,
 
