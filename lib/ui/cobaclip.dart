@@ -124,6 +124,8 @@ class CobaClip extends StatelessWidget {
   }
 }
 
+
+//NOTE:Custom Clip, untuk membuat frame masking dengan path custom
 class ClipperPath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -174,6 +176,10 @@ class ClipperPath extends CustomClipper<Path> {
     return path;
   }
 
+
+  //shouldreclip ini katanya fungsinya, kalau canvas container ukurannya berubah, apakah clip mau digambar ulang atau ngga, kalau mau return true, ngga return false
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
+
+

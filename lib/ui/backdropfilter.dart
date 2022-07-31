@@ -29,11 +29,13 @@ class CobaBackdropFilter extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(
-                            right: 17,
+                          margin: EdgeInsets.all(
+                            17,
                           ),
                           child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
                             //NOTE:BakcdroopFilter untuk membuat efek blur
+
                             child: BackdropFilter(
                               filter: ImageFilter.blur(
                                 sigmaX: 5,
@@ -124,6 +126,7 @@ class CobaBackdropFilter extends StatelessWidget {
                             right: 17,
                           ),
                           child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
                             child: BackdropFilter(
                               filter: ImageFilter.blur(
                                 sigmaX: 5,
@@ -214,6 +217,7 @@ class CobaBackdropFilter extends StatelessWidget {
                             right: 17,
                           ),
                           child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
                             child: BackdropFilter(
                               filter: ImageFilter.blur(
                                 sigmaX: 5,
@@ -304,6 +308,7 @@ class CobaBackdropFilter extends StatelessWidget {
                             right: 17,
                           ),
                           child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
                             child: BackdropFilter(
                               filter: ImageFilter.blur(
                                 sigmaX: 5,
@@ -392,6 +397,10 @@ class CobaBackdropFilter extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  
                 ],
               ),
             ),
@@ -401,3 +410,5 @@ class CobaBackdropFilter extends StatelessWidget {
     );
   }
 }
+
+

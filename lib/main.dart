@@ -46,6 +46,7 @@ import 'package:modern_flutter_ui/ui/cobadateappbar.dart';
 import 'package:modern_flutter_ui/ui/cobastateswitch.dart';
 import 'package:modern_flutter_ui/ui/cobatabbar.dart';
 import 'package:modern_flutter_ui/ui/cobatraversymedia.dart';
+import 'package:modern_flutter_ui/ui/custompaint.dart';
 import 'package:modern_flutter_ui/ui/emptystatebelanja.dart';
 import 'package:modern_flutter_ui/ui/emptystatebisnis.dart';
 import 'package:modern_flutter_ui/ui/firebaseapifuturebuilder.dart';
@@ -166,7 +167,7 @@ class MyApp extends StatelessWidget {
                   return CobaSharedAndTheme();
                 },
               ),*/
-          '/': (context) => CobaBackdropFilter(),
+          '/': (context) => CobaCustomPaint(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -216,6 +217,7 @@ class MyApp extends StatelessWidget {
           'kost2home': (context) => KostHome(),
           'cobalottie': (context) => CobaLottie(),
           'cobabackdropfilter': (context) => CobaBackdropFilter(),
+          'cobacustompain': (context) => CobaCustomPaint(),
         },
       ),
     );
