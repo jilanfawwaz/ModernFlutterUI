@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class CobaSliverAppBar extends StatelessWidget {
   CobaSliverAppBar({Key? key}) : super(key: key);
@@ -15,6 +16,50 @@ class CobaSliverAppBar extends StatelessWidget {
     ),
   );
 
+  final List<Widget> _dataSliverGrid = List.generate(20, (index) {
+    return Container(
+      color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+          .withOpacity(1.0),
+      child: Center(
+        child: textWithStroke(
+          text: '${index + 1}',
+          fontSize: 50,
+          strokeWidth: 7,
+        ),
+      ),
+      //color: Colors.blue,
+    );
+  });
+
+  static Widget textWithStroke(
+      {required String text,
+      double fontSize = 12,
+      double strokeWidth = 1,
+      Color textColor = Colors.white,
+      Color strokeColor = Colors.black}) {
+    return Stack(
+      children: <Widget>[
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: fontSize,
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = strokeWidth
+              ..color = strokeColor,
+          ),
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: fontSize,
+            color: textColor,
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +67,11 @@ class CobaSliverAppBar extends StatelessWidget {
         slivers: [
           Theme(
             data: ThemeData(
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
                 color: Colors.blue,
               ),
             ),
+            //NOTES:SliverAppBar, appbar bisa dikasih background warna, kalau di scroll appbarnya bisa mengecil atau menghilang
             child: SliverAppBar(
               //pinned: kalau udah discroll, app bar mau stay di atas gak?
               pinned: false,
@@ -34,10 +80,13 @@ class CobaSliverAppBar extends StatelessWidget {
               //snap: kalau misal floating true, ketika scroll dinaikin dikit aja, appbar langsung kelihatan full, jadi gak sedikit demi sedikit
               snap: false, //kalau snap true, floating harus true biar ga eror
 
-              //ini kaya AppBar biasa
+              //expandedHeight tinggi dari flexible space barnya
               expandedHeight: 160,
+              //collapsedHeight usahakan nilainya lebih kecil dari expandedHeight, ini untuk tinggi appbar yang ke pinned (pinned harus true)
+              collapsedHeight: 100,
+              //ini kaya AppBar biasa
               flexibleSpace: FlexibleSpaceBar(
-                title: Text(
+                title: const Text(
                   'Coba SliverAppBar',
                 ),
                 background: Opacity(
@@ -52,6 +101,121 @@ class CobaSliverAppBar extends StatelessWidget {
               ),
             ),
           ),
+
+          //===========================================================================================================================
+
+          //TIPS: SliverGrid bisa menggunakan SliverGrid() tapi harus menggunakan delegate, atau shortcut SliverGrid.count() tapi listnya harus disiapkan terlebih dahulu
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 50,
+              child: Center(
+                child: Text(
+                  'SliverGrid  dengan gridDelegate: SliverGridDelegateWithFixedCrossAxisExtent',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
+          SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return Container(
+                  color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+                      .withOpacity(1.0),
+                  child: Center(
+                    child: textWithStroke(
+                      text: '${index + 1}',
+                      fontSize: 50,
+                      strokeWidth: 7,
+                    ),
+                  ),
+                  //color: Colors.blue,
+                );
+              },
+              childCount: 20,
+            ),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 0.8,
+
+              //mainAxisExtent: panjang default dari tiap tile grid
+              // mainAxisExtent: 300,
+
+              //childAspectRatio: 3,
+            ),
+          ),
+
+          //Shortcut Program
+          /*SliverGrid.count(
+            crossAxisCount: 4,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            children: _dataSliverGrid,
+            childAspectRatio: 0.8,
+          ),*/
+
+          //===========================================================================================================================
+
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 50,
+              child: Center(
+                child: Text(
+                  'SliverGrid dengan gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
+
+          /*SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return Container(
+                  color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+                      .withOpacity(1.0),
+                  child: Center(
+                    child: textWithStroke(
+                      text: '${index + 1}',
+                      fontSize: 50,
+                      strokeWidth: 7,
+                    ),
+                  ),
+                  //color: Colors.blue,
+                );
+              },
+              childCount: 20,
+            ),
+            // ketika menggunakan SliverGridDelegateWithMaxCrossAxisExtent, ada argument maxCrossAxisExtent: yang berfungsi untuk membagi jumlah crossAxisCount berdasarkan besar pixel
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              //maxCrossAxisExtent adalah maksimal lebar pixel
+              maxCrossAxisExtent: 80,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 0.8,
+            ),
+          ),*/
+
+          SliverGrid.extent(
+            maxCrossAxisExtent: 80,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 0.8,
+            children: _dataSliverGrid,
+          ),
+
+          /*SliverGrid.count(
+            crossAxisCount: 4,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            children: _dataSliverGrid,
+            childAspectRatio: 0.8,
+          ),*/
+
+          //===========================================================================================================================
+          //SliverToBoxAdapter adalah body dari slivernya, kita bisa memasukkan widget apa aja ke dalam box body ini, bisa juga gamake sliverView() dan diganti dengan make box ini diisi dengan listview
           const SliverToBoxAdapter(
             child: SizedBox(
               //height: 50,
@@ -82,6 +246,8 @@ class CobaSliverAppBar extends StatelessWidget {
               childCount: 5,
             ),
           ),
+
+          //===========================================================================================================================
           const SliverToBoxAdapter(
             child: SizedBox(
               height: 50,
@@ -96,6 +262,8 @@ class CobaSliverAppBar extends StatelessWidget {
             // delegate: SliverChildListDelegate.fixed(_dataList),
             delegate: SliverChildListDelegate(_dataList),
           ),
+
+          //===========================================================================================================================
           const SliverToBoxAdapter(
             child: SizedBox(
               //height: 50,
@@ -111,6 +279,8 @@ class CobaSliverAppBar extends StatelessWidget {
             delegate: SliverChildListDelegate(_dataList),
             itemExtent: 150,
           ),
+
+          //===========================================================================================================================
           const SliverToBoxAdapter(
             child: SizedBox(
               //height: 50,
@@ -124,9 +294,30 @@ class CobaSliverAppBar extends StatelessWidget {
           ),
           SliverPrototypeExtentList(
             delegate: SliverChildListDelegate(_dataList),
-            prototypeItem: Text(
+            prototypeItem: const Text(
               'Test',
               textScaleFactor: 5,
+            ),
+          ),
+
+          //===========================================================================================================================
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 50,
+              child: Center(
+                child: Text(
+                  'SliverToBoxAdapter juga bisa dimasukkan list',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 200,
+              child: ListView(
+                children: _dataList,
+              ),
             ),
           ),
         ],
