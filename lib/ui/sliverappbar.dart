@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:modern_flutter_ui/shared/theme.dart';
+
 class CobaSliverAppBar extends StatelessWidget {
   CobaSliverAppBar({Key? key}) : super(key: key);
 
@@ -16,7 +18,7 @@ class CobaSliverAppBar extends StatelessWidget {
     ),
   );
 
-  final List<Widget> _dataSliverGrid = List.generate(20, (index) {
+  static List<Widget> _dataSliverGrid = List.generate(20, (index) {
     return Container(
       color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
           .withOpacity(1.0),
@@ -74,7 +76,7 @@ class CobaSliverAppBar extends StatelessWidget {
             //NOTES:SliverAppBar, appbar bisa dikasih background warna, kalau di scroll appbarnya bisa mengecil atau menghilang
             child: SliverAppBar(
               //pinned: kalau udah discroll, app bar mau stay di atas gak?
-              pinned: false,
+              pinned: true,
               //floating: kalau misalkan appbar udah hilang karena di scroll, kalau discroll keatas lagi appbarnya mau langsung ditampilin gak?
               floating: true,
               //snap: kalau misal floating true, ketika scroll dinaikin dikit aja, appbar langsung kelihatan full, jadi gak sedikit demi sedikit
@@ -83,7 +85,7 @@ class CobaSliverAppBar extends StatelessWidget {
               //expandedHeight tinggi dari flexible space barnya
               expandedHeight: 160,
               //collapsedHeight usahakan nilainya lebih kecil dari expandedHeight, ini untuk tinggi appbar yang ke pinned (pinned harus true)
-              collapsedHeight: 100,
+              //collapsedHeight: 100,
               //ini kaya AppBar biasa
               flexibleSpace: FlexibleSpaceBar(
                 title: const Text(
@@ -100,6 +102,17 @@ class CobaSliverAppBar extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+
+          /*SliverPersistentHeader(
+            delegate: SliverPersistentClass(),
+            pinned: true,
+            floating: true,
+          ),*/
+
+          SliverPersistentHeader(
+            delegate: SliverPersistentClassKedua(),
+            pinned: true,
           ),
 
           //===========================================================================================================================
@@ -323,5 +336,112 @@ class CobaSliverAppBar extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class SliverPersistentClass extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return ListView(
+      padding: EdgeInsets.zero,
+      children: CobaSliverAppBar._dataSliverGrid,
+    );
+  }
+
+//maxExtent panjang maksimal extends sebelum menciut
+  @override
+  double get maxExtent => 200;
+
+//minExtent panjang minimal extends setelah menciut
+  @override
+  double get minExtent => 100;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
+  }
+}
+
+class SliverPersistentClassKedua extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.amber,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/images/kost2city2.png',
+            fit: BoxFit.cover,
+            color: Colors.amber,
+            colorBlendMode: BlendMode.difference,
+          ),
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.transparent,
+                  Colors.blue,
+                  Colors.transparent,
+                  Colors.green,
+                  Colors.transparent,
+                  Colors.black,
+                ],
+                //stops:
+                //jumlah list stops harus sama dengan jumlah list colors
+                //skala stops dari rentang nilai 0 sampai 1, yang melambangkan height dari containernya
+
+                stops: [
+                  0,
+                  0.3, //dari warna transparent ke blue tingginya 0.3 skala tinggi container, dimulai dari 0
+                  0.4, //dari warna blue ke transparent tingginya 0.1 skala tinggi container (0.4 dikurangi 0.3), dimulai dari tinggi 0.3
+                  0.6,
+                  0.7,
+                  1,
+                ],
+
+                //Argument buat LinearGradient()
+                // begin: Alignment(0, -0.3),
+                // end: Alignment(0, 0.3),
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                //tileMode: untuk memberikan mode warna pada bagian yang gamasuk ke dalam gradient (sebelum begin dan setelah end)
+                tileMode: TileMode.repeated,
+
+                //Argument buat RadialGradient()
+                // center: Alignment.center,
+                // radius: 0.8,
+                // focal:
+                //     Alignment.bottomCenter, //titik tengahnya mau ditaroh dimana
+                // focalRadius: 0.3,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                'Sliver Persistent mirip Sliver Appbar',
+                style: cPoppinsWhiteMedium18,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  double get maxExtent => 300;
+
+  @override
+  double get minExtent => 150;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }

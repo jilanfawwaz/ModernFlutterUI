@@ -92,7 +92,7 @@ class KostHomeContent extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   color: Color(0xffD8D8F8),
                   image: DecorationImage(
-                    alignment: Alignment(-3, 0),
+                    alignment: Alignment(-0.8, 0),
                     fit: BoxFit.fill,
                     image: AssetImage(
                       'assets/images/kost2image1.png',
@@ -162,7 +162,7 @@ class KostHomeContent extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   color: Color(0xffD8D8F8),
                   image: DecorationImage(
-                    alignment: Alignment(-3, 0),
+                    alignment: Alignment(-0.8, 0),
                     fit: BoxFit.fill,
                     image: AssetImage(
                       'assets/images/kost2image1.png',
