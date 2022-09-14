@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/models/kost2model.dart';
 
 import '../shared/theme.dart';
+//! Done Widget G.Doc
 
 class KostCardPertama extends StatelessWidget {
   final KostModel city;

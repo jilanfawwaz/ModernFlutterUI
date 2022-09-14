@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+//! Done Model G.Doc
 class KostModelKedua with ChangeNotifier {
   final String name;
   final String ImageURL;

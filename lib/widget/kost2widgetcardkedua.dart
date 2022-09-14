@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/models/kost2modelkedua.dart';
 import 'package:modern_flutter_ui/shared/theme.dart';
+//! Done Widget G.Doc
 
 class KostCardKedua extends StatelessWidget {
   final KostModelKedua space;

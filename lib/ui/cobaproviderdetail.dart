@@ -7,6 +7,7 @@ import 'package:modern_flutter_ui/ui/cobaprovidercart.dart';
 import 'package:provider/provider.dart';
 
 import '../widget/providerbadge.dart';
+//! Done Pages G.Doc
 
 class CobaProviderDetail extends StatelessWidget {
   CobaProviderDetail({Key? key}) : super(key: key);

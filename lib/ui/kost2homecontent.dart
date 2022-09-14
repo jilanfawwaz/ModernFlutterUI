@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../models/kost2model.dart';
 import '../shared/theme.dart';
+//! Done Pages G.Doc
 
 class KostHomeContent extends StatelessWidget {
   const KostHomeContent({Key? key}) : super(key: key);
