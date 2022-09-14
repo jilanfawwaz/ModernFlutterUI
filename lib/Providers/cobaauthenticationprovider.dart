@@ -82,6 +82,7 @@ class CobaAuthenticationProvider with ChangeNotifier {
       var hasilRespon = await http.get(url);
 
       if (json.decode(hasilRespon.body) != null) {
+        //! sukses masuk karena data tidak null
         var dataRespon = json.decode(hasilRespon.body) as Map<String, dynamic>;
 
         dataRespon.forEach(

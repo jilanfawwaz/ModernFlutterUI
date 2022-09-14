@@ -19,9 +19,9 @@ class _CobaAnimationState extends State<CobaAnimation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: Text('Coba Animation'),
-      ),
+      ),*/
       body: Container(
         //width: 100,
         alignment: Alignment.center,
@@ -30,6 +30,13 @@ class _CobaAnimationState extends State<CobaAnimation> {
           children: [
             Column(
               children: [
+                //! AnimatedPositioned DONE G.DOC
+                Text(
+                  'AnimatedPositioned',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
                 GestureDetector(
                   onTap: () {
                     setState(() {
@@ -61,6 +68,13 @@ class _CobaAnimationState extends State<CobaAnimation> {
                   ),
                 ),
                 SizedBox(height: 30),
+                //! AnimatedContainer DONE G.DOC
+                Text(
+                  'AnimatedContainer',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
                 GestureDetector(
                   onTap: () {
                     setState(() {
@@ -68,7 +82,7 @@ class _CobaAnimationState extends State<CobaAnimation> {
                       Timer(
                         Duration(milliseconds: 900),
                         () {
-                          Navigator.pushNamed(context, CobaState.nameRoute);
+                          //Navigator.pushNamed(context, CobaState.nameRoute);
                         },
                       );
                     });
@@ -100,6 +114,13 @@ class _CobaAnimationState extends State<CobaAnimation> {
                 ),
                 SizedBox(
                   height: 20,
+                ),
+                //! AnimatedAlign DONE G.DOC
+                Text(
+                  'AnimatedAlign',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
@@ -148,6 +169,13 @@ class _CobaAnimationState extends State<CobaAnimation> {
                 SizedBox(
                   height: 20,
                 ),
+                //! AnimatedCrossFade DONE G.DOC
+                Text(
+                  'AnimatedCrossFade',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
                 GestureDetector(
                   onTap: () {
                     setState(() {
@@ -158,23 +186,37 @@ class _CobaAnimationState extends State<CobaAnimation> {
                     firstChild: Container(
                       width: 100,
                       height: 100,
-                      color: Colors.amber,
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
-                    //secondChild: Center(child: Icon(Icons.replay)),
-                    secondChild: SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: Center(child: Text('Halo'))),
-                    firstCurve: Curves.easeInOutBack,
-                    secondCurve: Curves.easeInOutBack,
+                    secondChild: Container(
+                      width: 150,
+                      height: 70,
+                      color: Colors.green,
+                      child: Center(
+                        child: Text('Halo'),
+                      ),
+                    ),
+                    firstCurve: Curves.ease,
+                    secondCurve: Curves.ease,
                     crossFadeState: animation4
                         ? CrossFadeState.showFirst
                         : CrossFadeState.showSecond,
-                    duration: Duration(milliseconds: 1200),
+                    duration: Duration(milliseconds: 300),
+                    //reserveDuration: durasi ketika kembali ke child awal (dari secondChild kembali ke first child, kalau gaditulis, maka secara default durasinya sama kaya 'duration:')
+                    reverseDuration: Duration(milliseconds: 300),
                   ),
                 ),
                 SizedBox(
                   height: 20,
+                ),
+                Text(
+                  'HeroAnimation',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
                 ),
                 GridView.builder(
                   shrinkWrap: true,
@@ -191,6 +233,7 @@ class _CobaAnimationState extends State<CobaAnimation> {
                         Navigator.pushNamed(context, '/cobaanimationnavigator',
                             arguments: '${index + 20}');
                       },
+                      //! Hero DONE G.DOC
                       child: Hero(
                         tag: '${index + 20}',
                         child: Container(

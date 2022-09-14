@@ -4,8 +4,16 @@ import 'package:modern_flutter_ui/ui/cobaanimatedbuildercontroller.dart';
 import 'package:modern_flutter_ui/ui/cobaanimatedbuilderscale.dart';
 import 'package:modern_flutter_ui/ui/cobaanimatedbuildertranslate.dart';
 
+//file ini cuma untuk menampilkan seluruh jenis2 animatedbuilder (scale, rotate, dll)
+
 class CobaAnimatedBuilder extends StatelessWidget {
   const CobaAnimatedBuilder({Key? key}) : super(key: key);
+
+//cobaanimatedbuilder.dart,
+//cobaanimatedbuildercontroller.dart,
+//cobaanimatedbuilderscale.dart,
+//cobaanimatedbuilderscale.dart,
+//cobaanimatedbuildertranslate.dart
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +22,10 @@ class CobaAnimatedBuilder extends StatelessWidget {
         title: Text('Coba Animated Builder'),
       ),
       body: Center(
-        //child: CobaAnimatedBuilderController(),
         child: Column(
           children: [
-            //CobaAnimatedBuilderController(),
+            //! AnimatedBuilder DONE G.DOC
+            CobaAnimatedBuilderController(),
             const SizedBox(
               height: 50,
             ),

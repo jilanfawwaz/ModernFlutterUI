@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//! AnimatedBuilder using Scale DONE G.DOC
 class CobaAnimatedBuilderScale extends StatefulWidget {
   const CobaAnimatedBuilderScale({Key? key}) : super(key: key);
 
@@ -17,11 +18,6 @@ class _CobaAnimatedBuilderScaleState extends State<CobaAnimatedBuilderScale>
   //NOTE:Titik Dua (..) ini fungsinya supaya tidak harus menuliskan program dua kali (_controller.repeat()), jadi bisa disingkat dalam satu baris
   // dan karena variabel diatas adalah variabel late, jadi titik dua juga berfungsi supaya fungsi dipanggil setelah inisialisasi, mirip2 .then lah pokonya
 
-  
-
-  
-
-
   @override
   void dispose() {
     _controller.dispose();
@@ -30,14 +26,15 @@ class _CobaAnimatedBuilderScaleState extends State<CobaAnimatedBuilderScale>
 
   @override
   Widget build(BuildContext context) {
-    
     return AnimatedBuilder(
       animation: _controller,
       child: Container(
         width: 100,
         height: 100,
         color: Colors.cyan,
-        child: Center(child: Text('Besarrr')),
+        child: Center(
+          child: Text('Besarrr'),
+        ),
       ),
       builder: (context, child) {
         return Transform.scale(

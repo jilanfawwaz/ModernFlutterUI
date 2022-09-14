@@ -137,11 +137,12 @@ class CobaAuthenticationLoginProvider with ChangeNotifier {
       shared.setString('auth', sharedValue);
 
       _autoLogout();
-
+      print('===========================================');
       print('expiresIn : ${dataRespon['expiresIn']}');
       print('_expireDate : $_expireDate');
       print(
           'expiresDate.difference DateTime.now() : ${_expireDate?.difference(DateTime.now()).inSeconds}');
+      print('===========================================');
       if (dataRespon['error'] != null) {
         throw dataRespon['error']['message'];
       }

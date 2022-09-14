@@ -4,6 +4,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/shared/theme.dart';
 
+//! BackdropFilter DONE G.DOC
+
 class CobaBackdropFilter extends StatelessWidget {
   const CobaBackdropFilter({Key? key}) : super(key: key);
 
@@ -18,6 +20,8 @@ class CobaBackdropFilter extends StatelessWidget {
             height: double.infinity,
             fit: BoxFit.cover,
           ),
+
+          //! Padding DONE G.DOC
           Padding(
             padding: EdgeInsets.only(left: 30),
             child: Center(
@@ -32,6 +36,7 @@ class CobaBackdropFilter extends StatelessWidget {
                           margin: EdgeInsets.all(
                             17,
                           ),
+                          //! CliptRect DONE G.DOC
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(25),
                             //NOTE:BakcdroopFilter untuk membuat efek blur
@@ -62,6 +67,7 @@ class CobaBackdropFilter extends StatelessWidget {
                                       margin: EdgeInsets.only(
                                         left: 20,
                                       ),
+                                      
                                       child: RotatedBox(
                                         quarterTurns: 1,
                                         child: Image.asset(

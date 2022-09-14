@@ -43,6 +43,7 @@ class CobaProviderDetail extends StatelessWidget {
               ),
               Consumer<Cart>(
                 builder: (context, cart, child) {
+                  //NOTE: Badge
                   return Badge(
                     child: IconButton(
                         visualDensity: VisualDensity(

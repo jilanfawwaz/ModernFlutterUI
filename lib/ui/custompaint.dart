@@ -106,6 +106,7 @@ class CobaPainter2 extends CustomPainter {
         Offset(size.width / 2, size.height / 2), size.width / 3, circlePaint);
   }
 
+  
   @override
   bool shouldRepaint(CobaPainter2 oldDelegate) => false;
 

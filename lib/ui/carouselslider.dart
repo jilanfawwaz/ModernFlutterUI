@@ -42,6 +42,7 @@ class _CobaCarouselSlideState extends State<CobaCarouselSlide> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //! CarouselSlider DONE G.DOC
             CarouselSlider(
               carouselController: buttonController2,
               //options ini buat ngatur konfigurasi dari CarouselSlider, bisa height, jumlah fragment, dll
@@ -126,6 +127,7 @@ class _CobaCarouselSlideState extends State<CobaCarouselSlide> {
               mainAxisAlignment: MainAxisAlignment.center,
               //NOTES:asMap.entries untuk memetekan sebuah list kedalam entry
               children: _dataCarousel.asMap().entries.map((entry) {
+                //! GestureDetector DONE G.DOC
                 return GestureDetector(
                   onTap: () {
                     //buttonController.jumpToPage(entry.key);
@@ -152,6 +154,7 @@ class _CobaCarouselSlideState extends State<CobaCarouselSlide> {
             SizedBox(
               height: 20,
             ),
+            //! NOTEL Divider adalah pembatas
             Divider(
               thickness: 1.5,
             ),

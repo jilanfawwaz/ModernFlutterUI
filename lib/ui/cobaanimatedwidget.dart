@@ -3,14 +3,17 @@ import 'dart:math' as math;
 
 
 //NOTE:Animated Widget
+//class nanti dipanggil di animatedbuildercontroller.dart
+//! Dialog DONE G.DOC
 class CobaAnimatedWidget extends AnimatedWidget {
   final  animation;
 
-  //NOTE:Listeneable
+  //NOTE:Listenable
   const CobaAnimatedWidget({Key? key, this.animation})
       : super(key: key, listenable: animation);
 
-  //TIPS: pake getter buat variasi aja, gak pake ini langsung ngambil value dari variabel animation juga gapapa kok
+  //TIPS: pake getter buat variasi aja, 
+  //gak pake ini langsung ngambil value dari variabel animation juga gapapa kok
   get _progress {
     return listenable as Animation<double>;
   }

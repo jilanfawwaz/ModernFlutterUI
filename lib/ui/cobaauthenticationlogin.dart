@@ -13,8 +13,8 @@ class CobaAutheticationLogin extends StatefulWidget {
 
 class _CobaAutheticationLoginState extends State<CobaAutheticationLogin> {
   bool isPasswordShown = false;
-  String emailField = "";
-  String passwordField = "";
+  String emailField = "jilanfawwaz@gmail.com";
+  String passwordField = "antaranum";
 
   @override
   Widget build(BuildContext context) {
@@ -213,10 +213,10 @@ class _CobaAutheticationLoginState extends State<CobaAutheticationLogin> {
                                   .signIn(
                                       email: emailController.text,
                                       password: passwordController.text)
-                                  // .then(
-                                  //   (value) => Navigator.pushNamed(
-                                  //       context, '/cobaauthenticationhome'),
-                                  // )
+                                  /*.then(
+                                    (value) => Navigator.pushNamed(
+                                        context, '/cobaauthenticationhome'),
+                                  )*/
                                   .catchError((onError) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(

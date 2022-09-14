@@ -143,7 +143,7 @@ class _CobaDatePickerCupertinoState extends State<CobaDatePickerCupertino> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return Platform.isIOS
+                      return Platform.isAndroid
                           ? Theme(
                               //NOTE: ThemeData.dark (- supaya tampilan datepicker jadi dark)
                               data: ThemeData.dark(),

@@ -157,19 +157,7 @@ class KostHomeContent extends StatelessWidget {
               child: Container(
                 width: 80,
                 height: 80,
-                color: Color(0xffD8D8F8),
-                /*decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
-                  color: Color(0xffD8D8F8),
-                  image: DecorationImage(
-                    alignment: Alignment(-0.8, 0),
-                    fit: BoxFit.fill,
-                    image: AssetImage(
-                      'assets/images/kost2image1.png',
-                    ),
-                  ),
-                ),*/
-
+                color: Color(0xffD8D8F8),  
                 child: Transform(
                   transform: Matrix4.translationValues(-12, 12, 0.0),
                   child: Image.asset('assets/images/kost2image2.png'),

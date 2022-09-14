@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+//! AnimatedBuilder using translate DONE G.DOC
+
 class CobaAnimatedBuilderTranslate extends StatefulWidget {
   const CobaAnimatedBuilderTranslate({Key? key}) : super(key: key);
 

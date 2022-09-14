@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'dart:math' as math;
 
+// import 'dart:math' as math;
+//! penjelasan ada di kuldii no. 104 (Decorated Box Transition)
 class CobaAnimationTween extends StatefulWidget {
   const CobaAnimationTween({Key? key}) : super(key: key);
 
@@ -10,33 +11,46 @@ class CobaAnimationTween extends StatefulWidget {
 
 class _CobaAnimationTweenState extends State<CobaAnimationTween>
     with TickerProviderStateMixin {
+  //! bisa ditambahkan Tween<Decoration> didepannya
+  //final Tween<Decoration> _decorationTween = DecorationTween(
   final DecorationTween _decorationTween = DecorationTween(
-      begin: BoxDecoration(
-        color: Colors.amber,
-        borderRadius: BorderRadius.circular(40),
-      ),
-      end: BoxDecoration(
-        color: Colors.green,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blue.withOpacity(0.5),
-            blurRadius: 10,
-            spreadRadius: 3,
-            offset: Offset(0, 6),
-          )
-        ],
-      ));
+    begin: BoxDecoration(
+      color: Colors.amber,
+      borderRadius: BorderRadius.circular(40),
+    ),
+    end: BoxDecoration(
+      color: Colors.green,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.blue.withOpacity(0.5),
+          blurRadius: 10,
+          spreadRadius: 3,
+          offset: Offset(0, 6),
+        )
+      ],
+    ),
+  );
 
-  late final Animation<double> _fadeAnimation =
-      CurvedAnimation(parent: _controller2, curve: Curves.easeInOutBack);
-
+  //AnimationController
   late final AnimationController _controller =
       AnimationController(duration: Duration(milliseconds: 3000), vsync: this)
         ..repeat(reverse: true);
 
-  late final AnimationController _controller2 =
+  /*late final AnimationController _controller2 =
       AnimationController(duration: Duration(milliseconds: 500), vsync: this)
-        ..repeat(reverse: true);
+        ..repeat(reverse: true);*/
+
+  late final AnimationController _controller2 = AnimationController(
+      duration: Duration(milliseconds: 2000),
+      reverseDuration: Duration(milliseconds: 1000),
+      vsync: this)
+    ..repeat(reverse: true);
+
+  late final Animation<double> _fadeAnimation = CurvedAnimation(
+    parent: _controller2,
+    curve: Curves.easeInOutBack,
+    reverseCurve: Curves.bounceIn,
+  );
 
   @override
   void dispose() {
@@ -56,13 +70,14 @@ class _CobaAnimationTweenState extends State<CobaAnimationTween>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            
             DecoratedBoxTransition(
               decoration: _decorationTween.animate(_controller),
               child: Container(
                 width: 200,
                 height: 200,
-                child: Center(child: Text('Decoration Box Animation')),
+                child: Center(
+                  child: Text('Decoration Box Animation'),
+                ),
               ),
             ),
             FadeTransition(
@@ -72,6 +87,14 @@ class _CobaAnimationTweenState extends State<CobaAnimationTween>
                 width: 100,
                 height: 100,
                 color: Colors.amber,
+              ),
+            ),
+            FadeTransition(
+              opacity: _controller2,
+              child: Container(
+                width: 200,
+                height: 200,
+                color: Colors.blue,
               ),
             ),
           ],

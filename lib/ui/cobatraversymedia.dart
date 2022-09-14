@@ -11,6 +11,7 @@ class CobaTraversy extends StatefulWidget {
 class _CobaTraversyState extends State<CobaTraversy> {
   List<WordPair> wordPair = [];
 
+  //NOTE:Set<> , versi lite dari map yang gaada key nya, nilai data dalam set tidak bisa sama, tidak bisa akses nilai spesifik yang ada di dalam set, hanya bisa mengecek apakah contain atau tidak 
   Set<WordPair> savedWord = {};
 
   Widget wordList() {

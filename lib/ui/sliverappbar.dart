@@ -111,7 +111,10 @@ class CobaSliverAppBar extends StatelessWidget {
           ),*/
 
           SliverPersistentHeader(
-            delegate: SliverPersistentClassKedua(),
+            delegate: SliverPersistentClassKedua(
+              minExtent: 100,
+              maxExtent: 200,
+            ),
             pinned: true,
           ),
 
@@ -229,6 +232,13 @@ class CobaSliverAppBar extends StatelessWidget {
 
           //===========================================================================================================================
           //SliverToBoxAdapter adalah body dari slivernya, kita bisa memasukkan widget apa aja ke dalam box body ini, bisa juga gamake sliverView() dan diganti dengan make box ini diisi dengan listview
+          SliverPersistentHeader(
+            delegate: SliverPersistentClassKedua(
+              minExtent: 100,
+              maxExtent: 200,
+            ),
+            pinned: true,
+          ),
           const SliverToBoxAdapter(
             child: SizedBox(
               //height: 50,
@@ -364,9 +374,15 @@ class SliverPersistentClass extends SliverPersistentHeaderDelegate {
 }
 
 class SliverPersistentClassKedua extends SliverPersistentHeaderDelegate {
+  final double maxExtent;
+  final double minExtent;
+  SliverPersistentClassKedua(
+      {required this.maxExtent, required this.minExtent});
+
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+    print(shrinkOffset);
     return Container(
       color: Colors.amber,
       child: Stack(
@@ -424,8 +440,12 @@ class SliverPersistentClassKedua extends SliverPersistentHeaderDelegate {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Text(
-                'Sliver Persistent mirip Sliver Appbar',
-                style: cPoppinsWhiteMedium18,
+                shrinkOffset > 100
+                    ? 'Scroll keatas untuk melihat text'
+                    : 'Sliver Persistent mirip Sliver Appbar',
+                style: shrinkOffset > 100
+                    ? cPoppinsWhiteMedium18.copyWith(fontSize: 10)
+                    : cPoppinsWhiteMedium18,
               ),
             ),
           ),
@@ -434,11 +454,11 @@ class SliverPersistentClassKedua extends SliverPersistentHeaderDelegate {
     );
   }
 
-  @override
-  double get maxExtent => 300;
+  // @override
+  // double get maxExtent => 300;
 
-  @override
-  double get minExtent => 150;
+  // @override
+  // double get minExtent => 150;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

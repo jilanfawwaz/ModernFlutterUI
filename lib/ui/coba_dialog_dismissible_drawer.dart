@@ -12,11 +12,13 @@ class CobaDiDiDe extends StatefulWidget {
 
 class _CobaDiDiDeState extends State<CobaDiDiDe> {
   final List<Widget> _myList = List.generate(5, (index) {
+    //! Faker DONE G.DOC
     final String _name = Faker().person.name();
     final String _address = faker.address.streetName();
 
     return Column(
       children: [
+        //! ListTile DONE G.DOC
         ListTile(
           leading: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -44,6 +46,7 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
       appBar: AppBar(
         title: Text("Dialog Dismissible Drawer"),
       ),
+      //! Drawer DONE G.DOC
       drawer: Drawer(
         backgroundColor: Color.fromARGB(255, 214, 213, 213),
         child: Column(
@@ -52,7 +55,7 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
             SizedBox(
               height: 200,
               child: UserAccountsDrawerHeader(
-                //NOTE: CircleAvater
+                //NOTE: CircleAvatar
                 //untuk image lingkaran bisa make circleAvatar atau clipOval, clipOval hanya memotong gambar menjadi lingkaran secara sederhana, sedangkan circleAvatar lebih lengkap (contohnya bisa tambah backgroundcolor secara default untuk gambar png)
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: AssetImage("assets/images/1-logoPedang.png"),
@@ -105,7 +108,8 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
               ),
             ),*/
 
-            //NOTE: ListView.separated
+            
+            //! Expanded DONE G.DOC
             Expanded(
               child: ListView.separated(
                 padding: EdgeInsets.zero,
@@ -137,6 +141,7 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
                 //return Builder(builder: (context) {
 
                 //NOTE:Dismissible (- item list tile bisa didrag ke kiri dan kanan untuk menghapus atau fungsi lainnya)
+                //! Dismissible DONE G.DOC
                 return Dismissible(
                   //NOTE:Key
                   key: UniqueKey(),
@@ -155,6 +160,7 @@ class _CobaDiDiDeState extends State<CobaDiDiDe> {
                     }
                   },
                   confirmDismiss: (directionsss) {
+                    //! Dialog DONE G.DOC
                     return showDialog(
                         context: context,
                         builder: (context) {

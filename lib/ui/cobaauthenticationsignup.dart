@@ -16,7 +16,7 @@ class CobaAutheticationSignUp extends StatelessWidget {
         Provider.of<CobaAuthenticationLoginProvider>(context);
 
     var _appBar = AppBar(
-      title: Text("Authentication Login Page"),
+      title: Text("Authentication Sign Up Page"),
     );
     return Scaffold(
       appBar: _appBar,

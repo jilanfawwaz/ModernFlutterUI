@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CobaClip extends StatelessWidget {
   const CobaClip({Key? key}) : super(key: key);
-
+//! Screen G.Doc
   @override
   Widget build(BuildContext context) {
     return Scaffold(

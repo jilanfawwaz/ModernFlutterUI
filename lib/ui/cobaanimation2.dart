@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//! halaman TUjuan widget Hero
 class CobaAnimationNavigator extends StatelessWidget {
   const CobaAnimationNavigator({Key? key}) : super(key: key);
 
@@ -22,19 +23,6 @@ class CobaAnimationNavigator extends StatelessWidget {
               height: 300,
             ),
           ),
-
-          /*Hero(
-            tag: argument,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  //fit: BoxFit.cover,
-                  image: NetworkImage(
-                      "https://picsum.photos/id/${argument}/200/300"),
-                ),
-              ),
-            ),
-          ),*/
         ],
       ),
     );

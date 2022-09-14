@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+//! program default bawaan dari packagenya
 class PrefetchImageDemo extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

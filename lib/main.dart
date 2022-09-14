@@ -15,6 +15,7 @@ import 'package:modern_flutter_ui/models/httpgetmodelprovider.dart';
 import 'package:modern_flutter_ui/models/httpmodelprovider.dart';
 import 'package:modern_flutter_ui/ui/backdropfilter.dart';
 import 'package:modern_flutter_ui/ui/carouselslider.dart';
+import 'package:modern_flutter_ui/ui/carouselsliderprefetch.dart';
 
 import 'package:modern_flutter_ui/ui/coba_dialog_dismissible_drawer.dart';
 import 'package:modern_flutter_ui/ui/cobaanimatedbuilder.dart';
@@ -169,7 +170,7 @@ class MyApp extends StatelessWidget {
                   return CobaSharedAndTheme();
                 },
               ),*/
-          '/': (context) => CobaSliverAppBar(),
+          '/': (context) => CobaHalamanKosong(),
           '/splashscreen': (context) => SplashScreen1(),
           '/halamanutama1': (context) => HalamanUtama1(),
           '/getstartedcypto': (context) => GetStartedCrypto(),
@@ -225,12 +226,13 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-    //ini adalah return main.dart untuk file cobaAuthentikasi
+    //! ini adalah return main.dart untuk file cobaAuthentikasi
     /*return MultiProvider(
       //TIPS:selalu tambahkan provider notifier di main dart sebelum menggunakan provider.of
       providers: [
         ChangeNotifierProvider(
-            create: (context) => CobaAuthenticationLoginProvider()),
+          create: (context) => CobaAuthenticationLoginProvider(),
+        ),
 
         //NOTE:ChangeNotifierProvider (inisialisasi provider, sekalian mengupdate nilai/method yang ada di provider tersebut berdasarkan provider yang lain)
         //update: (context,value,previous){} (- value untuk nama dari provider yang lain, previous untuk nama provider yang digunakan)
@@ -275,7 +277,7 @@ class MyApp extends StatelessWidget {
                     ),
               '/cobaauthenticationlogin': (context) => CobaAutheticationLogin(),
               '/cobaauthenticationhome': (context) => CobaAuthenticationHome(),
-              '/cobaauthenticationsignup': (context) => 
+              '/cobaauthenticationsignup': (context) =>
                   CobaAutheticationSignUp(),
             },
           );
