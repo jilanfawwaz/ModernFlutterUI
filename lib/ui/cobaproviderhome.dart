@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../widget/providerbadge.dart';
 import '../widget/providerwidgetgrid.dart';
+//! Done Screen G.Doc
 //! Done Pages G.Doc
 
 class CobaProvider extends StatelessWidget {
@@ -40,7 +41,9 @@ class CobaProvider extends StatelessWidget {
                   //vertical: -4.0,
                 ),
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, CobaProviderFavorite.nameRoute);
+                },
                 icon: Icon(Icons.favorite),
               ),
               //TIPS: kalo udah pake consumer, boleh ko gausah make provider.of(context) lagi
@@ -53,7 +56,10 @@ class CobaProvider extends StatelessWidget {
                           //vertical: 0.0,
                         ),
                         //padding: EdgeInsets.zero,
-                        onPressed: () {Navigator.pushNamed(context, CobaProviderCart.nameRoute);},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, CobaProviderCart.nameRoute);
+                        },
                         icon: Icon(Icons.shopping_cart)),
                     value: cart.getJumlah.toString(),
                   );

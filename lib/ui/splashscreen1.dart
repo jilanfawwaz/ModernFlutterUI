@@ -13,8 +13,8 @@ class SplashScreen1 extends StatefulWidget {
 class _SplashScreen1State extends State<SplashScreen1> {
   @override
   void initState() {
-    Timer(Duration(seconds: 1),
-        () => Navigator.pushNamed(context, '/halamanutama1'));
+    /*Timer(Duration(seconds: 1),
+        () => Navigator.pushNamed(context, '/halamanutama1'));*/
     super.initState();
   }
 

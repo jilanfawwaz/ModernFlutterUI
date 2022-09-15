@@ -56,7 +56,8 @@ class ProviderFirebase with ChangeNotifier {
 
   Future<List<Map<String, dynamic>>> getApiFutureBuilder() async {
     try {
-      Uri url = Uri.parse("https://reqres.in/api/users/23");
+      Uri url = Uri.parse(
+          "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");
 
       var hasilResponse = await http.get(url);
 
@@ -100,7 +101,8 @@ class ProviderFirebase with ChangeNotifier {
         }
         return [];
       } else {
-        //throw (hasilResponse.statusCode);
+        print('Masuk eror');
+        print(hasilResponse.body);
         //throw Exception("Eror kodess ${hasilResponse.statusCode}");
         throw (hasilResponse.statusCode);
       }
@@ -113,6 +115,7 @@ class ProviderFirebase with ChangeNotifier {
 
   //Future<void> getApi() async {
   getApi() async {
+    //gaada try catch
     Uri url = Uri.parse(
         "https://http-req-a092b-default-rtdb.firebaseio.com/users.json");
 

@@ -16,9 +16,8 @@ class ProfileImage extends StatelessWidget {
         fit: BoxFit.cover,
         imageUrl: imageURL,
         placeholder: (context, url) =>
-            Image.asset("assets/images/noImage.jpeg"),
+            Image.asset("assets/images/4-gambarBelanja.png"),
         errorWidget: (context, url, error) => Icon(Icons.error),
-        
       );
     } catch (e) {
       rethrow;

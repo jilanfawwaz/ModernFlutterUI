@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/shared/theme.dart';
+//! Done Screen G.Doc
 
 class RatingGojek extends StatelessWidget {
   const RatingGojek({Key? key}) : super(key: key);
@@ -122,7 +123,8 @@ class RatingGojek extends StatelessWidget {
                     //floatingLabelStyle: const TextStyle(fontSize: 16),
                     //label: Center(child: Text("Your Message")),
 
-                    alignLabelWithHint: true, //kalau gadipasang defaultnya true, untuk menyamakan posisi label dengan posisi hint, akan terlihat kalau form multi line
+                    alignLabelWithHint:
+                        true, //kalau gadipasang defaultnya true, untuk menyamakan posisi label dengan posisi hint, akan terlihat kalau form multi line
 
                     labelStyle: cPoppinsGreyRegular14.copyWith(
                         color: Color(0xff808EAB)),

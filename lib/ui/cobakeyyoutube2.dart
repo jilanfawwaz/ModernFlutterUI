@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+//! Done Screen G.Doc
 
 class PositionedTiles extends StatefulWidget {
   @override
@@ -40,7 +41,7 @@ class PositionedTilesState extends State<PositionedTiles> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Expanded(child: Text("Program key dari youtube flutter dev")),
+        title: Text("Program key dari youtube flutter dev"),
       ),
       body: Center(
           child: Row(

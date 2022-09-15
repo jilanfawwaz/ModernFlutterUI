@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/Providers/cobasharedpreferences_and_themeprovider.dart';
 //import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+//!Done Screen G.Doc
 //!Done Pages G.Doc
 
 class CobaSharedAndTheme extends StatefulWidget {
@@ -12,28 +13,27 @@ class CobaSharedAndTheme extends StatefulWidget {
 }
 
 class _CobaSharedAndThemeState extends State<CobaSharedAndTheme> {
-  var number = 0;
-
+  
   //var shared = SharedPreferences.getInstance();
 
-  saveNumber(int number) async {
+  /*saveNumber(int number) async {
     var shared = await SharedPreferences.getInstance();
-    shared.setInt('numberNow', number);
-  }
+    shared.setInt('numberNow', number); //set variabel number dengan data 'numberNow'
+  }*/
 
   CobaSharedAndThemeProvider dataNumber = CobaSharedAndThemeProvider();
 
   @override
   void dispose() {
-    // TODO: implement dispose
-
+    
+    //listener harus selalu di remove/dispose agar tidak terjadi kelalaian memory
     dataNumber.removeListener(dataNumberListener);
     super.dispose();
   }
 
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
     dataNumber.addListener(dataNumberListener);
   }

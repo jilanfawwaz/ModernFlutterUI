@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/Providers/providermodelfirebase.dart';
 import 'package:provider/provider.dart';
+//! Done Screen G.Doc
 //! Done Pages G.Doc
 
 class FirebaseDetail extends StatelessWidget {
@@ -51,7 +52,7 @@ class FirebaseDetail extends StatelessWidget {
                       fit: BoxFit.cover,
                       imageUrl: dataApi.getProductById(productId)["imageURL"],
                       placeholder: (context, url) =>
-                          Image.asset("assets/images/noImage.jpeg"),
+                          Image.asset("assets/images/4-gambarBelanja.png"),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),

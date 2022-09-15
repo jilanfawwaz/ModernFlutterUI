@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:modern_flutter_ui/ui/cobaanimatedbuildercontroller.dart';
 import 'package:modern_flutter_ui/ui/cobaanimatedbuilderscale.dart';
 import 'package:modern_flutter_ui/ui/cobaanimatedbuildertranslate.dart';
+//! Done Screen G.Doc
 
 //file ini cuma untuk menampilkan seluruh jenis2 animatedbuilder (scale, rotate, dll)
 

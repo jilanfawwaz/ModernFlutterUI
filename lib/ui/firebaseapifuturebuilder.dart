@@ -4,6 +4,7 @@ import 'package:modern_flutter_ui/ui/firebasehomedetail.dart';
 import 'package:provider/provider.dart';
 
 import '../widget/profileimage.dart';
+//! Done Screen G.Doc
 //! Done Pages G.Doc
 
 class FirebaseFutureBuilder extends StatefulWidget {
@@ -38,11 +39,13 @@ class _FirebaseFutureBuilderState extends State<FirebaseFutureBuilder> {
             children: [
               //NOTE:FutureBuilder penjelasan ada di note
               FutureBuilder(
-                future: Provider.of<ProviderFirebase>(context, listen: false)
-                    .getApiFutureBuilder(),
+                /*future: Provider.of<ProviderFirebase>(context, listen: false)
+                    .getApiFutureBuilder(),*/
+                future: dataApi.getApiFutureBuilder(),
                 //initialData: InitialData,
                 builder: (BuildContext context,
-                    AsyncSnapshot<List<Map<String, dynamic>>> snapshot) { //beri tipe data untuk snapshot nya
+                    AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                  //beri tipe data untuk snapshot nya
                   //builder: (context, snapshot) {
 
                   //print(snapshot.data);
@@ -52,7 +55,7 @@ class _FirebaseFutureBuilderState extends State<FirebaseFutureBuilder> {
                       height: _bodyHeight,
                       alignment: Alignment.center,
                       child: Center(
-                        child: Text("Eror: ${snapshot.error }"),
+                        child: Text("Eror: ${snapshot.error}"),
                       ),
                     );
                   }

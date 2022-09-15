@@ -37,7 +37,7 @@ class CobaSharedAndThemeProvider with ChangeNotifier {
 
     //print(shared.getInt('number').toString());
     _number = shared.getInt('number')!;
-    //notifyListeners();
+    notifyListeners();
     return true;
   }
 
